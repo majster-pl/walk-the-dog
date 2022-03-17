@@ -11,6 +11,7 @@ class Place extends Model
         'user_id',
         'info',
         'location',
+        'status',
     ];
 
     use HasFactory;

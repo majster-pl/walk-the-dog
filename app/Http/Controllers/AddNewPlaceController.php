@@ -9,7 +9,10 @@ class AddNewPlaceController extends Controller
 {
     public function index()
     {
-        return view("new-place.index");
+        $places = Place::where('user_id', auth()->id())->orderByDesc('created_at')->get();
+        return view("new-place.index", [
+            'places' => $places
+        ]);
     }
 
     public function store(Request $request)
@@ -19,6 +22,13 @@ class AddNewPlaceController extends Controller
             'info' => 'required|min:3'
         ]);
 
-        $request->user()->places()->create($request->only(['location', 'info']));
+        $request->user()->places()->create([
+            'status' => 'pending',
+            'location' => $request->location,
+            'info' => $request->info,
+        ]);
+
+        redirect('add-new-place');
     }
+
 }

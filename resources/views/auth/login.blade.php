@@ -4,9 +4,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <div class="row mb-3">
+                    <div class="btn-group text-center">
+                        <a href="{{ route('login') }}" class="btn btn-success active" aria-current="page">Login</a>
+                        <a href="{{ route('register') }}" class="btn btn-secondary">Regrister</a>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
-
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf

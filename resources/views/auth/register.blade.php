@@ -4,6 +4,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <div class="row mb-3">
+                    <div class="btn-group text-center">
+                        <a href="{{ route('login') }}" class="btn btn-secondary" aria-current="page">Login</a>
+                        <a href="{{ route('register') }}" class="btn btn-success active">Regrister</a>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-header">{{ __('Register') }}</div>
 
