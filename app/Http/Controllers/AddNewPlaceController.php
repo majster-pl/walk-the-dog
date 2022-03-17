@@ -28,7 +28,7 @@ class AddNewPlaceController extends Controller
             'info' => $request->info,
         ]);
 
-        redirect('add-new-place');
+        return redirect()->back();
     }
 
 }
