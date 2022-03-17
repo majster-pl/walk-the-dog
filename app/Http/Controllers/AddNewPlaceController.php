@@ -9,7 +9,7 @@ class AddNewPlaceController extends Controller
 {
     public function index()
     {
-        $places = Place::where('user_id', auth()->id())->orderByDesc('created_at')->get();
+        $places = Place::where('user_id', auth()->id())->orderByDesc('created_at')->paginate(5);
         return view("new-place.index", [
             'places' => $places
         ]);

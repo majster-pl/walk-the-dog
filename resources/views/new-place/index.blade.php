@@ -60,7 +60,11 @@
                 @else
                     You didn't any places yet...
                 @endif
+                <div class="mt-3">
+                    {{$places->links()}}
+                </div>
             </div>
+
 
         </div>
     </div>
