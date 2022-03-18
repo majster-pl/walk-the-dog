@@ -24,11 +24,12 @@ $cyan: #6cb2eb;
 $navbar-dark-color:                 rgba($green, .75) !default;
 $navbar-dark-hover-color:           rgba($green, .90) !default;
 $navbar-dark-active-color:          rgba($orange, 1) !default;
-/
+
 
 /* INTRO */
 .intro-bg-image {
-    background-image: url('../../public/images/bg/wave1.png'), linear-gradient(to right, rgb(26, 57, 232), rgb(194, 25, 152));
+    // background-image: url('../../public/images/bg/wave1.png'), linear-gradient(to right, rgb(26, 57, 232), rgb(194, 25, 152));
+    background-image: linear-gradient(to right, rgb(26, 57, 232), rgb(194, 25, 152));
     min-height      : 45rem;
     position        : relative;
     background-size : cover;

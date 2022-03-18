@@ -1,5 +1,27 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
+/* INTRO */
+.intro-bg-image {
+  background-image: linear-gradient(to right, #1a39e8, #c21998);
+  min-height: 45rem;
+  position: relative;
+  background-size: cover;
+}
+
+.intro-bg-bottom-wave {
+  position: absolute;
+  /* bottom  : 14rem; */
+  bottom: -0.2rem;
+}
+
+.intro-content {
+  padding-top: 7rem;
+}
+
+.intro-col {
+  height: 12rem;
+}
+
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

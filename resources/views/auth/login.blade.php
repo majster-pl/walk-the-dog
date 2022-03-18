@@ -1,18 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="row mb-3">
-                    <div class="btn-group text-center">
-                        <a href="{{ route('login') }}" class="btn btn-success active" aria-current="page">Login</a>
-                        <a href="{{ route('register') }}" class="btn btn-secondary">Regrister</a>
-                    </div>
-                </div>
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
-                    <div class="card-body">
+                    <div class="card-header p-0 rounded-0">
+                        <div class="row">
+                            <div class="btn-group text-center">
+                                <a href="{{ route('login') }}" class="btn btn-success active rounded-0"
+                                    aria-current="page">Login</a>
+                                <a href="{{ route('register') }}" class="btn btn-secondary rounded-0">Regrister</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body mt-3">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
@@ -65,7 +67,7 @@
 
                             <div class="mb-3 row">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-success">
                                         {{ __('Login') }}
                                     </button>
 
