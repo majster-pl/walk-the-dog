@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Place;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,6 +14,9 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view("dashboard.index");
+        $places = Place::where('user_id', auth()->id())->orderByDesc('created_at')->paginate(5);
+        return view("dashboard.index", [
+            'places' => $places
+        ]);
     }
 }
