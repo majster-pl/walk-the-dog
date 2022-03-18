@@ -24,6 +24,26 @@ $cyan: #6cb2eb;
 $navbar-dark-color:                 rgba($green, .75) !default;
 $navbar-dark-hover-color:           rgba($green, .90) !default;
 $navbar-dark-active-color:          rgba($orange, 1) !default;
-// $navbar-dark-disabled-color:        rgba($white, .25) !default;
-// $navbar-dark-toggler-icon-bg:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !default;
-// $navbar-dark-toggler-border-color:  rgba($white, .1) !default;
+/
+
+/* INTRO */
+.intro-bg-image {
+    background-image: url('../../public/images/bg/wave1.png'), linear-gradient(to right, rgb(26, 57, 232), rgb(194, 25, 152));
+    min-height      : 45rem;
+    position        : relative;
+    background-size : cover;
+}
+
+.intro-bg-bottom-wave {
+    position   : absolute;
+    /* bottom  : 14rem; */
+    bottom     : -0.2rem;
+}
+
+.intro-content {
+    padding-top: 7rem;
+}
+
+.intro-col {
+    height: 12rem;
+}
