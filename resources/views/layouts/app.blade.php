@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">Dog Walker</a>
+                <a class="navbar-brand text-white" href="/">Walk The Dog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
                     aria-label="Toggle navigation">
