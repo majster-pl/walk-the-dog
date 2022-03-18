@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section('content')
-    <div class="card my-4">
+    <div class="card">
         <div class="card-header fs-5">{{ __('Places added by you') }}</div>
         <div class="card-body">
 
@@ -13,7 +13,6 @@
                                 <div>
                                     <h5 class="mb-1">{{ $place->location }}</h5>
                                     <p class="mb-1">{{ $place->info }}</p>
-                                    <small class="text-danger">{{ $place->status }}</small>
                                     <div class="d-flex flex-row ">
                                         <div>
                                             <span class="align-text-bottom me-2">{{ $place->likes->count() }}
@@ -37,7 +36,7 @@
                                 </div>
                                 <div class="row justify-content-end">
                                     <div class="col-12 text-end">
-                                        <small>{{ $place->created_at->diffForHumans() }}</small>
+                                        <small class="me-2">{{ $place->created_at->diffForHumans() }} </small> <small class="text-danger fw-bold">[ {{ $place->status }} ]</small>
                                     </div>
                                     @if ($place->createdBy(Auth::user()))
                                         <div class="col-12">
