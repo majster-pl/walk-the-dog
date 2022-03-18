@@ -29,7 +29,7 @@ class Place extends Model
 
     public function createdBy(User $user)
     {
-        return $this->where('user_id', $user->id);
+        return $this->user_id === $user->id;
     }
 
     public function isPublic()
