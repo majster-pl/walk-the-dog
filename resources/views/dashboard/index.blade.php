@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="row justify-content-end">
                                     <div class="col-12 text-end">
-                                        <small class="me-2">{{ $place->created_at->diffForHumans() }} </small> <small class="text-danger fw-bold">[ {{ $place->status }} ]</small>
+                                        <small class="me-2">{{ $place->created_at->diffForHumans() }} </small> <small class="text-{{$place->isPublic() ? 'success' : 'warning'}} fw-bold">{{ $place->status }}</small>
                                     </div>
                                     @if ($place->createdBy(Auth::user()))
                                         <div class="col-12">
