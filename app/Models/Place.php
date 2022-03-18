@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Like;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Place extends Model
 {
@@ -15,4 +16,24 @@ class Place extends Model
     ];
 
     use HasFactory;
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function likedBy(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
+    }
+
+    public function createdBy(User $user)
+    {
+        return $this->where('user_id', $user->id);
+    }
+
+    public function isPublic()
+    {
+        return $this->status === 'public';
+    }
 }
