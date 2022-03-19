@@ -90,18 +90,18 @@
         <main>
             @yield('content')
         </main>
-        <footer class="footer mt-auto py-3 bg-dark">
+        <nav class="navbar fixed-bottom mt-auto py-3 bg-dark">
             <div class="container">
                 <span class="text-white">
-                    Copyright © 2022 - 
+                    Copyright © 2022 -
                     <a class="text-decoration-none" href="https://github.com/majster-pl" target="_blank"
                         rel="noreferrer">
-                        Szymon Waliczek 
+                        Szymon Waliczek
                         <i class="fa fa-github" style="font-size: 1.2rem" aria-hidden="true"></i>
                     </a>
                 </span>
             </div>
-        </footer>
+        </nav>
     </div>
 </body>
 
