@@ -18,11 +18,13 @@ class AddNewPlaceController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'title' => 'required|min:2',
             'location' => 'required|min:5',
             'info' => 'required|min:3'
         ]);
 
         $request->user()->places()->create([
+            'title' => $request->title,
             'status' => 'pending',
             'location' => $request->location,
             'info' => $request->info,

@@ -13,7 +13,7 @@
                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
                                     <div>
-                                        <h5 class="mb-1">{{ $place->location }}</h5>
+                                        <h5 class="mb-1">{{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>
                                         <p class="mb-1">{{ $place->info }}</p>
                                         <div class="d-flex flex-row ">
                                             <div>

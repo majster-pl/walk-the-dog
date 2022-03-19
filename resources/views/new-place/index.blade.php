@@ -9,6 +9,14 @@
                 <form class="my-3" action="{{ route('add-new-place') }}" method="post">
                     @csrf
                     <div class="form-floating mb-3">
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                            name="title" placeholder="Title" value="{{ old('title') }}">
+                        <label for="title">Title</label>
+                        @error('title')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-floating mb-3">
                         <input type="text" class="form-control @error('location') is-invalid @enderror" id="location"
                             name="location" placeholder="Place location" value="{{ old('location') }}">
                         <label for="location">Location</label>

@@ -14,39 +14,20 @@
     <div class="container pb-5">
         <h4>Recently added</h4>
         <div class="row text-center">
-            <div class="col-md-4 col-12">
-                <div class="card my-2 h-100">
-                    <img src="{{ asset('images/me.jpg') }}" class="card-img-top img-fluid" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-success">Go somewhere</a>
+            @foreach ($recent as $place)
+                <div class="col-md-4 col-12">
+                    <div class="card my-2 h-100">
+                        <img src="{{ asset('images/me.jpg') }}" class="card-img-top img-fluid" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$place->info}}</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                                bulk of
+                                the card's content.</p>
+                            <a href="#" class="btn btn-success">Go somewhere</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="card my-2 h-100">
-                    <img src="{{ asset('images/me.jpg') }}" class="card-img-top img-fluid" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-success">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div class="card my-2 h-100" >
-                    <img src="{{ asset('images/me.jpg') }}" class="card-img-top img-fluid" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-success">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
