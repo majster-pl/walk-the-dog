@@ -20,6 +20,10 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
+$table-variants: (
+    "dark": $orange,
+);
+
 // navbar
 $navbar-dark-color: rgba($green, 0.75) !default;
 $navbar-dark-hover-color: rgba($green, 0.9) !default;
@@ -27,7 +31,7 @@ $navbar-dark-active-color: rgba($orange, 1) !default;
 
 /* INTRO */
 .intro-bg-image {
-    background-image: url("../../public/images/bg-paw-print1.png"), linear-gradient(to right, #3BC46C, #70da97);
+    background-image: url("../../public/images/bg-paw-print1.png"), linear-gradient(to right, #3bc46c, #70da97);
     min-height: 25rem;
     position: relative;
     background-size: cover;
