@@ -2,8 +2,8 @@
 @charset "UTF-8";
 /* INTRO */
 .intro-bg-image {
-  background-image: linear-gradient(to right, #1a39e8, #c21998);
-  min-height: 45rem;
+  background-image: url(/images/bg-paw-print1.png?1a3f4a377d512eccd9f270614e7355a6), linear-gradient(to right, #3BC46C, #70da97);
+  min-height: 25rem;
   position: relative;
   background-size: cover;
 }
