@@ -7,24 +7,60 @@
         </svg>
         <div class="container py-4 text-white">
             <h1 class="pt-3">Welcome to Walk The Dog!</h1>
-            <h3>You can find here a new place nearby to walk you pet!</h3>
+            <h3>You can find here places near you to walk your pet!</h3>
             <p>Please fell free to contribute and share with us a new place where you like to walk your dog :)</p>
         </div>
     </div>
     <div class="container pb-5">
-        <h4>Recently added</h4>
-        <div class="row text-center">
+        <h3 class="text-decoration-underline">Recently Added</h3>
+        <div class="row pb-3 justify-content-evenly">
             @foreach ($recent as $place)
-                <div class="col-md-4 col-12">
-                    <div class="card my-2 h-100">
-                        <img src="{{ asset('images/me.jpg') }}" class="card-img-top img-fluid" alt="...">
+                <div class="col-md-4 col-12 mb-4">
+                    <div class="card mb-2 h-100">
+                        <img src="{{ asset('images/dog1.webp') }}" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{$place->info}}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-success">Go somewhere</a>
+                            <h5 class="card-title">
+                                {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>
+                            <p class="card-text">
+                                {{ Str::length($place->info) > 0 ? $place->info : '[Info not set]' }}</p>
                         </div>
+                        <p class="card-text m-0 mx-3"><small class="text-muted">
+                                {{ $place->likes->count() }}
+                                {{ Str::plural('like', $place->likes->count()) }}</small></p>
+                        <p class="card-text m-0 mx-3"><small class="text-muted">Added
+                                {{ $place->created_at->diffForHumans() }}</small></p>
+                        <div class="card-footer p-0 m-0">
+                            <a href="#" class="btn btn-success d-block mx-0 rounded-0">Show me more</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <h3 class="text-decoration-underline">Top Rated</h3>
+        <div class="row  justify-content-evenly">
+            @foreach ($top as $place)
+                <div class="col-md-4 col-12 mb-4">
+                    <div class="card mb-2 h-100">
+                        <img src="{{ asset('images/dog1.webp') }}" class="card-img-top img-fluid" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>
+                            <p class="card-text">
+                                {{ Str::length($place->info) > 0 ? $place->info : '[Info not set]' }}</p>
+                        </div>
+                        <p class="card-text m-0 mx-3"><small class="text-muted">
+                                {{ $place->likes->count() }}
+                                {{ Str::plural('like', $place->likes->count()) }}</small></p>
+                        <p class="card-text m-0 mx-3"><small class="text-muted">Added
+                                {{ $place->created_at->diffForHumans() }}</small></p>
+                        <div class="card-footer p-0 m-0">
+                            <a href="#" class="btn btn-success d-block mx-0 rounded-0">Show me more</a>
+
+                        </div>
+
                     </div>
                 </div>
             @endforeach
