@@ -8,7 +8,7 @@
         <div class="container py-4 text-white">
             <h1 class="pt-3">Welcome to Walk The Dog!</h1>
             <h3>You can find here places near you to walk your pet!</h3>
-            <p>Please fell free to contribute and share with us a new place where you like to walk your dog :)</p>
+            <p>Please fell free to contribute and share with us new place where you like to walk your dog :)</p>
         </div>
     </div>
     <div class="container pb-5">
@@ -40,7 +40,7 @@
         </div>
 
         <h3 class="text-decoration-underline">Top Rated</h3>
-        <div class="row  justify-content-evenly">
+        <div class="row justify-content-evenly mb-5">
             @foreach ($top as $place)
                 <div class="col-md-4 col-12 mb-4">
                     <div class="card mb-2 h-100">
