@@ -2,6 +2,21 @@
 
 @section('content')
     <div class="container py-4">
+        <ul class="nav nav-pills pb-3">
+            <li class="nav-item">
+                <a class="nav-link text-black {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="{{route('dashboard')}}">Active</a>
+            </li>
+            @hasanyrole('editor|super-user')
+            <li class="nav-item">
+                <a class="nav-link text-black {{ Request::is('dashboard/pending') ? 'active' : '' }}" href="{{route('dashboard.pending')}}">Pending</a>
+            </li>
+            @endhasanyrole
+            @can('super-user')
+            <li class="nav-item">
+                <a class="nav-link text-black {{ Request::is('dashboard/users') ? 'active' : '' }}" href="{{route('dashboard.users')}}">Useers</a>
+            </li>
+            @endcan
+        </ul>
 
         <div class="card">
             <div class="card-header fs-5">{{ __('Places added by you') }}</div>
@@ -13,7 +28,8 @@
                             <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                                 <div class="d-flex w-100 justify-content-between">
                                     <div>
-                                        <h5 class="mb-1">{{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>
+                                        <h5 class="mb-1">
+                                            {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>
                                         <p class="mb-1">{{ $place->info }}</p>
                                         <div class="d-flex flex-row ">
                                             <div>
@@ -63,7 +79,7 @@
                 </div>
                 @can('super-user')
                     SUPER USER!
-                    @else
+                @else
                     NORMAL USER!
                 @endcan
 

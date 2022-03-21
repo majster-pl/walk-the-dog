@@ -31,6 +31,11 @@
   border-bottom: 1.5px #f6993f solid;
 }
 
+.nav-pills > li > a.active {
+  background-color: #38c172 !important;
+  color: white !important;
+}
+
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

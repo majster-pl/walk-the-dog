@@ -60,3 +60,8 @@ $navbar-dark-active-color: rgba($orange, 1) !default;
 .nav-link.active {
     border-bottom: 1.5px $orange solid;
 }
+
+.nav-pills > li > a.active {
+    background-color: $green !important;
+    color: white !important;
+}

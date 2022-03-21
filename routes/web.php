@@ -17,6 +17,12 @@ Route::get('/places', [PlaceController::class, "index"])->name('places');
 Route::post('/places/{place}/likes', [PlaceLikeController::class, "store"])->name('places.likes');
 Route::delete('/places/{place}/likes', [PlaceLikeController::class, "destroy"])->name('places.likes');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name("dashboard");
+Route::get( '/dashboard', [DashboardController::class, 'index'])->name("dashboard");
+Route::group(['middleware' => ['role:super-user|editor']], function () {
+    Route::get('/dashboard/pending', [DashboardController::class, 'index'])->name("dashboard.pending");
+});
+Route::group(['middleware' => ['role:super-user']], function () {
+    Route::get('/dashboard/users', [DashboardController::class, 'index'])->name("dashboard.users");
+});
 
 Auth::routes();

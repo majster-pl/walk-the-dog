@@ -39,7 +39,7 @@ class PermissionsDemoSeeder extends Seeder
         $role2->givePermissionTo('publish places');
         $role2->givePermissionTo('unpublish places');
 
-        $role3 = Role::create(['name' => 'Super-Admin']);
+        $role3 = Role::create(['name' => 'super-user']);
 
         // create demo users
         $user = User::factory()->create([
