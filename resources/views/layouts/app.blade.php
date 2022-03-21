@@ -91,7 +91,7 @@
             @yield('content')
         </main>
         <nav class="navbar fixed-bottom mt-auto py-3 bg-dark">
-            <div class="container">
+            <div class="px-3">
                 <span class="text-white">
                     Copyright © 2022 -
                     <a class="text-decoration-none" href="https://github.com/majster-pl" target="_blank"
