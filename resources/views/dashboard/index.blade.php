@@ -61,6 +61,11 @@
                         {{ $places->links() }}
                     </div>
                 </div>
+                @can('super-user')
+                    SUPER USER!
+                    @else
+                    NORMAL USER!
+                @endcan
 
 
             </div>
