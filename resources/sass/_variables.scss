@@ -56,3 +56,7 @@ $navbar-dark-active-color: rgba($orange, 1) !default;
         min-height: 30rem;
     }
 }
+
+.nav-link.active {
+    border-bottom: 1.5px $orange solid;
+}

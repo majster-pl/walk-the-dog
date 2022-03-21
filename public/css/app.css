@@ -27,6 +27,10 @@
     min-height: 30rem;
   }
 }
+.nav-link.active {
+  border-bottom: 1.5px #f6993f solid;
+}
+
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
