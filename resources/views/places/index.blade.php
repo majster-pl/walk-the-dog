@@ -48,7 +48,7 @@
                                         </div>
                                         @guest
                                         @else
-                                            @if ($place->createdBy(Auth::user()))
+                                            @if ($place->isUsersPost(Auth::user()))
                                                 <div class="col-12">
                                                     <div class="d-flex justify-content-end">
                                                         <button class="btn btn-link me-2" disabled>Edit</button>

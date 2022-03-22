@@ -33,7 +33,7 @@ Places awaiting review
                                 @endif
                             </div>
                             <div>
-                                <span class="align-text-bottom me-2">Added by: {{ "_OOOOOO" }}</span>
+                                <span class="align-text-bottom me-2">Submitted by: <span class="text-muted">{{ $place->user->name }}</span></span>
                             </div>
                         </div>
                         <div class="row justify-content-end">

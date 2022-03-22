@@ -28,7 +28,12 @@ class Place extends Model
         return $this->likes->contains('user_id', $user->id);
     }
 
-    public function createdBy(User $user)
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id', 'id');
+    }
+
+    public function isUsersPost(User $user)
     {
         return $this->user_id === $user->id;
     }
