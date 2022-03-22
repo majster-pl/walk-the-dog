@@ -1,6 +1,6 @@
 @extends("layouts.dashboard")
 @section('content-card-title')
-    Places added by me
+Places awaiting review
 @endsection
 @section('content-card')
     <div class="list-group">
@@ -32,6 +32,9 @@
                                     </form>
                                 @endif
                             </div>
+                            <div>
+                                <span class="align-text-bottom me-2">Added by: {{ "_OOOOOO" }}</span>
+                            </div>
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-12 text-end">
@@ -39,14 +42,12 @@
                                 </small> <small
                                     class="text-{{ $place->isPublic() ? 'success' : 'warning' }} fw-bold">{{ $place->status }}</small>
                             </div>
-                            @if ($place->createdBy(Auth::user()))
-                                <div class="col-12">
-                                    <div class="d-flex justify-content-end">
-                                        <button class="btn btn-link me-2" disabled>Edit</button>
-                                        <button class="btn btn-danger" disabled>Remove</button>
-                                    </div>
+                            <div class="col-12">
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-link me-2" disabled>Edit</button>
+                                    <button class="btn btn-danger" disabled>Remove</button>
                                 </div>
-                            @endif
+                            </div>
                         </div>
                     </div>
                 </a>
