@@ -1,6 +1,6 @@
 @extends("layouts.dashboard")
 @section('content-card-title')
-Places awaiting review
+    Places awaiting review
 @endsection
 @section('content-card')
     <div class="list-group">
@@ -33,7 +33,8 @@ Places awaiting review
                                 @endif
                             </div>
                             <div>
-                                <span class="align-text-bottom me-2">Submitted by: <span class="text-muted">{{ $place->user->name }}</span></span>
+                                <span class="align-text-bottom me-2">Submitted by: <span
+                                        class="text-muted">{{ $place->user->name }}</span></span>
                             </div>
                         </div>
                         <div class="row justify-content-end">
@@ -45,7 +46,19 @@ Places awaiting review
                             <div class="col-12">
                                 <div class="d-flex justify-content-end">
                                     <button class="btn btn-link me-2" disabled>Edit</button>
-                                    <button class="btn btn-danger" disabled>Remove</button>
+                                    <button class="btn btn-danger me-2" disabled>Remove</button>
+                                    @if ($place->status === 'published')
+                                        <form method="post" action="{{ route('places.unpublish', $place) }}">
+                                            @method('PATCH')
+                                            @csrf
+                                            <button type="submit" class="btn btn-success">Unpublish</button>
+                                        @else
+                                            <form method="post" action="{{ route('places.publish', $place) }}">
+                                                @method('PATCH')
+                                                @csrf
+                                                <button type="submit" class="btn btn-success">Publish</button>
+                                    @endif
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +66,7 @@ Places awaiting review
                 </a>
             @endforeach
         @else
-            You didn't add any places yet...
+            Perfect! No places padning review! :)
         @endif
         <div class="mt-3">
             {{ $places->links() }}

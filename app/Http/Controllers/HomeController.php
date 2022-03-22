@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         // get recently added places
-        $recent = Place::latest()->where('status', '=', 'public')->take(3)->orderByDesc('created_at')->get();
+        $recent = Place::latest()->where('status', '=', 'published')->take(3)->orderByDesc('created_at')->get();
 
         // get 3 places with most likes (will return place_id and number of likes)
         $ordered = Like::select('place_id')

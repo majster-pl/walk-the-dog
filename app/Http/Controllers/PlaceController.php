@@ -9,7 +9,7 @@ class PlaceController extends Controller
 {
     public function index()
     {
-        $places = Place::where('status', 'public')->orderByDesc('created_at')->paginate(5);
+        $places = Place::where('status', 'published')->orderByDesc('created_at')->paginate(5);
         return view("places.index", [
             'places' => $places
         ]);

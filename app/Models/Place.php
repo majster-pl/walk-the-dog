@@ -40,6 +40,6 @@ class Place extends Model
 
     public function isPublic()
     {
-        return $this->status === 'public';
+        return $this->status === 'published';
     }
 }
