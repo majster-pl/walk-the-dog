@@ -87,10 +87,10 @@
         </nav>
 
 
-        <main>
+        <main style="min-height: calc(100vh - 7rem)">
             @yield('content')
         </main>
-        <nav class="navbar fixed-bottom mt-auto py-3 bg-dark">
+        <nav class="navbar bottom mt-auto py-3 bg-dark">
             <div class="px-3">
                 <span class="text-white">
                     Copyright © 2022 -

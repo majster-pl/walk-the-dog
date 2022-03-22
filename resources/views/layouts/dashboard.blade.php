@@ -9,8 +9,13 @@
             </li>
             @hasanyrole('editor|super-user')
                 <li class="nav-item">
-                    <a class="nav-link text-black {{ Request::is('dashboard/pending') ? 'active' : '' }}"
-                        href="{{ route('dashboard.pending') }}">Pending</a>
+                    <a class="nav-link text-black position-relative {{ Request::is('dashboard/pending') ? 'active' : '' }}"
+                        href="{{ route('dashboard.pending') }}">Pending
+                        {{-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{"99"}}
+                            <span class="visually-hidden">unread messages</span>
+                        </span> --}}
+                    </a>
                 </li>
             @endhasanyrole
             @can('super-user')
