@@ -7,8 +7,10 @@
         @if ($places->count())
             @foreach ($places as $place)
                 <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                    <div class="d-flex w-100 justify-content-between">
-                        <div>
+                    {{-- <div class="d-flex w-100 justify-content-between"> --}}
+                    <div class="row">
+
+                        <div class="col-12 col-md-8">
                             <h5 class="mb-1">
                                 {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>
                             <p class="mb-1">{{ $place->info }}</p>
@@ -37,32 +39,50 @@
                                         class="text-muted">{{ $place->user->name }}</span></span>
                             </div>
                         </div>
-                        <div class="row justify-content-end">
-                            <div class="col-12 text-end">
-                                <small class="me-2">{{ $place->created_at->diffForHumans() }}
-                                </small> <small
-                                    class="text-{{ $place->isPublic() ? 'success' : 'warning' }} fw-bold">{{ $place->status }}</small>
-                            </div>
-                            <div class="col-12">
-                                <div class="d-flex justify-content-end">
-                                    <button class="btn btn-link me-2" disabled>Edit</button>
-                                    <button class="btn btn-danger me-2" disabled>Remove</button>
-                                    @if ($place->status === 'published')
-                                        <form method="post" action="{{ route('places.unpublish', $place) }}">
-                                            @method('PATCH')
-                                            @csrf
-                                            <button type="submit" class="btn btn-success">Unpublish</button>
-                                        @else
-                                            <form method="post" action="{{ route('places.publish', $place) }}">
-                                                @method('PATCH')
+                        <div class="col-12 col-md-4">
+
+                            <div class="row justify-content-end h-100">
+                                <div class="col-12 text-start text-md-end">
+                                    <small class="me-2">{{ $place->created_at->diffForHumans() }}
+                                    </small> <small
+                                        class="text-{{ $place->isPublic() ? 'success' : 'warning' }} fw-bold">{{ $place->status }}</small>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row gx-2 justify-content-end h-100 pt-2">
+                                        <div class="col-auto mt-auto pt-2">
+                                            <button class="btn btn-info" disabled>Edit</button>
+                                        </div>
+                                        <div class="col-auto mt-auto pt-2">
+                                            <form method="post" action="{{ route('places.delete', $place) }}">
+                                                @method('DELETE')
                                                 @csrf
-                                                <button type="submit" class="btn btn-success">Publish</button>
-                                    @endif
-                                    </form>
+                                                <button class="btn btn-danger text-white" type="submit"
+                                                    onClick='return confirmSubmit()'>Remove</button>
+                                            </form>
+                                        </div>
+                                        <div class="col-auto mt-auto pt-2">
+                                            @if ($place->status === 'published')
+                                                <form method="post" action="{{ route('places.unpublish', $place) }}">
+                                                    @method('PATCH')
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-success text-white">Unpublish</button>
+                                                @else
+                                                    <form method="post" action="{{ route('places.publish', $place) }}">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="btn btn-success text-white">Publish</button>
+                                            @endif
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    {{-- </div> --}}
                 </a>
             @endforeach
         @else
@@ -72,5 +92,16 @@
             {{ $places->links() }}
         </div>
     </div>
+    <script LANGUAGE="JavaScript">
+        <!--
+        function confirmSubmit() {
+            var agree = confirm("Are you sure you wish to remove?");
+            if (agree)
+                return true;
+            else
+                return false;
+        }
+        -->
+    </script>
 
 @endsection

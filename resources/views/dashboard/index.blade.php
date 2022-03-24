@@ -1,6 +1,6 @@
 @extends("layouts.dashboard")
 @section('content-card-title')
-    Places added by me
+    Places added by you
 @endsection
 @section('content-card')
     <div class="list-group">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Place;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AddNewPlaceController extends Controller
 {
@@ -23,9 +24,11 @@ class AddNewPlaceController extends Controller
             'info' => 'required|min:3'
         ]);
 
+        // dd($request->published);
+
         $request->user()->places()->create([
             'title' => $request->title,
-            'status' => 'pending',
+            'status' => ((isset($request->published) && Auth::can('publish place')) ? 'published' : 'pending'),
             'location' => $request->location,
             'info' => $request->info,
         ]);
