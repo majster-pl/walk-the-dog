@@ -52,7 +52,7 @@
                                         when submitted</label>
                                 </div>
                             @endif
-                            <button type="submit" class="btn btn-success float-end">Update</button>
+                            <button type="submit" class="btn btn-success text-white float-end">Update</button>
                         </div>
                     </form>
                 @else
