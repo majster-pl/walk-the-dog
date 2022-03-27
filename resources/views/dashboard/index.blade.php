@@ -42,7 +42,9 @@
                             @if ($place->isUsersPost(Auth::user()))
                                 <div class="col-12">
                                     <div class="d-flex justify-content-end">
-                                        <button class="btn btn-link me-2" disabled>Edit</button>
+                                    <form method="get" action="{{ route('place.edit', $place) }}">
+                                        <button class="btn btn-link me-2" type="submit">Edit</button>
+                                    </form>
                                         <button class="btn btn-danger" disabled>Remove</button>
                                     </div>
                                 </div>

@@ -87,14 +87,14 @@
         </nav>
 
 
-        <main style="min-height: calc(100vh - 7rem)">
+        <main style="min-height: calc(100vh - 6.9rem)">
             @yield('content')
         </main>
         <nav class="navbar bottom mt-auto py-3 bg-dark">
             <div class="px-3">
                 <span class="text-white">
                     Copyright © 2022 -
-                    <a class="text-decoration-none" href="https://github.com/majster-pl" target="_blank"
+                    <a class="text-decoration-none text-success" href="https://github.com/majster-pl" target="_blank"
                         rel="noreferrer">
                         Szymon Waliczek
                         <i class="fa fa-github" style="font-size: 1.2rem" aria-hidden="true"></i>
