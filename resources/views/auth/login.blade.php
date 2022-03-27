@@ -19,7 +19,7 @@
                             @csrf
 
                             <div class="mb-3 row">
-                                <label for="email" class="col-md-4 col-form-label text-end">
+                                <label for="email" class="col-md-4 col-form-label text-start text-md-end">
                                     {{ __('E-Mail Address') }} :
                                 </label>
 
@@ -36,7 +36,7 @@
                             </div>
 
                             <div class="mb-3 row">
-                                <label for="password" class="col-md-4 col-form-label text-end">
+                                <label for="password" class="col-md-4 col-form-label text-start text-md-end">
                                     {{ __('Password') }} :
                                 </label>
 

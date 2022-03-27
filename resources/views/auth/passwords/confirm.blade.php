@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -14,7 +14,7 @@
                             @csrf
 
                             <div class="mb-3 row">
-                                <label for="password" class="col-md-4 col-form-label text-end">
+                                <label for="password" class="col-md-4 col-form-label text-start text-md-end">
                                     {{ __('Password') }} :
                                 </label>
 
@@ -33,7 +33,7 @@
 
                             <div class="mb-3 row">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-success">
                                         {{ __('Confirm Password') }}
                                     </button>
 

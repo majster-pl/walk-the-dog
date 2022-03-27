@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -14,7 +14,7 @@
                             <input type="hidden" name="token" value="{{ $token }}">
 
                             <div class="mb-3 row">
-                                <label for="email" class="col-md-4 col-form-label text-end">
+                                <label for="email" class="col-md-4 col-form-label text-start text-md-end">
                                     {{ __('E-Mail Address') }} :
                                 </label>
 
@@ -32,7 +32,7 @@
                             </div>
 
                             <div class="mb-3 row">
-                                <label for="password" class="col-md-4 col-form-label text-end">
+                                <label for="password" class="col-md-4 col-form-label text-start text-md-end">
                                     {{ __('Password') }} :
                                 </label>
 
@@ -50,7 +50,7 @@
                             </div>
 
                             <div class="mb-3 row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-end">
+                                <label for="password-confirm" class="col-md-4 col-form-label text-start text-md-end">
                                     {{ __('Confirm Password') }} :
                                 </label>
 
@@ -62,7 +62,7 @@
 
                             <div class="mb-3 row">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-success">
                                         {{ __('Reset Password') }}
                                     </button>
                                 </div>
