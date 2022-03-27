@@ -42,10 +42,16 @@
                             @if ($place->isUsersPost(Auth::user()))
                                 <div class="col-12">
                                     <div class="d-flex justify-content-end">
-                                    <form method="get" action="{{ route('place.edit', $place) }}">
-                                        <button class="btn btn-link me-2" type="submit">Edit</button>
-                                    </form>
-                                        <button class="btn btn-danger" disabled>Remove</button>
+                                        <form method="get" action="{{ route('place.edit', $place) }}">
+                                            @csrf
+                                            <button class="btn btn-link me-2" type="submit">Edit</button>
+                                        </form>
+                                        <form method="post" action="{{ route('places.delete', $place) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="btn btn-danger text-white" type="submit"
+                                                onClick='return confirmSubmit()'>Remove</button>
+                                        </form>
                                     </div>
                                 </div>
                             @endif
@@ -60,5 +66,15 @@
             {{ $places->links() }}
         </div>
     </div>
-
+    <script LANGUAGE="JavaScript">
+        <!--
+        function confirmSubmit() {
+            var agree = confirm("Are you sure you wish to remove?");
+            if (agree)
+                return true;
+            else
+                return false;
+        }
+        -->
+    </script>
 @endsection

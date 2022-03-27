@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Place;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,14 +27,21 @@ class AddNewPlaceController extends Controller
 
         // dd($request->published);
 
-        $request->user()->places()->create([
+        $user = User::find(Auth::id());
+
+
+        $newPlace = $request->user()->places()->create([
             'title' => $request->title,
-            'status' => ((isset($request->published) && Auth::can('publish place')) ? 'published' : 'pending'),
+            'status' => ((isset($request->published) && $user->hasRole('publish place|super-user')) ? 'published' : 'pending'),
             'location' => $request->location,
             'info' => $request->info,
         ]);
 
-        return redirect()->back();
+        if ($newPlace) {
+            return redirect()->back()->with('success', 'New place added successfully!');
+        } else {
+            return redirect()->back()->with('error', 'There was problem adding a new place... <br>Please try again later!');
+        }
     }
 
 }

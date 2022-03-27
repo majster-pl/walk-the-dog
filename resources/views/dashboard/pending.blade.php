@@ -50,7 +50,10 @@
                                 <div class="col-12">
                                     <div class="row gx-2 justify-content-end h-100 pt-2">
                                         <div class="col-auto mt-auto pt-2">
-                                            <button class="btn btn-info" disabled>Edit</button>
+                                            <form method="get" action="{{ route('place.edit', $place) }}">
+                                                @csrf
+                                                <button class="btn btn-info" type="submit">Edit</button>
+                                            </form>
                                         </div>
                                         <div class="col-auto mt-auto pt-2">
                                             <form method="post" action="{{ route('places.delete', $place) }}">

@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container py-4">
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                {!! \Session::get('success') !!}
+            </div>
+        @endif
         <div class="card">
             <div class="card-header fs-5">{{ __('Add New Place') }}</div>
             <div class="card-body">
@@ -35,8 +40,12 @@
                     <div class="mb-3">
                         @if (Auth::user()->can('publish places'))
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="publishedCheckbox" name="published" {{ Auth::user()->can('publish places') ? "checked" : ''}} {{ Auth::user()->can('publish places') ? "" : 'disabled'}}>
-                                <label class="form-check-label" for="publishedCheckbox" title="Only Editors and Admins can publish places, if you are not editor your place will be pending review.">Publish when submitted</label>
+                                <input class="form-check-input" type="checkbox" id="publishedCheckbox" name="published"
+                                    {{ Auth::user()->can('publish places') ? 'checked' : '' }}
+                                    {{ Auth::user()->can('publish places') ? '' : 'disabled' }}>
+                                <label class="form-check-label" for="publishedCheckbox"
+                                    title="Only Editors and Admins can publish places, if you are not editor your place will be pending review.">Publish
+                                    when submitted</label>
                             </div>
                         @endif
                         <button type="submit" class="btn btn-success float-end">Submit</button>
