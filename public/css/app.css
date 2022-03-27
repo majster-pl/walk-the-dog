@@ -27,10 +27,6 @@
     min-height: 30rem;
   }
 }
-.nav-link.active {
-  border-bottom: 1.5px #f6993f solid;
-}
-
 .nav-pills > li > a.active {
   background-color: #38c172 !important;
   color: white !important;

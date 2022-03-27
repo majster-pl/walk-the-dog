@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container py-4">
-        <a class="btn btn-success mb-3" href="{{ URL::previous() }}">Back</a>
+        <a class="btn btn-success mb-3 text-white" href="{{ URL::previous() }}">Back</a>
         @if (\Session::has('success'))
             <div class="alert alert-success">
                 {!! \Session::get('success') !!}
