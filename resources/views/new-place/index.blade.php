@@ -33,10 +33,12 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="publishedCheckbox" name="published" {{ Auth::user()->can('publish places') ? "checked" : ''}} {{ Auth::user()->can('publish places') ? "" : 'disabled'}}>
-                            <label class="form-check-label" for="publishedCheckbox" title="Only Editors and Admins can publish places, if you are not editor your place will be pending review.">Publish when submitted</label>
-                        </div>
+                        @if (Auth::user()->can('publish places'))
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="publishedCheckbox" name="published" {{ Auth::user()->can('publish places') ? "checked" : ''}} {{ Auth::user()->can('publish places') ? "" : 'disabled'}}>
+                                <label class="form-check-label" for="publishedCheckbox" title="Only Editors and Admins can publish places, if you are not editor your place will be pending review.">Publish when submitted</label>
+                            </div>
+                        @endif
                         <button type="submit" class="btn btn-success float-end">Submit</button>
                     </div>
                 </form>
