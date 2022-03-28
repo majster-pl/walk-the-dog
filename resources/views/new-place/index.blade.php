@@ -15,7 +15,7 @@
                     @csrf
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                            placeholder="Title" value="{{ old('title') }}">
+                            placeholder="Title" value="{{ old('title') }}" autocomplete="off">
                         <label for="title">Title</label>
                         @error('title')
                             <small class="text-danger">{{ $message }}</small>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control @error('location') is-invalid @enderror" id="location"
-                            name="location" placeholder="Place location" value="{{ old('location') }}">
+                            name="location" placeholder="Place location" value="{{ old('location') }}" autocomplete="off">
                         <label for="location">Location</label>
                         @error('location')
                             <small class="text-danger">{{ $message }}</small>
@@ -43,7 +43,7 @@
                                 <input class="form-check-input" type="checkbox" id="publishedCheckbox" name="published"
                                     {{ Auth::user()->can('publish places') ? 'checked' : '' }}
                                     {{ Auth::user()->can('publish places') ? '' : 'disabled' }}>
-                                <label class="form-check-label" for="publishedCheckbox"
+                                <label class="form-check-label unselectable" for="publishedCheckbox"
                                     title="Only Editors and Admins can publish places, if you are not editor your place will be pending review.">Publish
                                     when submitted</label>
                             </div>

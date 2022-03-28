@@ -65,3 +65,10 @@ $navbar-dark-active-color: rgba($orange, 1) !default;
     background-color: $green !important;
     color: white !important;
 }
+
+.unselectable {
+    -moz-user-select   : none;
+    -webkit-user-select: none;
+    -ms-user-select    : none;
+    user-select        : none;
+}
