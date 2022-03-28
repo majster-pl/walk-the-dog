@@ -39,14 +39,15 @@
                     @auth
                         <div class="row gx-2 justify-content-end h-100 py-1">
                             @if (auth()->user()->hasrole('super-user|editor') || $place->isUsersPost(Auth::user()))
-                            <div class="col-auto mt-auto pt-2">
-                                <form method="get" action="{{ $place->status !== 'pending' ? route('place.edit', $place) : route('place.review', $place) }}">
-                                    @csrf
-                                    @if ($place->status !== 'pending')
-                                        <button class="btn btn-info text-white" type="submit">Edit</button>
-                                    @else
-                                        <button class="btn btn-info text-white" type="submit">Review</button>
-                                    @endif
+                                <div class="col-auto mt-auto pt-2">
+                                    <form method="get"
+                                        action="{{ $place->status !== 'pending' ? route('place.edit', $place) : route('place.review', $place) }}">
+                                        @csrf
+                                        @if ($place->status !== 'pending')
+                                            <button class="btn btn-info text-white" type="submit">Edit</button>
+                                        @else
+                                            <button class="btn btn-info text-white" type="submit">Review</button>
+                                        @endif
                                     </form>
                                 </div>
                                 @unlessrole('user')
@@ -77,8 +78,8 @@
                                         </div>
                                     @endunlessrole
                                 @endif
+                            @endif
                         </div>
-                        @endif
                     @endauth
 
                 </div>
