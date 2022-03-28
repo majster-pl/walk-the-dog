@@ -48,7 +48,7 @@ class PlaceEditController extends Controller
         ]);
 
         // if editor or admin, allow to publish otherwise change status to pending.
-        if ($user->hasRole('edit places|super-user')) {
+        if ($user->hasRole('editor|super-user')) {
             $update = $place->update($input);
             if (!$update) {
                 return redirect()->back()->with('error', 'There was problem updating place... Please try again later!');

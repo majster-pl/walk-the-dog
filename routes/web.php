@@ -9,6 +9,7 @@ use App\Http\Controllers\PlaceEditController;
 use App\Http\Controllers\PlaceLikeController;
 use App\Http\Controllers\AddNewPlaceController;
 use App\Http\Controllers\PlaceRemoveController;
+use App\Http\Controllers\PlaceReviewController;
 use App\Http\Controllers\PlacePublishController;
 use App\Http\Controllers\DashboardUsersController;
 use App\Http\Controllers\DashboardPendingController;
@@ -21,6 +22,7 @@ Route::post('/add-new-place', [AddNewPlaceController::class, "store"])->middlewa
 
 Route::get('/places', [PlaceController::class, "index"])->name('places');
 Route::get('/place/{place}/edit', [PlaceEditController::class, "index"])->name('place.edit');
+Route::get('/place/{place}/review', [PlaceReviewController::class, "index"])->name('place.review');
 Route::patch('/place/edit', [PlaceEditController::class, "edit"]);
 Route::post('/places/{place}/likes', [PlaceLikeController::class, "store"])->name('places.likes');
 Route::delete('/places/{place}/likes', [PlaceLikeController::class, "destroy"])->name('places.likes');
