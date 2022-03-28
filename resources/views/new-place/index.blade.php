@@ -3,8 +3,9 @@
 @section('content')
     <div class="container py-4">
         @if (\Session::has('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {!! \Session::get('success') !!}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         <div class="card">
@@ -40,7 +41,7 @@
                     <div class="mb-3">
                         @if (Auth::user()->can('publish places'))
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="publishedCheckbox" name="published"
+                                <input class="form-check-input" type="checkbox" id="publishedCheckbox" name="status"
                                     {{ Auth::user()->can('publish places') ? 'checked' : '' }}
                                     {{ Auth::user()->can('publish places') ? '' : 'disabled' }}>
                                 <label class="form-check-label unselectable" for="publishedCheckbox"

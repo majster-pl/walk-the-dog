@@ -4,8 +4,9 @@
     <div class="container py-4">
         <a class="btn btn-success mb-3 text-white" href="{{ URL::previous() }}">Back</a>
         @if (\Session::has('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {!! \Session::get('success') !!}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         <div class="card">
@@ -44,9 +45,8 @@
                         <div class="mb-3">
                             @if (Auth::user()->can('publish places'))
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="publishedCheckbox" name="published"
-                                        {{ Auth::user()->can('publish places') ? 'checked' : '' }}
-                                        {{ Auth::user()->can('publish places') ? '' : 'disabled' }}>
+                                    <input class="form-check-input" type="checkbox" id="publishedCheckbox" name="status"
+                                        {{ $place->status === 'published' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="publishedCheckbox"
                                         title="Only Editors and Admins can publish places, if you are not editor your place will be pending review.">Publish
                                         when submitted</label>

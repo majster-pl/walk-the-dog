@@ -39,8 +39,14 @@ class PlaceEditController extends Controller
     {
         $user = User::find(Auth::id());
         $place = Place::find($request->id);
-
+        
         $input = $request->all();
+        if ($request->has('status')) {
+            $input['status'] = "published";
+        } else {            
+            $input['status'] = $place->status === "pending" ? "pending" : "unpublished";
+        }
+        
         $this->validate($request, [
             'title' => 'required|min:2',
             'location' => 'required|min:5',

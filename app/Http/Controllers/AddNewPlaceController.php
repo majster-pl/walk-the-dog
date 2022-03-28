@@ -32,13 +32,17 @@ class AddNewPlaceController extends Controller
 
         $newPlace = $request->user()->places()->create([
             'title' => $request->title,
-            'status' => ((isset($request->published) && $user->hasRole('publish place|super-user')) ? 'published' : 'pending'),
+            'status' => (($request->has('status') && $user->hasRole('editor|super-user')) ? 'published' : 'pending'),
             'location' => $request->location,
             'info' => $request->info,
         ]);
 
         if ($newPlace) {
-            return redirect()->back()->with('success', 'New place added successfully!');
+            if ($request->has('status')) {
+                return redirect()->back()->with('success', 'New place added successfully!');
+            } else {
+                return redirect()->back()->with('success', 'New place added and is now pending review...');
+            }
         } else {
             return redirect()->back()->with('error', 'There was problem adding a new place... <br>Please try again later!');
         }

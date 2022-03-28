@@ -4,8 +4,9 @@
     <div class="container py-4">
         <a class="btn btn-success mb-3 text-white" href="{{ URL::previous() }}">Back</a>
         @if (\Session::has('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {!! \Session::get('success') !!}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         <div class="card">
