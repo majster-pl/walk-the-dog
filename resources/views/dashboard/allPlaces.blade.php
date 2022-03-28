@@ -1,6 +1,6 @@
 @extends("layouts.dashboard")
 @section('content-card-title')
-    Places awaiting review
+    All places
 @endsection
 @section('content-card')
     <div class="list-group">
@@ -11,7 +11,7 @@
 
             @endforeach
         @else
-            Perfect! No places padning review! :)
+            No places added yet! :-(
         @endif
         <div class="mt-3">
             {{ $places->links() }}

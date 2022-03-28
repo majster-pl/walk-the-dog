@@ -17,6 +17,11 @@
                         </span> --}}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black position-relative {{ Request::is('dashboard/all_places') ? 'active' : '' }}"
+                        href="{{ route('dashboard.all_places') }}">All Places
+                    </a>
+                </li>
             @endhasanyrole
             @can('super-user')
                 <li class="nav-item">

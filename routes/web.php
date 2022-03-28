@@ -12,6 +12,7 @@ use App\Http\Controllers\PlaceRemoveController;
 use App\Http\Controllers\PlacePublishController;
 use App\Http\Controllers\DashboardUsersController;
 use App\Http\Controllers\DashboardPendingController;
+use App\Http\Controllers\DashboardAllPlacesController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -27,6 +28,7 @@ Route::delete('/places/{place}/likes', [PlaceLikeController::class, "destroy"])-
 Route::get( '/dashboard', [DashboardController::class, 'index'])->name("dashboard");
 Route::group(['middleware' => ['role:super-user|editor']], function () {
     Route::get('/dashboard/pending', [DashboardPendingController::class, 'index'])->name("dashboard.pending");
+    Route::get('/dashboard/all_places', [DashboardAllPlacesController::class, 'index'])->name("dashboard.all_places");
     Route::patch('/places/{place}/publish', [PlacePublishController::class, "publish"])->name('places.publish');
     Route::patch('/places/{place}/unpublish', [PlacePublishController::class, "unpublish"])->name('places.unpublish');
     Route::delete('/places/{place}/delete', [PlaceRemoveController::class, "delete"])->name('places.delete');
