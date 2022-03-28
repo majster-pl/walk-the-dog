@@ -23,7 +23,7 @@ class PlaceEditController extends Controller
         $place = Place::find($request->route('place'));
         $user = User::find(Auth::id());
 
-        if (($place->user->id === Auth::id()) || $user->hasRole('edit places|super-user')) {
+        if (($place->user->id === Auth::id()) || $user->hasRole('editor|super-user')) {
             return view('edit-place.index', [
                 'access' => true,
                 'place' => $place
