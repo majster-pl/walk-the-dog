@@ -9,9 +9,7 @@
                 <div class="list-group">
                     @if ($places->count())
                         @foreach ($places as $place)
-
-                        @include('layouts.placeListItem')
-
+                            @include('layouts.placeListItem')
                         @endforeach
                     @else
                         No places added yet...
@@ -25,4 +23,15 @@
             </div>
         </div>
     </div>
+    <script LANGUAGE="JavaScript">
+        <!--
+        function confirmSubmit() {
+            var agree = confirm("Are you sure you want to remove?");
+            if (agree)
+                return true;
+            else
+                return false;
+        }
+        -->
+    </script>
 @endsection

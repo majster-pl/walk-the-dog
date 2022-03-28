@@ -98,7 +98,7 @@
     <script LANGUAGE="JavaScript">
         <!--
         function confirmSubmit() {
-            var agree = confirm("Are you sure you wish to remove?");
+            var agree = confirm("Are you sure you want to remove?");
             if (agree)
                 return true;
             else
