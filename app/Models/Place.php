@@ -23,9 +23,13 @@ class Place extends Model
         return $this->hasMany(Like::class);
     }
 
-    public function likedBy(User $user)
+    public function likedBy(User $user = null)
     {
-        return $this->likes->contains('user_id', $user->id);
+        if ($user) {
+            return $this->likes->contains('user_id', $user->id);
+        } else {
+            return false;
+        }
     }
 
     public function user()
