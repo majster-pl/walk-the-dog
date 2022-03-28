@@ -31,9 +31,10 @@
 
             <div class="row justify-content-end h-100">
                 <div class="col-12 text-start text-md-end">
-                    <small class="me-2">{{ $place->created_at->diffForHumans() }}
-                    </small> <small
-                        class="text-{{ $place->isPublic() ? 'success' : 'warning' }} fw-bold">{{ $place->status }}</small>
+                    <small class="">Updated: {{ $place->updated_at->diffForHumans() }}
+                    </small>
+                    <p class="text-{{ $place->isPublic() ? 'success' : 'warning' }} fw-bold ">
+                        <small>{{ $place->status }}</small></p>
                 </div>
                 <div class="col-12">
                     @auth
