@@ -23,7 +23,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark unselectable">
             <div class="container-fluid">
                 <a class="navbar-brand text-white" href="/">Walk The Dog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -50,12 +50,13 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                         <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link {{ Request::is('login*') ? 'active' : '' }}"
-                                        href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
+                        <li class="nav-item dropdown">
+                            @guest
+                                @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::is('login*') ? 'active' : '' }}"
+                                    href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
                             @endif
 
                             @if (Route::has('register'))
@@ -65,18 +66,35 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}"
-                                    href="{{ route('dashboard') }}">{{ Str::ucfirst(Auth::user()->name) }}</a>
-                            </li>
+                            <a class="nav-link dropdown-toggle {{ Request::is('dashboard*') ? 'active' : '' }}"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Str::ucfirst(Auth::user()->name) }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item {{ Request::is('dashboard') ? 'active' : '' }}"
+                                        href="{{ route('dashboard') }}">My Places</a></li>
+                                @hasanyrole('editor|super-user')
+                                    <li><a class="dropdown-item {{ Request::is('dashboard/all_places') ? 'active' : '' }}"
+                                            href="{{ route('dashboard.all_places') }} ">All Places</a></li>
+                                    <li><a class="dropdown-item {{ Request::is('dashboard/pending') ? 'active' : '' }}"
+                                            href="{{ route('dashboard.pending') }}">Pending</a></li>
+                                @endhasanyrole
+                                @can('super-user')
+                                    <li><a class="dropdown-item {{ Request::is('dashboard/users') ? 'active' : '' }}"
+                                            href="{{ route('dashboard.users') }}">Users</a></li>
+                                @endcan
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                                </li>
+                            </ul>
                             </li>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
@@ -85,7 +103,8 @@
                         <form class="my-auto" action="{{ route('home') }}" method="GET">
                             {{-- @csrf --}}
                             <div class="input-group my-auto px-0 px-md-2">
-                                <input class="form-control form-control-sm rounded-0" type="text" name="search" placeholder="Search..." value="{{Request::get('search')}}">
+                                <input class="form-control form-control-sm rounded-0" type="text" name="search"
+                                    placeholder="Search..." value="{{ Request::get('search') }}">
                                 <button class="btn btn-sm btn-outline-success rounded-0" type="submit">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>

@@ -29,6 +29,10 @@ $navbar-dark-color: rgba($green, 0.85) !default;
 $navbar-dark-hover-color: rgba($green, 1) !default;
 $navbar-dark-active-color: rgba($orange, 1) !default;
 
+$dropdown-link-active-bg: rgba($green, 1) !default;
+$dropdown-link-hover-bg: rgba($green, 0.85) !default;
+$dropdown-link-hover-color: white;
+
 /* INTRO */
 .intro-bg-image {
     background-image: url("../../public/images/bg-paw-print1.png"), linear-gradient(to right, #3bc46c, #70da97);

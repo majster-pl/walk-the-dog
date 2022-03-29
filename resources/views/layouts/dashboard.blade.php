@@ -8,6 +8,11 @@
                     href="{{ route('dashboard') }}">My Places</a>
             </li>
             @hasanyrole('editor|super-user')
+            <li class="nav-item">
+                <a class="nav-link text-black position-relative {{ Request::is('dashboard/all_places') ? 'active' : '' }}"
+                    href="{{ route('dashboard.all_places') }}">All Places
+                </a>
+            </li>
                 <li class="nav-item">
                     <a class="nav-link text-black position-relative {{ Request::is('dashboard/pending') ? 'active' : '' }}"
                         href="{{ route('dashboard.pending') }}">Pending
@@ -15,11 +20,6 @@
                             {{"99"}}
                             <span class="visually-hidden">unread messages</span>
                         </span> --}}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-black position-relative {{ Request::is('dashboard/all_places') ? 'active' : '' }}"
-                        href="{{ route('dashboard.all_places') }}">All Places
                     </a>
                 </li>
             @endhasanyrole
