@@ -72,3 +72,7 @@ $navbar-dark-active-color: rgba($orange, 1) !default;
     -ms-user-select    : none;
     user-select        : none;
 }
+
+.form-control-sm {
+    max-height: 1.8rem !important;
+}

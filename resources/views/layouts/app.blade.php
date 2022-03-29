@@ -47,7 +47,8 @@
                         </li>
                     </ul>
 
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -81,6 +82,14 @@
                             </form>
 
                         @endguest
+                        <form class="my-auto">
+                            <div class="input-group my-auto px-0 px-md-2">
+                                <input class="form-control form-control-sm" type="text" placeholder="Search...">
+                                <button class="btn btn-sm btn-outline-success" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </form>
                     </ul>
                 </div>
             </div>
