@@ -48,6 +48,16 @@
                     </ul>
 
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <form class="my-auto" action="{{ route('home') }}" method="GET">
+                            {{-- @csrf --}}
+                            <div class="input-group my-auto px-0 px-md-2">
+                                <input class="form-control form-control-sm rounded-0" type="text" name="search"
+                                    placeholder="Search..." value="{{ Request::get('search') }}">
+                                <button class="btn btn-sm btn-outline-success rounded-0" type="submit">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </form>
 
                         <!-- Authentication Links -->
                         <li class="nav-item dropdown">
@@ -98,18 +108,7 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
-
                         @endguest
-                        <form class="my-auto" action="{{ route('home') }}" method="GET">
-                            {{-- @csrf --}}
-                            <div class="input-group my-auto px-0 px-md-2">
-                                <input class="form-control form-control-sm rounded-0" type="text" name="search"
-                                    placeholder="Search..." value="{{ Request::get('search') }}">
-                                <button class="btn btn-sm btn-outline-success rounded-0" type="submit">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </form>
                     </ul>
                 </div>
             </div>
