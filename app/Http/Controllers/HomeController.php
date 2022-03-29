@@ -8,8 +8,20 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        // get recently added places
+        $recent = Place::latest()->where('status', '=', 'published')->take(3)->orderByDesc('created_at')->get();
+
+        // return search page is search query present
+        if ($request->search) {
+            $places = Place::whereRaw('concat(title," ",info," ",location) like ?', "%{$request->search}%")->get();
+            return view('search.index', [
+                'search' => $places,
+                'recent' => $recent
+            ]);
+        }
+
         // get recently added places
         $recent = Place::latest()->where('status', '=', 'published')->take(3)->orderByDesc('created_at')->get();
 
