@@ -24,10 +24,10 @@ $table-variants: (
     "dark": $orange,
 );
 
-$colors: (
-    "purple": #a94fd7,
-);
+$pagination-color: $gray;
 
+$pagination-active-bg: $green;
+$pagination-active-color: white;
 // navbar
 $navbar-dark-color: rgba($green, 0.85) !default;
 $navbar-dark-hover-color: rgba($green, 1) !default;
