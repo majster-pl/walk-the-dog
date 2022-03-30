@@ -6,8 +6,10 @@
             <p class="mb-1">{{ $place->info }}</p>
             <div class="d-flex flex-row ">
                 <div>
-                    <span class="align-text-bottom me-2">{{ $place->likes->count() }}
-                        {{ Str::plural('like', $place->likes->count()) }}</span>
+                    <span class="align-text-bottom me-2">
+                        <i class="fa fa-heart-o me-1" aria-hidden="true"></i>
+                        {{ $place->likes->count() }}
+                        </span>
                 </div>
                 @if (!$place->likedBy(Auth::user()))
                     <form method="post" action="{{ route('places.likes', $place) }}">
@@ -31,10 +33,13 @@
 
             <div class="row justify-content-end h-100">
                 <div class="col-12 text-start text-md-end">
-                    <small class="">Updated: {{ $place->updated_at->diffForHumans() }}
+                    <small class="">Last update: {{ $place->updated_at->diffForHumans() }}
                     </small>
-                    <p class="text-{{ $place->isPublic() ? 'success' : 'warning' }} fw-bold ">
-                        <small>{{ $place->status }}</small></p>
+                    @hasrole('super-user|editor')
+                        <p class="text-{{ $place->isPublic() ? 'success' : 'warning' }} fw-bold ">
+                            <small>{{ $place->status }}</small>
+                        </p>
+                    @endhasrole
                 </div>
                 <div class="col-12">
                     @auth
