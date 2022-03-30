@@ -49,7 +49,7 @@
                                     when submitted</label>
                             </div>
                         @endif
-                        <button type="submit" class="btn btn-success float-end">Submit</button>
+                        <button type="submit" class="btn btn-success text-white float-end">Submit</button>
                     </div>
                 </form>
             </div>
