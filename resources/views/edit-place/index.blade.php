@@ -48,8 +48,7 @@
                                     <input class="form-check-input" type="checkbox" id="publishedCheckbox" name="status"
                                         {{ $place->status === 'published' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="publishedCheckbox"
-                                        title="Only Editors and Admins can publish places, if you are not editor your place will be pending review.">Publish
-                                        when submitted</label>
+                                        title="Only Editors and Admins can publish places, if you are not editor your place will be pending review.">Published</label>
                                 </div>
                             @endif
                             <button type="submit" class="btn btn-success text-white float-end">Update</button>
