@@ -24,12 +24,16 @@ $table-variants: (
     "dark": $orange,
 );
 
+//global settings
+$enable-rounded: false;
+
+// pagination
 $pagination-color: $gray;
 $pagination-focus-bg: transparent;
 $pagination-focus-box-shadow: transparent;
-
 $pagination-active-bg: $green;
 $pagination-active-color: white;
+
 // navbar
 $navbar-dark-color: rgba($green, 0.85) !default;
 $navbar-dark-hover-color: rgba($green, 1) !default;
@@ -38,6 +42,16 @@ $navbar-dark-active-color: rgba($orange, 1) !default;
 $dropdown-link-active-bg: rgba($green, 1) !default;
 $dropdown-link-hover-bg: rgba($green, 0.85) !default;
 $dropdown-link-hover-color: white;
+
+// button
+$btn-focus-width: .5px;
+
+// input
+$input-border-radius: 0;
+$input-focus-border-color: $green;
+$input-focus-box-shadow: inset 0 1px 2px rgba($green, .35) !default;
+
+
 
 /* INTRO */
 .intro-bg-image {

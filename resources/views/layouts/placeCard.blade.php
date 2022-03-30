@@ -13,7 +13,7 @@
         <p class="card-text m-0 mx-3"><small class="text-muted">Added
                 {{ $place->created_at->diffForHumans() }}</small></p>
         <div class="card-footer p-0 m-0">
-            <a href="#" class="btn btn-success d-block mx-0 rounded-0">Details</a>
+            <a href="#" class="btn btn-success d-block mx-0">Details</a>
         </div>
     </div>
 </div>

@@ -5,12 +5,12 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header p-0 rounded-0">
+                    <div class="card-header p-0">
                         <div class="row">
                             <div class="btn-group text-center">
-                                <a href="{{ route('login') }}" class="btn btn-success active rounded-0"
+                                <a href="{{ route('login') }}" class="btn btn-success active"
                                     aria-current="page">Login</a>
-                                <a href="{{ route('register') }}" class="btn btn-secondary rounded-0">Regrister</a>
+                                <a href="{{ route('register') }}" class="btn btn-secondary">Regrister</a>
                             </div>
                         </div>
                     </div>

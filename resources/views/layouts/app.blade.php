@@ -51,9 +51,9 @@
                         <form class="my-auto" action="{{ route('home') }}" method="GET">
                             {{-- @csrf --}}
                             <div class="input-group my-auto px-0 px-md-2">
-                                <input class="form-control form-control-sm rounded-0" type="text" name="search"
+                                <input class="form-control form-control-sm" type="text" name="search"
                                     placeholder="Search..." value="{{ Request::get('search') }}">
-                                <button class="btn btn-sm btn-outline-success rounded-0" type="submit">
+                                <button class="btn btn-sm btn-outline-success" type="submit">
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                 </button>
                             </div>
