@@ -8,7 +8,7 @@ $line-height-base: 1.6;
 
 // Colors
 $warning: #f36100;
-$blue: #a94fd7;
+$blue: #0d6efd;
 $gray: #4f4f4f;
 $indigo: #6574cd;
 $purple: #9561e2;
@@ -25,6 +25,8 @@ $table-variants: (
 );
 
 $pagination-color: $gray;
+$pagination-focus-bg: transparent;
+$pagination-focus-box-shadow: transparent;
 
 $pagination-active-bg: $green;
 $pagination-active-color: white;
