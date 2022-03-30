@@ -8,7 +8,7 @@ $line-height-base: 1.6;
 
 // Colors
 $warning: #f36100;
-$blue: #3490dc;
+$blue: #a94fd7;
 $gray: #4f4f4f;
 $indigo: #6574cd;
 $purple: #9561e2;
@@ -22,6 +22,10 @@ $cyan: #6cb2eb;
 
 $table-variants: (
     "dark": $orange,
+);
+
+$colors: (
+    "purple": #a94fd7,
 );
 
 // navbar
@@ -71,10 +75,10 @@ $dropdown-link-hover-color: white;
 }
 
 .unselectable {
-    -moz-user-select   : none;
+    -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select    : none;
-    user-select        : none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .form-control-sm {

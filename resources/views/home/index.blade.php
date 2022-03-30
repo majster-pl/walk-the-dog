@@ -11,7 +11,7 @@
         <div class="container py-4 text-white">
             <p class="display-4 pt-3">Welcome to Walk The Dog!</p>
             <p class="display-6">You can find here places near you to walk your pet!</p>
-            <p class="lead">Please contribute by sharing with us <a class="link-white" href="{{ route('add-new-place') }}">new places</a> where you like to walk your dog :)</p>
+            <p class="lead">Please contribute by sharing with us<a class="link-blue mx-1" href="{{ route('add-new-place') }}">new places</a>where you like to walk your dog :)</p>
         </div>
     </div>
     <div class="container pb-5 pt-2">
