@@ -1,7 +1,7 @@
-<a href="#" class="list-group-item list-group-item-action" aria-current="true">
+<a href="{{route('place.preview', $place->id)}}" class="list-group-item list-group-item-action" aria-current="true">
     <div class="row">
         <div class="col-12 col-md-8">
-            <h5 class="mb-1">
+            <h5 class="my-1">
                 {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>
             <p class="mb-1">{{ $place->info }}</p>
             <div class="d-flex flex-row ">
