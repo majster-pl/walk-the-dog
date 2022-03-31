@@ -30,16 +30,23 @@ class HomeController extends Controller
             ->selectRaw('count(place_id) as qty')
             ->groupBy('place_id')
             ->orderBy('qty', 'DESC')
-            ->take(3)
+            // ->take(6)
             ->get();
 
+            // dd($ordered);
         // create array and loop through ordered to add only place_id to array
         $order = array();
         foreach ($ordered as $key => $value) {
-            array_push($order, $value->place_id);
+            $status = Place::find($value->place_id);
+            if (isset($status->status)) {
+                if (($status->status === "published") && (count($order) < 3)) {
+                    array_push($order, $value->place_id);
+                }
+            }
         }
+ 
         // query places by id to get top rated
-        $top = Place::whereIn('id', $order)->get();
+        $top = Place::find($order);
 
         return view('home.index', [
             'recent' => $recent,
