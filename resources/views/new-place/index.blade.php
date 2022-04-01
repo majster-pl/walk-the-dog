@@ -41,7 +41,7 @@
                     <div class="mb-3">
                         @if (Auth::user()->can('publish places'))
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="publishedCheckbox" name="status"
+                                <input class="form-check-input rounded-3" type="checkbox" id="publishedCheckbox" name="status"
                                     {{ Auth::user()->can('publish places') ? 'checked' : '' }}
                                     {{ Auth::user()->can('publish places') ? '' : 'disabled' }}>
                                 <label class="form-check-label unselectable" for="publishedCheckbox"
