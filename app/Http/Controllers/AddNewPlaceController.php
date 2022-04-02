@@ -19,10 +19,21 @@ class AddNewPlaceController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $this->validate($request, [
-            'title' => 'required|min:2',
-            'location' => 'required|min:5',
-            'info' => 'required|min:3'
+            // 'title' => 'required|min:2',
+            // 'address_line1' => 'required|min:3',
+            // 'address_state_or_region' => 'required|min:3',
+            // 'address_postcode_or_zip' => 'required|min:5',
+            // 'address_country' => 'required|min:3',
+            // 'address_city' => 'required|min:3',
+            // 'address_latitude' => 'required|min:15',
+            // 'walk_time' => 'required',
+            // 'parking' => 'required',
+            // 'type_id' => 'required',
+            // 'popularity' => 'required',
+            // 'description' => 'required|min:10'
+
         ]);
 
         // dd($request->published);
@@ -33,9 +44,24 @@ class AddNewPlaceController extends Controller
         $newPlace = $request->user()->places()->create([
             'title' => $request->title,
             'status' => (($request->has('status') && $user->hasRole('editor|super-user')) ? 'published' : 'pending'),
-            'location' => $request->location,
-            'info' => $request->info,
+            'address_line1' => $request->address_line1,
+            'address_line2' => $request->address_line2,
+            'address_line3' => $request->address_line3,
+            'address_state_or_region' => $request->address_state_or_region,
+            'address_city' => $request->address_city,
+            'address_country' => $request->address_country,
+            'address_postcode_or_zip' => $request->address_postcode_or_zip,
+            'address_latitude' => $request->address_latitude,
+            'walk_time' => $request->walk_time,
+            'parking' => (($request->parking == "true") ? true : false),
+            'parking_details' => $request->parking_details,
+            'type_id' => $request->type_id,
+            'popularity' => $request->popularity,
+
+            'description' => $request->description,
         ]);
+
+        // dd($newPlace);
 
         if ($newPlace) {
             if ($request->has('status')) {

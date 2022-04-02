@@ -29,7 +29,7 @@
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control @error('location') is-invalid @enderror" id="location"
                                 name="location" placeholder="Place location"
-                                value="{{ old('location') ?? $place->location }}">
+                                value="{{ old('location') ?? $place->address_line1 }}">
                             <label for="location">Location</label>
                             @error('location')
                                 <small class="text-danger">{{ $message }}</small>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-floating mb-3">
                             <textarea class="form-control @error('info') is-invalid @enderror" placeholder="Information about place" id="info"
-                                name="info" style="height: 100px">{{ old('info') ?? $place->info }}</textarea>
+                                name="info" style="height: 100px">{{ old('info') ?? $place->description }}</textarea>
                             <label for="info">Information</label>
                             @error('info')
                                 <small class="text-danger">{{ $message }}</small>

@@ -5,7 +5,7 @@
             <h5 class="card-title">
                 {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>
             <p class="card-text">
-                {{ Str::length($place->info) > 0 ? $place->info : '[Info not set]' }}</p>
+                {{ Str::length($place->description) > 0 ? $place->description : '[Info not set]' }}</p>
         </div>
         <p class="card-text m-0 mx-3"><small class="text-muted">
                 {{ $place->likes->count() }}

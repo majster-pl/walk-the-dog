@@ -11,9 +11,21 @@ class Place extends Model
     protected $fillable = [
         'user_id',
         'title',
-        'info',
-        'location',
         'status',
+        'address_line1',
+        'address_line2',
+        'address_state_or_region',
+        'address_city',
+        'address_country',
+        'address_postcode_or_zip',
+        'address_latitude',
+        'walk_time',
+        'parking',
+        'parking_details',
+        'type_id',
+        'popularity',
+        'description',
+
     ];
 
     use HasFactory;

@@ -18,7 +18,7 @@
                                             class="img-fluid mb-1 me-3 float-sm-start" alt="main picture">
                                         <span class="fs-5">About:</span>
 
-                                        <p class="">{{ $place->info }}
+                                        <p class="">{{ $place->description }}
                                         </p>
                                     </div>
                                 </div>
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="col-12">
                                     <span class="fs-5">Address:</span>
-                                    <p>{{ $place->location }}</p>
+                                    <p>{{ $place->address_line1 }}</p>
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-success">Navigate</button>

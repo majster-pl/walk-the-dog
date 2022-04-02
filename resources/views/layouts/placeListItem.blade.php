@@ -3,7 +3,7 @@
         <div class="col-12 col-md-8">
             <h5 class="my-1">
                 {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>
-            <p class="mb-1">{{ $place->info }}</p>
+            <p class="mb-1">{{ $place->description }}</p>
             <div class="d-flex flex-row ">
                 <div>
                     <span class="align-text-bottom me-2">
