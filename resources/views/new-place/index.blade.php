@@ -89,10 +89,14 @@
                             {{-- Post Code --}}
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="address_postcode_or_zip"
-                                        id="address_postcode_or_zip" placeholder="Town county"
-                                        value="{{ old('address_postcode_or_zip') }}">
+                                    <input type="text"
+                                        class="form-control  @error('address_postcode_or_zip') is-invalid @enderror"
+                                        name="address_postcode_or_zip" id="address_postcode_or_zip"
+                                        placeholder="Town county" value="{{ old('address_postcode_or_zip') }}">
                                     <label class="text-secondary" for="address_postcode_or_zip">Post Code</label>
+                                    @error('address_postcode_or_zip')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
                             <label>Coordinates: <button type="button"
@@ -203,8 +207,9 @@
 
                         {{-- description --}}
                         <div class="form-floating mb-3">
-                            <textarea class="form-control @error('description') is-invalid @enderror" placeholder="Description of this place" id="description"
-                                name="description" style="height: 100px">{{ old('description') }}</textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" placeholder="Description of this place"
+                                id="description" name="description"
+                                style="height: 100px">{{ old('description') }}</textarea>
                             <label for="description">Description of this place <span class="text-danger">*</span></label>
                             @error('description')
                                 <small class="text-danger">{{ $message }}</small>

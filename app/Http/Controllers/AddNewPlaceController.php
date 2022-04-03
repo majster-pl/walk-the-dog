@@ -19,28 +19,22 @@ class AddNewPlaceController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $this->validate($request, [
-            // 'title' => 'required|min:2',
-            // 'address_line1' => 'required|min:3',
-            // 'address_state_or_region' => 'required|min:3',
-            // 'address_postcode_or_zip' => 'required|min:5',
-            // 'address_country' => 'required|min:3',
-            // 'address_city' => 'required|min:3',
-            // 'address_latitude' => 'required|min:15',
-            // 'walk_time' => 'required',
-            // 'parking' => 'required',
-            // 'type_id' => 'required',
-            // 'popularity' => 'required',
-            // 'description' => 'required|min:10'
+            'title' => 'required|min:2',
+            'address_line1' => 'required|min:3',
+            'address_state_or_region' => 'required|min:3',
+            'address_country' => 'required|min:3',
+            'address_city' => 'required|min:3',
+            'address_latitude' => 'required|min:15',
+            'walk_time' => 'required',
+            'parking' => 'required',
+            'type_id' => 'required',
+            'popularity' => 'required',
+            'description' => 'required|min:10'
 
         ]);
 
-        // dd($request->published);
-
         $user = User::find(Auth::id());
-
-
         $newPlace = $request->user()->places()->create([
             'title' => $request->title,
             'status' => (($request->has('status') && $user->hasRole('editor|super-user')) ? 'published' : 'pending'),
@@ -60,8 +54,6 @@ class AddNewPlaceController extends Controller
 
             'description' => $request->description,
         ]);
-
-        // dd($newPlace);
 
         if ($newPlace) {
             if ($request->has('status')) {
