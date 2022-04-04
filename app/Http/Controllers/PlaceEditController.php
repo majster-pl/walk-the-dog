@@ -49,9 +49,19 @@ class PlaceEditController extends Controller
         
         $this->validate($request, [
             'title' => 'required|min:2',
-            'location' => 'required|min:5',
-            'info' => 'required|min:3'
+            'address_line1' => 'required|min:3',
+            'address_state_or_region' => 'required|min:3',
+            'address_country' => 'required|min:3',
+            'address_city' => 'required|min:3',
+            'address_latitude' => 'required|min:15',
+            'walk_time' => 'required',
+            'parking' => 'required',
+            'type_id' => 'required',
+            'popularity' => 'required',
+            'description' => 'required|min:10'
         ]);
+
+        // dd($request->parking);
 
         // if editor or admin, allow to publish otherwise change status to pending.
         if ($user->hasRole('editor|super-user')) {

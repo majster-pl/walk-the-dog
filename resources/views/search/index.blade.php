@@ -10,7 +10,7 @@
         @if ($search->count())
             <div class="row pb-3">
                 @foreach ($recent as $place)
-                    @include('layouts.placeCard')
+                    @include('components.placeCard')
                 @endforeach
             </div>
         @else
@@ -28,7 +28,7 @@
                     <h3 class="">Recently added places</h3>
                     <div class="row pb-3 justify-content-evenly">
                         @foreach ($recent as $place)
-                            @include('layouts.placeCard')
+                            @include('components.placeCard')
                         @endforeach
                     </div>
                 @endif

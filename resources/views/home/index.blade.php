@@ -19,7 +19,7 @@
         @if ($recent->count())
             <div class="row pb-3 justify-content-evenly">
                 @foreach ($recent as $place)
-                    @include('layouts.placeCard')
+                    @include('components.placeCard')
                 @endforeach
             </div>
         @else
@@ -33,7 +33,7 @@
         @if ($top->count())
             <div class="row justify-content-evenly mb-5">
                 @foreach ($top as $place)
-                    @include('layouts.placeCard')
+                    @include('components.placeCard')
                 @endforeach
             </div>
         @else

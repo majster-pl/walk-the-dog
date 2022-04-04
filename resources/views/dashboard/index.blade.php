@@ -6,7 +6,7 @@
     <div class="list-group">
         @if ($places->count())
             @foreach ($places as $place)
-            @include('layouts.placeListItem')
+            @include('components.placeListItem')
 
             @endforeach
         @else
