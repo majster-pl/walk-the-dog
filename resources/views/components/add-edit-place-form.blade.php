@@ -193,17 +193,13 @@ function checkIfSelected($value, $old, $selected)
                 <div class="form-floating mb-3">
                     <select name="type_id" class="form-select @error('type_id') is-invalid @enderror" id="type_id"
                         aria-label="Place type">
-                        <option {{ checkIfSelected(0, old('type_id'), $place->type_id ?? null) }} value="">----
+                        <option disabled {{ checkIfSelected(null, old('type_id'), $place->type_id ?? null) }} value="">----
                         </option>
-                        <option {{ checkIfSelected(1, old('type_id'), $place->type_id ?? null) }} value=1>Field
-                        </option>
-                        <option {{ checkIfSelected(2, old('type_id'), $place->type_id ?? null) }} value=2>Beach
-                        </option>
-                        <option {{ checkIfSelected(3, old('type_id'), $place->type_id ?? null) }} value=3>Forest
-                        </option>
-                        <option {{ checkIfSelected(4, old('type_id'), $place->type_id ?? null) }} value=4>Mountains
-                        </option>
-
+                        {{$placeTypes->count()}}
+                        @foreach ($placeTypes as $type)
+                        <option {{ checkIfSelected($type->id, old('type_id'), $place->type_id ?? null) }}
+                            value={{$type->id}}>{{ $type->name }}</option>
+                            @endforeach
                     </select>
                     <label for="type_id">Place type <span class="text-danger">*</span></label>
                     @error('type_id')
@@ -220,7 +216,8 @@ function checkIfSelected($value, $old, $selected)
                         </option>
                         <option {{ checkIfSelected(1, old('popularity'), $place->popularity ?? null) }} value=1>Low
                         </option>
-                        <option {{ checkIfSelected(2, old('popularity'), $place->popularity ?? null) }} value=2>Medium
+                        <option {{ checkIfSelected(2, old('popularity'), $place->popularity ?? null) }} value=2>
+                            Medium
                         </option>
                         <option {{ checkIfSelected(3, old('popularity'), $place->popularity ?? null) }} value=3>High
                         </option>
@@ -239,7 +236,8 @@ function checkIfSelected($value, $old, $selected)
             <textarea class="form-control @error('description') is-invalid @enderror" placeholder="Description of this place"
                 id="description" name="description"
                 style="height: 100px">{{ Request::is('add-new-place') ? old('description') : old('description') ?? $place->description }}</textarea>
-            <label class="text-secondary" for="description">Description of this place <span class="text-danger">*</span></label>
+            <label class="text-secondary" for="description">Description of this place <span
+                    class="text-danger">*</span></label>
             @error('description')
                 <small class="text-danger">{{ $message }}</small>
             @enderror

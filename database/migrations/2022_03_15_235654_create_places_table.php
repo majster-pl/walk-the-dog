@@ -40,7 +40,7 @@ return new class extends Migration
             $table->boolean('coffe_access')->nullable();
             $table->timestamps();
             
-            $table->foreign('type_id')->references('id')->on('places_types');
+            $table->foreign('type_id')->references('id')->on('place_types');
         });
     }
 

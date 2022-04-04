@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Place;
+use App\Models\PlaceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
@@ -22,11 +23,13 @@ class PlaceEditController extends Controller
         // dd($request->route('place'));
         $place = Place::find($request->route('place'));
         $user = User::find(Auth::id());
+        $types = PlaceType::all();
 
         if (($place->user->id === Auth::id()) || $user->hasRole('editor|super-user')) {
             return view('edit-place.index', [
                 'access' => true,
-                'place' => $place
+                'place' => $place,
+                'placeTypes' => $types
             ]);
         } else {
             return view('edit-place.index', [

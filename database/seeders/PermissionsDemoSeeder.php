@@ -62,5 +62,6 @@ class PermissionsDemoSeeder extends Seeder
             'password' => Hash::make('password')
         ]);
         $user->assignRole($role3);
+
     }
 }

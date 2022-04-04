@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Place;
+use App\Models\PlaceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,8 +13,11 @@ class AddNewPlaceController extends Controller
     public function index()
     {
         $places = Place::where('user_id', auth()->id())->orderByDesc('created_at')->paginate(5);
+        $types = PlaceType::all();
+
         return view("new-place.index", [
-            'places' => $places
+            'places' => $places,
+            'placeTypes' => $types
         ]);
     }
 
