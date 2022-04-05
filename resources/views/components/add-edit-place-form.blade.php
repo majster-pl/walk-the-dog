@@ -166,11 +166,11 @@ function checkIfSelected($value, $old, $selected)
                 <div class="form-floating mb-3">
                     <select class="form-select @error('parking') is-invalid @enderror" id="parking" name="parking"
                         aria-label="parking">
-                        <option {{ checkIfSelected(0, old('parking'), $place->parking ?? null) }} value="">----
+                        <option {{ checkIfSelected(null, old('parking'), $place->parking ?? null) }} value="">----
                         </option>
                         <option {{ checkIfSelected(1, old('parking'), $place->parking ?? null) }} value=1>Yes
                         </option>
-                        <option {{ checkIfSelected(2, old('parking'), $place->parking ?? null) }} value=2>No
+                        <option {{ checkIfSelected(0, old('parking'), $place->parking ?? null) }} value=0>No
                         </option>
                     </select>
                     <label for="parking">Parking <span class="text-danger">*</span></label>
