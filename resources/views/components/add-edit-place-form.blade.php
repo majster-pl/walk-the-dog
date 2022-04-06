@@ -241,10 +241,9 @@ function checkIfSelected($value, $old, $selected)
             <div class="col-md-4">
                 <div class="row h-100">
                     <div class="col-12">
-
                         <div class="form-floating pb-3 h-100">
                             <textarea class="form-control h-100" id="parking_details"
-                                placeholder="30 Diana Garder"></textarea>
+                                placeholder="30 Diana Garder"> </textarea>
                             <label class="text-secondary" for="parking_details"
                                 value="{{ Request::is('add-new-place') ? old('parking_details') : old('parking_details') ?? $place->parking_details }}"
                                 required>Parking details</label>
