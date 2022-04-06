@@ -104,11 +104,12 @@ function checkIfSelected($value, $old, $selected)
                     @enderror
                 </div>
             </div>
+            {{-- Coordinates --}}
             <label>Coordinates: <button type="button"
                     class="fa fa-info-circle btn btn-link m-0 p-0 pb-1 text-decoration-none text-warning"
                     aria-hidden="true" data-toggle="popover" tabindex="0" data-bs-trigger="focus"
                     title="Get Coordinates"
-                    data-bs-content="To get coordinates open <a href='http://maps.google.com/'>Google Maps</a> find a place and click on the map then copy and past highlited in red numbers from picture below. <img src='{{ asset('images/lat_instruction.png') }}' class='img-fluid mt-2' alt='instructions'>"></button>
+                    data-bs-content="To get coordinates open <a href='http://maps.google.com/' target='_blank' rel='noreferrer'>Google Maps</a> find a place and click on the map then copy and past highlited in red numbers from picture below. <img src='{{ asset('images/lat_instruction.png') }}' class='img-fluid mt-2' alt='instructions'>"></button>
 
             </label>
             <div class="col-md-6">
@@ -128,78 +129,83 @@ function checkIfSelected($value, $old, $selected)
     <label>Additional information:</label>
     <div class="col-md-12">
         <div class="row">
-            {{-- Walk time --}}
-
-            <div class="col-md-4">
-                <div class="form-floating mb-3">
-                    <select class="form-select @error('walk_time') is-invalid @enderror" id="walk_time" name="walk_time"
-                        aria-label="Walk time">
-                        <option {{ checkIfSelected(0, old('walk_time'), $place->walk_time ?? null) }} value="">----
-                        </option>
-                        <option {{ checkIfSelected(1, old('walk_time'), $place->walk_time ?? null) }} value="1">1h
-                        </option>
-                        <option {{ checkIfSelected(2, old('walk_time'), $place->walk_time ?? null) }} value="2">2h
-                        </option>
-                        <option {{ checkIfSelected(3, old('walk_time'), $place->walk_time ?? null) }} value="3">3h
-                        </option>
-                        <option {{ checkIfSelected(4, old('walk_time'), $place->walk_time ?? null) }} value="4">4h
-                        </option>
-                        <option {{ checkIfSelected(5, old('walk_time'), $place->walk_time ?? null) }} value="5">5h
-                        </option>
-                        <option {{ checkIfSelected(6, old('walk_time'), $place->walk_time ?? null) }} value="6">6h
-                        </option>
-                        <option {{ checkIfSelected(7, old('walk_time'), $place->walk_time ?? null) }} value="7">7h
-                        </option>
-                        <option {{ checkIfSelected(8, old('walk_time'), $place->walk_time ?? null) }} value="8">8h
-                        </option>
-                        <option {{ checkIfSelected(9, old('walk_time'), $place->walk_time ?? null) }} value="9">9h
-                        </option>
-                    </select>
-                    <label for="walk_time">Walk time <span class="text-danger">*</span></label>
-                    @error('walk_time')
-                        <small class="text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-            </div>
-            {{-- Parking --}}
-            <div class="col-md-4">
-                <div class="form-floating mb-3">
-                    <select class="form-select @error('parking') is-invalid @enderror" id="parking" name="parking"
-                        aria-label="parking">
-                        <option {{ checkIfSelected(null, old('parking'), $place->parking ?? null) }} value="">----
-                        </option>
-                        <option {{ checkIfSelected(1, old('parking'), $place->parking ?? null) }} value=1>Yes
-                        </option>
-                        <option {{ checkIfSelected(0, old('parking'), $place->parking ?? null) }} value=0>No
-                        </option>
-                    </select>
-                    <label for="parking">Parking <span class="text-danger">*</span></label>
-                    @error('parking')
-                        <small class="text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
-            </div>
-            {{-- Parking details --}}
-            <div class="col-md-4">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="parking_details" placeholder="30 Diana Garder">
-                    <label class="text-secondary" for="parking_details"
-                        value="{{ Request::is('add-new-place') ? old('parking_details') : old('parking_details') ?? $place->parking_details }}"
-                        required>Parking details</label>
-                </div>
-            </div>
-            {{-- Place type --}}
-            <div class="col-md-4">
+            
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{-- Walk time --}}
+                        <div class="form-floating mb-3">
+                            <select class="form-select @error('walk_time') is-invalid @enderror" id="walk_time"
+                                name="walk_time" aria-label="Walk time">
+                                <option {{ checkIfSelected(0, old('walk_time'), $place->walk_time ?? null) }}
+                                    value="">----
+                                </option>
+                                <option {{ checkIfSelected(1, old('walk_time'), $place->walk_time ?? null) }}
+                                    value="1">1h
+                                </option>
+                                <option {{ checkIfSelected(2, old('walk_time'), $place->walk_time ?? null) }}
+                                    value="2">2h
+                                </option>
+                                <option {{ checkIfSelected(3, old('walk_time'), $place->walk_time ?? null) }}
+                                    value="3">3h
+                                </option>
+                                <option {{ checkIfSelected(4, old('walk_time'), $place->walk_time ?? null) }}
+                                    value="4">4h
+                                </option>
+                                <option {{ checkIfSelected(5, old('walk_time'), $place->walk_time ?? null) }}
+                                    value="5">5h
+                                </option>
+                                <option {{ checkIfSelected(6, old('walk_time'), $place->walk_time ?? null) }}
+                                    value="6">6h
+                                </option>
+                                <option {{ checkIfSelected(7, old('walk_time'), $place->walk_time ?? null) }}
+                                    value="7">7h
+                                </option>
+                                <option {{ checkIfSelected(8, old('walk_time'), $place->walk_time ?? null) }}
+                                    value="8">8h
+                                </option>
+                                <option {{ checkIfSelected(9, old('walk_time'), $place->walk_time ?? null) }}
+                                    value="9">9h
+                                </option>
+                            </select>
+                            <label for="walk_time">Walk time <span class="text-danger">*</span></label>
+                            @error('walk_time')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    {{-- Parking --}}
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select class="form-select @error('parking') is-invalid @enderror" id="parking"
+                                name="parking" aria-label="parking">
+                                <option {{ checkIfSelected(null, old('parking'), $place->parking ?? null) }}
+                                    value="">----
+                                </option>
+                                <option {{ checkIfSelected(1, old('parking'), $place->parking ?? null) }} value=1>Yes
+                                </option>
+                                <option {{ checkIfSelected(0, old('parking'), $place->parking ?? null) }} value=0>No
+                                </option>
+                            </select>
+                            <label for="parking">Parking <span class="text-danger">*</span></label>
+                            @error('parking')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                                {{-- Place type --}}
+            <div class="col-md-6">
                 <div class="form-floating mb-3">
                     <select name="type_id" class="form-select @error('type_id') is-invalid @enderror" id="type_id"
                         aria-label="Place type">
-                        <option disabled {{ checkIfSelected(null, old('type_id'), $place->type_id ?? null) }} value="">----
+                        <option disabled {{ checkIfSelected(null, old('type_id'), $place->type_id ?? null) }}
+                            value="">----
                         </option>
-                        {{$placeTypes->count()}}
+                        {{ $placeTypes->count() }}
                         @foreach ($placeTypes as $type)
-                        <option {{ checkIfSelected($type->id, old('type_id'), $place->type_id ?? null) }}
-                            value={{$type->id}}>{{ $type->name }}</option>
-                            @endforeach
+                            <option {{ checkIfSelected($type->id, old('type_id'), $place->type_id ?? null) }}
+                                value={{ $type->id }}>{{ $type->name }}</option>
+                        @endforeach
                     </select>
                     <label for="type_id">Place type <span class="text-danger">*</span></label>
                     @error('type_id')
@@ -208,7 +214,7 @@ function checkIfSelected($value, $old, $selected)
                 </div>
             </div>
             {{-- Popularity --}}
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="form-floating mb-3">
                     <select name="popularity" class="form-select @error('popularity') is-invalid @enderror"
                         id="popularity" aria-label="Popularity">
@@ -228,6 +234,25 @@ function checkIfSelected($value, $old, $selected)
                     @enderror
                 </div>
             </div>
+                </div>
+
+            </div>
+            {{-- Parking details --}}
+            <div class="col-md-4">
+                <div class="row h-100">
+                    <div class="col-12">
+
+                        <div class="form-floating pb-3 h-100">
+                            <textarea class="form-control h-100" id="parking_details"
+                                placeholder="30 Diana Garder"></textarea>
+                            <label class="text-secondary" for="parking_details"
+                                value="{{ Request::is('add-new-place') ? old('parking_details') : old('parking_details') ?? $place->parking_details }}"
+                                required>Parking details</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
 
