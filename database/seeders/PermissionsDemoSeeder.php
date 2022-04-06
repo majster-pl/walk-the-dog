@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PlaceType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -62,6 +63,12 @@ class PermissionsDemoSeeder extends Seeder
             'password' => Hash::make('password')
         ]);
         $user->assignRole($role3);
+
+        // preset values for place type
+        PlaceType::create(['name' => 'Field']);
+        PlaceType::create(['name' => 'Beach']);
+        PlaceType::create(['name' => 'Forest']);
+        PlaceType::create(['name' => 'Mountains']);
 
     }
 }

@@ -52,7 +52,6 @@ class PlaceEditController extends Controller
         
         $this->validate($request, [
             'title' => 'required|min:2',
-            'address_line1' => 'required|min:3',
             'address_state_or_region' => 'required|min:3',
             'address_country' => 'required|min:3',
             'address_city' => 'required|min:3',
@@ -60,7 +59,14 @@ class PlaceEditController extends Controller
             'walk_time' => 'required',
             'parking' => 'required',
             'type_id' => 'required',
-            'popularity' => 'required',
+            'activity' => 'required',
+            'dogs_only' => 'required',
+            'seasonal_access' => 'required',
+            'off_lead' => 'required',
+            'cafe_access' => 'required',
+            'activity' => 'required',
+            'access_to_water' => 'required',
+            'disposal_bins' => 'required',
             'description' => 'required|min:10'
         ]);
 

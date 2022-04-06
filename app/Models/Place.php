@@ -9,23 +9,29 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Place extends Model
 {
     protected $fillable = [
+        'status',
         'user_id',
         'title',
-        'status',
         'address_line1',
         'address_line2',
         'address_state_or_region',
         'address_city',
-        'address_country',
         'address_postcode_or_zip',
+        'address_country',
         'address_latitude',
         'walk_time',
         'parking',
         'parking_details',
         'type_id',
-        'popularity',
-        'description',
-
+        'activity',
+        'dogs_only',
+        'seasonal_access',
+        'seasonal_details',
+        'off_lead',
+        'cafe_access',
+        'access_to_water',
+        'disposal_bins',
+        'description'
     ];
 
     use HasFactory;
