@@ -12,6 +12,7 @@ class Place extends Model
         'status',
         'user_id',
         'title',
+        'main_image_path',
         'address_line1',
         'address_line2',
         'address_state_or_region',

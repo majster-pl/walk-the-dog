@@ -14,7 +14,7 @@ function checkIfSelected($value, $old, $selected)
 @endphp
 
 <form class="my-3 row" action="{{ Request::is('add-new-place') ? route('add-new-place') : route('edit-place') }}"
-    method="post">
+    method="post" enctype="multipart/form-data">
     @if (!Request::is('add-new-place'))
         `
         @method('PATCH')
@@ -35,9 +35,9 @@ function checkIfSelected($value, $old, $selected)
         </div>
     </div>
     {{-- address --}}
-    <label>Address:</label>
     <div class="col-md-8">
         {{-- Address 1 --}}
+        <label>Address:</label>
         <div class="form-floating mb-3">
             <input type="text" class="form-control @error('address_line1') is-invalid @enderror" name="address_line1"
                 id="address_line1" placeholder="30 Diana Garder" title="Only enter if you know street name"
@@ -58,7 +58,8 @@ function checkIfSelected($value, $old, $selected)
             <div class="col-md-6">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control @error('address_state_or_region') is-invalid @enderror"
-                        name="address_state_or_region" id="address_state_or_region" placeholder="Town county" title="Town name"
+                        name="address_state_or_region" id="address_state_or_region" placeholder="Town county"
+                        title="Town name"
                         value="{{ Request::is('add-new-place')? old('address_state_or_region'): old('address_state_or_region') ?? $place->address_state_or_region }}">
                     <label class="text-secondary" for="address_state_or_region">Town <span
                             class="text-danger">*</span></label>
@@ -96,7 +97,8 @@ function checkIfSelected($value, $old, $selected)
             <div class="col-md-6">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control  @error('address_postcode_or_zip') is-invalid @enderror"
-                        name="address_postcode_or_zip" id="address_postcode_or_zip" placeholder="Town county" title="Only enter post code if you know it"
+                        name="address_postcode_or_zip" id="address_postcode_or_zip" placeholder="Town county"
+                        title="Only enter post code if you know it"
                         value="{{ Request::is('add-new-place')? old('address_postcode_or_zip'): old('address_postcode_or_zip') ?? $place->address_postcode_or_zip }}">
                     <label class="text-secondary" for="address_postcode_or_zip">Post Code</label>
                     @error('address_postcode_or_zip')
@@ -116,7 +118,8 @@ function checkIfSelected($value, $old, $selected)
             <div class="col-md-6">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control @error('address_latitude') is-invalid @enderror"
-                        name="address_latitude" id="address_latitude" placeholder="Lat Coordinates" title="Enter coordinates for the place"
+                        name="address_latitude" id="address_latitude" placeholder="Lat Coordinates"
+                        title="Enter coordinates for the place"
                         value="{{ Request::is('add-new-place') ? old('address_latitude') : old('address_latitude') ?? $place->address_latitude }}">
                     <label for="address_latitude" class="text-secondary">Latitude (51.547170, -2.582637)
                         <span class="text-danger">*</span></label>
@@ -125,6 +128,28 @@ function checkIfSelected($value, $old, $selected)
                     @enderror
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label>Main image:</label>
+                <div class="input-group">
+                    <input type="file" name="main_image_path" class="form-control">
+                </div>
+                @error('main_image_path')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+
+            </div>
+            {{-- <div class="col-md-12 mb-3">
+                <label>Additional images:</label>
+                <div class="input-group">
+                    <input type="file" class="form-control" disabled>
+                    
+                </div>
+                <small class="text-secondary">You can select up to 5 pictures (press and hold Ctrl to select)</small>
+            </div> --}}
         </div>
     </div>
     <label>Additional information:</label>
@@ -179,8 +204,8 @@ function checkIfSelected($value, $old, $selected)
                         <div class="form-floating mb-3" title="Is parking available?">
                             <select class="form-select @error('parking') is-invalid @enderror" id="parking"
                                 name="parking" aria-label="parking">
-                                <option {{ checkIfSelected(null, old('parking'), $place->parking ?? null) }}
-                                    value='' disabled>----
+                                <option {{ checkIfSelected(null, old('parking'), $place->parking ?? null) }} value=''
+                                    disabled>----
                                 </option>
                                 <option {{ checkIfSelected('1', old('parking'), $place->parking ?? null) }} value=1>
                                     Yes
@@ -217,10 +242,12 @@ function checkIfSelected($value, $old, $selected)
                     </div>
                     {{-- activity --}}
                     <div class="col-md-6">
-                        <div class="form-floating mb-3" title="How busy is this place in tearms of number of other pets?">
+                        <div class="form-floating mb-3"
+                            title="How busy is this place in tearms of number of other pets?">
                             <select name="activity" class="form-select @error('activity') is-invalid @enderror"
                                 id="activity" aria-label="activity">
-                                <option {{ checkIfSelected(0, old('activity'), $place->activity ?? null) }} value="" disabled>
+                                <option {{ checkIfSelected(0, old('activity'), $place->activity ?? null) }} value=""
+                                    disabled>
                                     ----
                                 </option>
                                 <option {{ checkIfSelected(1, old('activity'), $place->activity ?? null) }} value=1>
@@ -248,7 +275,8 @@ function checkIfSelected($value, $old, $selected)
                     <div class="col-12">
                         {{-- Parking details --}}
                         <div class="form-floating pb-3 h-100" title="Enter additional information about parking">
-                            <textarea class="form-control h-100" name="parking_details" id="parking_details" placeholder="Free parking for 2h">{{ Request::is('add-new-place') ? old('parking_details') : old('parking_details') ?? $place->parking_details }}</textarea>
+                            <textarea class="form-control h-100" name="parking_details" id="parking_details"
+                                placeholder="Free parking for 2h">{{ Request::is('add-new-place') ? old('parking_details') : old('parking_details') ?? $place->parking_details }}</textarea>
                             <label class="text-secondary" for="parking_details"
                                 value="{{ Request::is('add-new-place') ? old('parking_details') : old('parking_details') ?? $place->parking_details }}"
                                 required>Parking details</label>
@@ -368,8 +396,10 @@ function checkIfSelected($value, $old, $selected)
                 </div>
                 {{-- Seasonal access details --}}
                 <div class="col-md-6">
-                    <div class="form-floating pb-3 h-100" title="Additional information about seasonal access eg. Dogs not allowed in summer between Jun and October'">
-                        <textarea class="form-control h-100" id="seasonal_details" name="seasonal_details" placeholder="Dogs not allowed in summer">{{ Request::is('add-new-place') ? old('seasonal_details') : old('seasonal_details') ?? $place->seasonal_details }}</textarea>
+                    <div class="form-floating pb-3 h-100"
+                        title="Additional information about seasonal access eg. Dogs not allowed in summer between Jun and October'">
+                        <textarea class="form-control h-100" id="seasonal_details" name="seasonal_details"
+                            placeholder="Dogs not allowed in summer">{{ Request::is('add-new-place') ? old('seasonal_details') : old('seasonal_details') ?? $place->seasonal_details }}</textarea>
                         <label class="text-secondary" for="seasonal_details"
                             value="{{ Request::is('add-new-place') ? old('seasonal_details') : old('seasonal_details') ?? $place->parking_details }}"
                             required>Seasonal access details</label>
@@ -410,19 +440,16 @@ function checkIfSelected($value, $old, $selected)
                 {{-- Trash / disposal bins --}}
                 <div class="col-md-3">
                     <div class="form-floating mb-3" title="Are there poo bins nearby?">
-                        <select class="form-select @error('disposal_bins') is-invalid @enderror"
-                            id="disposal_bins" name="disposal_bins" aria-label="disposal_bins">
-                            <option
-                                {{ checkIfSelected(null, old('disposal_bins'), $place->disposal_bins ?? null) }}
+                        <select class="form-select @error('disposal_bins') is-invalid @enderror" id="disposal_bins"
+                            name="disposal_bins" aria-label="disposal_bins">
+                            <option {{ checkIfSelected(null, old('disposal_bins'), $place->disposal_bins ?? null) }}
                                 value='' disabled>
                                 ----
                             </option>
-                            <option
-                                {{ checkIfSelected('1', old('disposal_bins'), $place->disposal_bins ?? null) }}
+                            <option {{ checkIfSelected('1', old('disposal_bins'), $place->disposal_bins ?? null) }}
                                 value=1>Yes
                             </option>
-                            <option
-                                {{ checkIfSelected('0', old('disposal_bins'), $place->disposal_bins ?? null) }}
+                            <option {{ checkIfSelected('0', old('disposal_bins'), $place->disposal_bins ?? null) }}
                                 value=0>No
                             </option>
                         </select>

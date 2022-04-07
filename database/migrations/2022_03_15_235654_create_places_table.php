@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->castrained()->onDelete('cascade');
             $table->string('title')->required();
+            $table->string('main_image_path')->required();
             $table->string('address_line1')->nullable();
             $table->string('address_line2')->nullable();
             $table->string('address_state_or_region')->required();

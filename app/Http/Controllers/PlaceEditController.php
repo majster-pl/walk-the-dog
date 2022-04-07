@@ -49,9 +49,10 @@ class PlaceEditController extends Controller
         } else {            
             $input['status'] = $place->status === "pending" ? "pending" : "unpublished";
         }
-        
+
         $this->validate($request, [
             'title' => 'required|min:2',
+            // 'main_image_path' => 'required|mimes:png,jpg,jpeg|max:5048',
             'address_state_or_region' => 'required|min:3',
             'address_country' => 'required|min:3',
             'address_city' => 'required|min:3',
