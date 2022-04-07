@@ -25,8 +25,7 @@
                                             style="width: 22rem" class="img-fluid mb-1 me-3 float-sm-start"
                                             style="min-height: 14rem; object-fit: cover;" alt="Main Image">
                                         <span class="fs-5">About:</span>
-
-                                        <p class="">{{ $place->description }}
+                                        <p class="text-break">{{ $place->description }}
                                         </p>
                                     </div>
                                 </div>
