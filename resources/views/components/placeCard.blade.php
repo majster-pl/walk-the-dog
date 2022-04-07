@@ -1,6 +1,7 @@
 <div class="col-md-4 col-12 mb-4">
     <div class="card mb-2 h-100">
-        <img src="{{ asset('images/dog1.webp') }}" class="card-img-top img-fluid" alt="...">
+        <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
+            class="card-img-top img-responsive h-100" style="min-height: 14rem; object-fit: cover;" alt="Main image">
         <div class="card-body">
             <h5 class="card-title">
                 {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>

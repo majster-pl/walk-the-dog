@@ -134,8 +134,13 @@ function checkIfSelected($value, $old, $selected)
         <div class="row">
             <div class="col-md-12 mb-3">
                 <label>Main image:</label>
-                <div class="input-group">
-                    <input type="file" name="main_image_path" class="form-control">
+                <div class="card" style="">
+                    <img src="{{ isset($place->main_image_path) ? asset('/uploads/images/'.$place->main_image_path) : asset('images/image-missing.webp') }}" class="card-img-top" alt="Main image">
+                    <div class="card-body">
+                            <div class="input-group">
+                                <input type="file" name="main_image_path" accept="image/*" class="form-control" value="{{ Request::is('add-new-place')? old('main_image_path'): old('main_image_path')->pathname ?? $place->main_image_path}}">
+                            </div>
+                    </div>
                 </div>
                 @error('main_image_path')
                     <small class="text-danger">{{ $message }}</small>

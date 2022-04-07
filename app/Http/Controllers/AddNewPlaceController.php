@@ -25,7 +25,7 @@ class AddNewPlaceController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|min:2',
-            'main_image_path' => 'required|mimes:png,jpg,jpeg|max:5048',
+            'main_image_path' => 'required|mimes:png,jpg,jpeg,webp|max:5048',
             'address_state_or_region' => 'required|min:3',
             'address_country' => 'required|min:3',
             'address_city' => 'required|min:3',
@@ -45,7 +45,7 @@ class AddNewPlaceController extends Controller
         ]);
 
         $newImageName = 'main_photo-' . time() . '.' . $request->main_image_path->extension();
-        $request->main_image_path->move(public_path('images/uploads'), $newImageName);
+        $request->main_image_path->move(public_path('uploads/images'), $newImageName);
 
         $user = User::find(Auth::id());
         $newPlace = $request->user()->places()->create([

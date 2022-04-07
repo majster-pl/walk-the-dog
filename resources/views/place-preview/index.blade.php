@@ -14,8 +14,8 @@
                             <section class="row">
                                 <div class="col">
                                     <div class="clearfix">
-                                        <img src="{{ asset('images/dog1.webp') }}" style="width: 22rem"
-                                            class="img-fluid mb-1 me-3 float-sm-start" alt="main picture">
+                                        <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}" style="width: 22rem"
+                                            class="img-fluid mb-1 me-3 float-sm-start" style="min-height: 14rem; object-fit: cover;" alt="Main Image">
                                         <span class="fs-5">About:</span>
 
                                         <p class="">{{ $place->description }}

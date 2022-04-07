@@ -42,17 +42,18 @@ class PlaceEditController extends Controller
     {
         $user = User::find(Auth::id());
         $place = Place::find($request->id);
-        
+        //get all request values and check status to assign correct status.
         $input = $request->all();
         if ($request->has('status')) {
             $input['status'] = "published";
-        } else {            
+        } else {
             $input['status'] = $place->status === "pending" ? "pending" : "unpublished";
         }
 
+
         $this->validate($request, [
             'title' => 'required|min:2',
-            // 'main_image_path' => 'required|mimes:png,jpg,jpeg|max:5048',
+            'main_image_path' => $request->has('main_image_path') ? 'required|mimes:png,jpg,jpeg|max:5048' : 'nullable',
             'address_state_or_region' => 'required|min:3',
             'address_country' => 'required|min:3',
             'address_city' => 'required|min:3',
@@ -71,7 +72,15 @@ class PlaceEditController extends Controller
             'description' => 'required|min:10'
         ]);
 
-        // dd($request->parking);
+        if ($request->has('main_image_path')) {
+            $newImageName = 'main_photo-' . time() . '.' . $request->main_image_path->extension();
+            $request->main_image_path->move(public_path('uploads/images'), $newImageName);
+            $input['main_image_path'] = $newImageName;
+        }
+
+
+        
+        // dd($newImageName);
 
         // if editor or admin, allow to publish otherwise change status to pending.
         if ($user->hasRole('editor|super-user')) {
