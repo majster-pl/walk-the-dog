@@ -53,7 +53,7 @@ class PlaceEditController extends Controller
 
         $this->validate($request, [
             'title' => 'required|min:2',
-            'main_image_path' => $request->has('main_image_path') ? 'required|mimes:png,jpg,jpeg|max:5048' : 'nullable',
+            'main_image_path' => $request->has('main_image_path') ? 'required|mimes:png,jpg,jpeg,webp|max:5048' : 'nullable',
             'address_state_or_region' => 'required|min:3',
             'address_country' => 'required|min:3',
             'address_city' => 'required|min:3',
