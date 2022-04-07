@@ -7,15 +7,23 @@
             {{-- <h1>{{$place->title}}</h1>
             <p>{{ $place }}</p> --}}
             <div class="card">
-                <div class="card-header fs-4">{{ $place->title }}</div>
+                <div class="card-header fs-4">{{ $place->title }}
+                    @hasrole('super-user|editor')
+                        <form class="float-end" method="get" action="{{ route('place.edit', $place) }}">
+                            @csrf
+                                <button class="btn btn-info text-white" type="submit">Edit</button>
+                        </form>
+                    @endhasrole
+                </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col col-12 col-md-8">
                             <section class="row">
                                 <div class="col">
                                     <div class="clearfix">
-                                        <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}" style="width: 22rem"
-                                            class="img-fluid mb-1 me-3 float-sm-start" style="min-height: 14rem; object-fit: cover;" alt="Main Image">
+                                        <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
+                                            style="width: 22rem" class="img-fluid mb-1 me-3 float-sm-start"
+                                            style="min-height: 14rem; object-fit: cover;" alt="Main Image">
                                         <span class="fs-5">About:</span>
 
                                         <p class="">{{ $place->description }}
