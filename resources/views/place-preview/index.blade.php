@@ -37,17 +37,27 @@
                                     <span class="fs-5">Map:</span>
                                 </div>
                                 <div class="col-12 my-2">
-                                    <iframe width="100%" id="gmap_canvas"
+                                    <iframe class="border" width="99%" id="gmap_canvas"
                                         src="{{ 'https://maps.google.com/maps?q=' . $place->address_latitude . '&t=&z=17&ie=UTF8&iwloc=&output=embed' }}"
-                                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                        frameborder="1" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 mb-2">
                                     <span class="fs-5">Address:</span>
-                                    <p>{{ $place->address_line1 }}</p>
+                                    <ul class="list-unstyled mb-1">
+                                        <li>{{ $place->address_line1 }}</li>
+                                        <li>{{ $place->address_line2 }}</li>
+                                        <li>{{ $place->address_state_or_region . ', ' . $place->address_city }}</li>
+                                        <li>{{ $place->address_postcode_or_zip }}</li>
+                                        <li>{{ $place->address_country }}</li>
+                                    </ul>
+                                    <a class="btn btn-success text-white w-100"
+                                        href="{{ 'https://www.google.com/maps/place/' . $place->address_latitude }}"
+                                        target="_blank" rel="noreferrer">Navigate</a>
                                 </div>
-                                <div class="col-12">
-                                    <button class="btn btn-success">Navigate</button>
-                                </div>
+                                {{-- <div class="col-12">
+                                    <span class="fs-5">Weather forcast:</span>
+
+                                </div> --}}
                             </div>
                         </div>
                     </div>
