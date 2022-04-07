@@ -11,7 +11,7 @@
                     @hasrole('super-user|editor')
                         <form class="float-end" method="get" action="{{ route('place.edit', $place) }}">
                             @csrf
-                                <button class="btn btn-info text-white" type="submit">Edit</button>
+                            <button class="btn btn-info text-white" type="submit">Edit</button>
                         </form>
                     @endhasrole
                 </div>
@@ -37,8 +37,9 @@
                                     <span class="fs-5">Map:</span>
                                 </div>
                                 <div class="col-12 my-2">
-                                    <img src="{{ asset('images/map1.png') }}" class="card-img-top img-fluid" alt="map">
-
+                                    <iframe width="100%" id="gmap_canvas"
+                                        src="{{ 'https://maps.google.com/maps?q=' . $place->address_latitude . '&t=&z=17&ie=UTF8&iwloc=&output=embed' }}"
+                                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                 </div>
                                 <div class="col-12">
                                     <span class="fs-5">Address:</span>
