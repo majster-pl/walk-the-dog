@@ -37,7 +37,7 @@
                 {{ $place->likes->count() }}
                 {{ Str::plural('like', $place->likes->count()) }}</small></p> --}}
         <p class="card-text m-0 mx-3"><small class="text-muted">Added
-                {{ $place->created_at->diffForHumans() }}</small></p>
+                {{ $place->created_at->diffForHumans() }} by <span class="fw-bold">{{ $place->user->name}}</span></small></p>
         <div class="card-footer p-0 m-0">
             <a href="{{ route('place.preview', $place->id) }}"
                 class="btn btn-success text-white d-block mx-0">Details</a>
