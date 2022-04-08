@@ -38,7 +38,7 @@
 
             <div class="row justify-content-end h-100">
                 <div class="col-12 text-start text-md-end">
-                    <small class="">Last update: {{ $place->updated_at->diffForHumans() }}
+                    <small class="">Created at: {{ $place->created_at->diffForHumans() }}
                     </small>
                     @hasrole('super-user|editor')
                         <p class="text-{{ $place->isPublic() ? 'success' : 'warning' }} fw-bold ">

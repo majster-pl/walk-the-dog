@@ -3,15 +3,18 @@
 @section('content')
     <div class="container py-4">
         <div class="card">
-            <div class="card-header fs-5">{{ __('All Places') }} <div class="float-end">
+            <div class="card-header fs-5">{{ __('All Places') }}
+                <div class="float-end">
                     <div class="dropdown">
                         <button class="btn btn-success text-white dropdown-toggle" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Sort by
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Likes</a></li>
-                            <li><a class="dropdown-item" href="#">Newest</a></li>
+                            <li><a class="dropdown-item" href="{{route('places'). '?sort=title'}}">Title</a></li>
+                            {{-- <li><a class="dropdown-item" href="{{route('places'). '?sort=likes'}}">Likes</a></li> --}}
+                            <li><a class="dropdown-item" href="{{route('places'). '?sort=address_city'}}">City</a></li>
+                            <li><a class="dropdown-item" href="{{route('places'). '?sort=created_at'}}">Newest</a></li>
                         </ul>
                     </div>
                 </div>
@@ -27,7 +30,8 @@
                         No places added yet...
                     @endif
                     <div class="mt-3">
-                        {{ $places->links() }}
+                        {{-- {{ $places->links() }} --}}
+                        {{ $places->appends($_GET)->links() }}
                     </div>
                 </div>
 
