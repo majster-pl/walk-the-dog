@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="container pb-5 pt-4">
-        <h3>Search results @if ($recent->count())
+        <h3>Search results @if ($search->count())
                 for: "{{ Request::get('search') }}"
             @endif
         </h3>
         <hr class="mt-0">
         @if ($search->count())
             <div class="row pb-3">
-                @foreach ($recent as $place)
+                @foreach ($search as $place)
                     @include('components.placeCard')
                 @endforeach
             </div>
