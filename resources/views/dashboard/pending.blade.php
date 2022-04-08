@@ -1,20 +1,20 @@
 @extends("layouts.dashboard")
 @section('content-card-title')
-    Places awaiting review
+    <span class="fs-4">
+        Places awaiting review
+    </span>
 @endsection
 @section('content-card')
     <div class="list-group">
         @if ($places->count())
             @foreach ($places as $place)
-
-            @include('components.placeListItem')
-
+                @include('components.placeListItem')
             @endforeach
         @else
             Perfect! No places padning review! :)
         @endif
         <div class="mt-3">
-            {{ $places->links() }}
+            {{ $places->appends($_GET)->links() }}
         </div>
     </div>
     <script LANGUAGE="JavaScript">

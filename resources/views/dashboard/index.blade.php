@@ -1,6 +1,9 @@
 @extends("layouts.dashboard")
 @section('content-card-title')
+<span class="fs-4">
+
     Places added by you
+</span>
 @endsection
 @section('content-card')
     <div class="list-group">
@@ -14,7 +17,7 @@
                 collection :)</p>
         @endif
         <div class="mt-3">
-            {{ $places->links() }}
+            {{ $places->appends($_GET)->links() }}
         </div>
     </div>
     <script LANGUAGE="JavaScript">
