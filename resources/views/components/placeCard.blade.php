@@ -12,7 +12,7 @@
         <div class="d-flex flex-row mx-3">
             <div>
                 <span class="align-text-bottom me-2">
-                    <i class="text-danger fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
+                    <i class="text-success fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
                         aria-hidden="true"></i>
                     <span style="font-size: 0.68rem">
                         {{ $place->likes->count() }}
@@ -22,13 +22,13 @@
             @if (!$place->likedBy(Auth::user()))
                 <form method="post" action="{{ route('places.likes', $place) }}">
                     @csrf
-                    <button type="submit" class="btn btn-link p-0 pe-1 text-decoration-none">Like</button>
+                    <button type="submit" class="btn btn-link link-secondary p-0 pe-1 text-decoration-none">Like</button>
                 </form>
             @else
                 <form method="post" action="{{ route('places.likes', $place) }}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-link p-0 pe-1 text-decoration-none">Unlike</button>
+                    <button type="submit" class="btn btn-link link-secondary p-0 pe-1 text-decoration-none">Unlike</button>
                 </form>
             @endif
         </div>
