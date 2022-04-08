@@ -7,18 +7,26 @@
             {{-- <h1>{{$place->title}}</h1>
             <p>{{ $place }}</p> --}}
             <div class="card">
-                <div class="card-header fs-4">{{ $place->title }}
+                <div class="card-header">
+                    <span class="fs-4">
+                        {{ $place->title }}
+                    </span>
                     @hasrole('super-user|editor')
                         <form class="float-end" method="get" action="{{ route('place.edit', $place) }}">
                             @csrf
-                            <button class="btn btn-info text-white" type="submit">Edit</button>
+                            <button class="btn btn-sm btn-info text-white" type="submit">Edit</button>
                         </form>
                     @endhasrole
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col col-12 col-md-8">
-                            <section class="row">
+                            <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
+                                class="img-fluid mb-1 me-3 float-sm-start" style="min-height: 14rem; object-fit: cover;"
+                                alt="Main Image">
+                            <span class="fs-5">About:</span>
+                            <p class="text-break">{{ $place->description }}
+                                {{-- <section class="row">
                                 <div class="col">
                                     <div class="clearfix">
                                         <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
@@ -29,7 +37,7 @@
                                         </p>
                                     </div>
                                 </div>
-                            </section>
+                            </section> --}}
                         </div>
                         <div class="col col-12 col-md-4 border-start pb-2">
                             <div class="row">
@@ -41,7 +49,7 @@
                                         src="{{ 'https://maps.google.com/maps?q=' . $place->address_latitude . '&t=&z=17&ie=UTF8&iwloc=&output=embed' }}"
                                         frameborder="1" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                 </div>
-                                <div class="col-12 mb-2">
+                                <div class="col-12 mb-3">
                                     <span class="fs-5">Address:</span>
                                     <ul class="list-unstyled mb-1">
                                         <li>{{ $place->address_line1 }}</li>
@@ -54,10 +62,70 @@
                                         href="{{ 'https://www.google.com/maps/place/' . $place->address_latitude }}"
                                         target="_blank" rel="noreferrer">Navigate</a>
                                 </div>
-                                {{-- <div class="col-12">
+                                {{-- <div class="col-12 mb-2">
                                     <span class="fs-5">Weather forcast:</span>
 
                                 </div> --}}
+                                <div class="col-12 mb-2">
+                                    <span class="fs-5">Additional information:</span>
+                                    <div class="row row-cols-2">
+                                        <div class="col">Walk time: <span class="fw-bold text-success">
+                                                {{ $place->walk_time }}h </span></div>
+
+                                        <div class="col">Type: <span class="fw-bold">
+                                                {{ $place->type_id }} </span></div>
+                                        <div class="col">Activity:
+                                            @switch($place->activity)
+                                                @case(1)
+                                                    <span class="fw-bold text-success">Low</span>
+                                                @break
+
+                                                @case(2)
+                                                    <span class="fw-bold text-warning">Medium</span>
+                                                @break
+
+                                                @case(3)
+                                                    <span class="fw-bold text-danger">High</span>
+                                                @break
+
+                                                @default
+                                                    Medium
+                                            @endswitch
+                                        </div>
+                                        <div class="col">Dogs only: <span>
+                                                <i class="fa fa-{{ $place->dogs_only ? 'check text-success' : 'times text-danger' }}"
+                                                    aria-hidden="true"></i></span></div>
+                                        <div class="col">No lead: <span>
+                                                <i class="fa fa-{{ $place->off_lead ? 'check text-success' : 'times text-danger' }}"
+                                                    aria-hidden="true"></i></span></div>
+                                        <div class="col">Cafe nearby: <span>
+                                                <i class="fa fa-{{ $place->cafe_access ? 'check text-success' : 'times text-danger' }}"
+                                                    aria-hidden="true"></i></span></div>
+                                        <div class="col">Water access: <span>
+                                                <i class="fa fa-{{ $place->access_to_water ? 'check text-success' : 'times text-danger' }}"
+                                                    aria-hidden="true"></i> </span></div>
+                                        <div class="col">Disposal bins: <span>
+                                                <i class="fa fa-{{ $place->disposal_bins ? 'check text-success' : 'times text-danger' }}"
+                                                    aria-hidden="true"></i></span></div>
+                                    </div>
+                                    <div class="col">Parking: <span>
+                                            <i class="fa fa-{{ $place->parking ? 'check text-success' : 'times text-danger' }}"
+                                                aria-hidden="true"></i>
+                                        </span>
+                                        <span
+                                            style="font-size: 0.8rem">{{ $place->parking_details ? $place->parking_details : ' (details missing)' }}</span>
+                                    </div>
+
+                                    <div class="col">Seasonal access: <span class="fw-bold">
+                                            <i class="fa fa-{{ $place->seasonal_access ? 'check text-success' : 'times text-danger' }}"
+                                                aria-hidden="true"></i></span>
+                                        <span
+                                            style="font-size: 0.8rem">{{ $place->seasonal_details ? $place->seasonal_details : ' (details missing)' }}</span>
+                                    </div>
+   
+
+
+                                </div>
                             </div>
                         </div>
                     </div>
