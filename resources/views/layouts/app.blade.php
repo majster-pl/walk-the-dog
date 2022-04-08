@@ -83,7 +83,7 @@
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Str::ucfirst(Auth::user()->name) }}
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu" style="right: 0px; left: auto" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item {{ Request::is('dashboard') ? 'active' : '' }}"
                                         href="{{ route('dashboard') }}">My Places</a></li>
                                 @hasanyrole('editor|super-user')
