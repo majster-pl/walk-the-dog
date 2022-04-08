@@ -15,7 +15,7 @@ class HomeController extends Controller
 
         // return search page is search query present
         if ($request->search) {
-            $places = Place::whereRaw('concat(title," ",description," ",address_city) like ?', "%{$request->search}%")->get();
+            $places = Place::whereRaw('concat(title," ",description," ",address_city) like ?', "%{$request->search}%")->where('status', '=', 'published')->get();
             // dd($places);
             return view('search.index', [
                 'search' => $places,
