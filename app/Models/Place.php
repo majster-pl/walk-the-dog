@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Like;
+use App\Models\Place;
+use App\Models\PlaceType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -65,4 +67,10 @@ class Place extends Model
     {
         return $this->status === 'published';
     }
+
+    public function placeType()
+    {
+        return $this->hasOne(PlaceType::class,'id', 'type_id');
+    }
+
 }

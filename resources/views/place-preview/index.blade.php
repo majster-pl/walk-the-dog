@@ -73,7 +73,7 @@
                                                 {{ $place->walk_time }}h </span></div>
 
                                         <div class="col">Type: <span class="fw-bold">
-                                                {{ $place->type_id }} </span></div>
+                                                {{ $place->placeType->name }} </span></div>
                                         <div class="col">Activity:
                                             @switch($place->activity)
                                                 @case(1)
@@ -185,6 +185,9 @@
                     </div>
                 </div>
             </div>
+            @php
+                // dd($place->placeType);
+            @endphp
         @else
             @include('layouts.404')
         @endif
