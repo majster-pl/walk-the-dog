@@ -111,13 +111,15 @@
                                         <span
                                             style="font-size: 0.8rem">{{ $place->seasonal_details ? $place->seasonal_details : ' (details missing)' }}</span>
                                     </div>
-                                    <div class="col">
+                                    <div class="col mt-2">
                                         <div class="d-flex flex-row ">
                                             <div>
                                                 <span class="align-text-bottom me-2">
                                                     <i class="text-danger fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
                                                         aria-hidden="true"></i>
-                                                    {{ $place->likes->count() }}
+                                                    <span style="font-size: 0.68rem">
+                                                        {{ $place->likes->count() }}
+                                                    </span>
                                                 </span>
                                             </div>
                                             @if (!$place->likedBy(Auth::user()))
