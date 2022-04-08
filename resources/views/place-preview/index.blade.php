@@ -39,7 +39,7 @@
                                 </div>
                             </section> --}}
                         </div>
-                        <div class="col col-12 col-md-4 border-start pb-2">
+                        <div class="col col-12 col-md-4 border-start ">
                             <div class="row">
                                 <div class="col-12">
                                     <span class="fs-5">Map:</span>
@@ -69,7 +69,7 @@
                                 <div class="col-12 mb-2">
                                     <span class="fs-5">Additional information:</span>
                                     <div class="row row-cols-2">
-                                        <div class="col">Walk time: <span class="fw-bold text-success">
+                                        <div class="col">Walk time: <span class="fw-bold">
                                                 {{ $place->walk_time }}h </span></div>
 
                                         <div class="col">Type: <span class="fw-bold">
@@ -122,9 +122,30 @@
                                         <span
                                             style="font-size: 0.8rem">{{ $place->seasonal_details ? $place->seasonal_details : ' (details missing)' }}</span>
                                     </div>
-   
-
-
+                                    <div class="col">
+                                        <div class="d-flex flex-row ">
+                                            <div>
+                                                <span class="align-text-bottom me-2">
+                                                    <i class="text-danger fa fa-heart{{!$place->likedBy(Auth::user()) ? '-o' : ''}} me-1" aria-hidden="true"></i>
+                                                    {{ $place->likes->count() }}
+                                                </span>
+                                            </div>
+                                            @if (!$place->likedBy(Auth::user()))
+                                                <form method="post" action="{{ route('places.likes', $place) }}">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-link p-0 pe-1 text-decoration-none">Like</button>
+                                                </form>
+                                            @else
+                                                <form method="post" action="{{ route('places.likes', $place) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="btn btn-link p-0 pe-1 text-decoration-none">Unlike</button>
+                                                </form>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +207,7 @@
                 </div>
             </div>
             @php
-                // dd($place->placeType);
+                // dd($place->likedByMe);
             @endphp
         @else
             @include('layouts.404')
