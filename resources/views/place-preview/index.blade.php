@@ -30,9 +30,6 @@
                         </div>
                         <div class="col col-12 col-md-4 border-start ">
                             <div class="row">
-                                <div class="col-12">
-                                    <span class="fs-5">Map:</span>
-                                </div>
                                 <div class="col-12 my-2">
                                     <iframe class="border" width="99%" id="gmap_canvas"
                                         src="{{ 'https://maps.google.com/maps?q=' . $place->address_latitude . '&t=&z=17&ie=UTF8&iwloc=&output=embed' }}"
