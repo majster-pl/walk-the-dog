@@ -1,15 +1,20 @@
-<a href="{{route('place.preview', $place->id)}}" class="list-group-item list-group-item-action" aria-current="true">
-    <div class="row">
-        <div class="col-12 col-md-8">
+<a href="{{ route('place.preview', $place->id) }}" class="list-group-item list-group-item-action mb-3 border" aria-current="true">
+    <div class="row mt-2 mt-md-0">
+        <div class="col col-md-2">
+            <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
+                class="img-fluid"
+                style="height: 100%; width: 100%; max-height: 7rem; object-fit: cover;" alt="Main Image">
+        </div>
+        <div class="col-12 col-md-6">
             <h5 class="my-1">
                 {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>
-            <p class="mb-1">{{ $place->description }}</p>
+            <p class="mb-1 truncate-line-clamp-2">{{ $place->description }}</p>
             <div class="d-flex flex-row ">
                 <div>
                     <span class="align-text-bottom me-2">
                         <i class="fa fa-heart-o me-1" aria-hidden="true"></i>
                         {{ $place->likes->count() }}
-                        </span>
+                    </span>
                 </div>
                 @if (!$place->likedBy(Auth::user()))
                     <form method="post" action="{{ route('places.likes', $place) }}">
