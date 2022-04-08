@@ -6,11 +6,12 @@
     <div class="list-group">
         @if ($places->count())
             @foreach ($places as $place)
-            @include('components.placeListItem')
-
+                @include('components.placeListItem')
             @endforeach
         @else
-            You didn't add any places yet...
+            <p>You didn't add any places yet...</p>
+            <p>Add <a class="link-blue link-success" href="{{ route('add-new-place') }}">new place</a> to help us grow our
+                collection :)</p>
         @endif
         <div class="mt-3">
             {{ $places->links() }}
