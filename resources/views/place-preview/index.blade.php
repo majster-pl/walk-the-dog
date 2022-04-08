@@ -22,22 +22,11 @@
                     <div class="row">
                         <div class="col col-12 col-md-8">
                             <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
-                                class="img-fluid mb-1 me-3 float-sm-start" style="min-height: 14rem; object-fit: cover;"
+                                class="img-fluid mb-1 me-3 float-sm-start"
+                                style="min-height: 14rem; max-height: 20rem; width: 100%; object-fit: cover;"
                                 alt="Main Image">
                             <span class="fs-5">About:</span>
                             <p class="text-break">{{ $place->description }}
-                                {{-- <section class="row">
-                                <div class="col">
-                                    <div class="clearfix">
-                                        <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
-                                            style="width: 22rem" class="img-fluid mb-1 me-3 float-sm-start"
-                                            style="min-height: 14rem; object-fit: cover;" alt="Main Image">
-                                        <span class="fs-5">About:</span>
-                                        <p class="text-break">{{ $place->description }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </section> --}}
                         </div>
                         <div class="col col-12 col-md-4 border-start ">
                             <div class="row">
@@ -126,7 +115,8 @@
                                         <div class="d-flex flex-row ">
                                             <div>
                                                 <span class="align-text-bottom me-2">
-                                                    <i class="text-danger fa fa-heart{{!$place->likedBy(Auth::user()) ? '-o' : ''}} me-1" aria-hidden="true"></i>
+                                                    <i class="text-danger fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
+                                                        aria-hidden="true"></i>
                                                     {{ $place->likes->count() }}
                                                 </span>
                                             </div>
