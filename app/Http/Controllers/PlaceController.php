@@ -49,11 +49,12 @@ class PlaceController extends Controller
             // }
             switch ($request->sort) {
                 case 'created_at':
-                    $places = Place::where('status', 'published')->orderByDesc($request->sort)->paginate(5);
+                case 'status':
+                    $places = Place::orderByDesc($request->sort)->paginate(5);
                     break;
 
                 default:
-                    $places = Place::where('status', 'published')->orderBy($request->sort)->paginate(5);
+                    $places = Place::orderBy($request->sort)->paginate(5);
                     break;
             }
             // dd($places);

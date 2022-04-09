@@ -3,6 +3,9 @@
     <span class="fs-4">
         Places awaiting review
     </span>
+    <div class="float-end">
+        @include('components.sotr-dropdown')
+    </div>
 @endsection
 @section('content-card')
     <div class="list-group">

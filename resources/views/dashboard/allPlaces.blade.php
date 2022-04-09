@@ -4,40 +4,7 @@
         All places
     </span>
     <div class="float-end">
-        <div class="dropdown">
-            <button class="btn btn-sm btn-success text-white dropdown-toggle" type="button" id="dropdownMenuFilter1"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Sort by
-                @switch(Request::get('sort'))
-                    @case('status')
-                        Status
-                    @break
-
-                    @case('title')
-                        Tilte
-                    @break
-
-                    @case('address_city')
-                        City
-                    @break
-
-                    @case('created_at')
-                        Newest
-                    @break
-
-                    @default
-                @endswitch
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuFilter1">
-                <li><a class="dropdown-item" href="{{ route('dashboard.all_places') . '?sort=title' }}">Title</a></li>
-                <li><a class="dropdown-item" href="{{ route('dashboard.all_places') . '?sort=address_city' }}">City</a>
-                </li>
-                <li><a class="dropdown-item" href="{{ route('dashboard.all_places') . '?sort=created_at' }}">Newest</a>
-                <li><a class="dropdown-item" href="{{ route('dashboard.all_places') . '?sort=status' }}">Status</a>
-                </li>
-            </ul>
-        </div>
-
+        @include('components.sotr-dropdown')
     </div>
 @endsection
 @section('content-card')
