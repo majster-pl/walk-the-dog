@@ -8,6 +8,25 @@
             <button class="btn btn-sm btn-success text-white dropdown-toggle" type="button" id="dropdownMenuFilter1"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 Sort by
+                @switch(Request::get('sort'))
+                    @case('status')
+                        Status
+                    @break
+
+                    @case('title')
+                        Tilte
+                    @break
+
+                    @case('address_city')
+                        City
+                    @break
+
+                    @case('created_at')
+                        Newest
+                    @break
+
+                    @default
+                @endswitch
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuFilter1">
                 <li><a class="dropdown-item" href="{{ route('dashboard.all_places') . '?sort=title' }}">Title</a></li>
