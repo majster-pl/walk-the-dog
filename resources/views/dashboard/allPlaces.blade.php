@@ -14,6 +14,7 @@
                 <li><a class="dropdown-item" href="{{ route('dashboard.all_places') . '?sort=address_city' }}">City</a>
                 </li>
                 <li><a class="dropdown-item" href="{{ route('dashboard.all_places') . '?sort=created_at' }}">Newest</a>
+                <li><a class="dropdown-item" href="{{ route('dashboard.all_places') . '?sort=status' }}">Status</a>
                 </li>
             </ul>
         </div>

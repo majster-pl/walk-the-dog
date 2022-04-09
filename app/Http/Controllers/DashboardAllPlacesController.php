@@ -53,9 +53,10 @@ class DashboardAllPlacesController extends Controller
             // }
             switch ($request->sort) {
                 case 'created_at':
+                case 'status':
                     $places = Place::orderByDesc($request->sort)->paginate(5);
                     break;
-
+ 
                 default:
                     $places = Place::orderBy($request->sort)->paginate(5);
                     break;
