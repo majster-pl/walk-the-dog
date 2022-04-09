@@ -13,7 +13,7 @@ function checkIfSelected($value, $old, $selected)
 }
 @endphp
 
-<form class="my-3 row" action="{{ Request::is('add-new-place') ? route('add-new-place') : route('edit-place') }}"
+<form class="mt-1 row" action="{{ Request::is('add-new-place') ? route('add-new-place') : route('edit-place') }}"
     method="post" enctype="multipart/form-data">
     @if (!Request::is('add-new-place'))
         `
@@ -134,17 +134,17 @@ function checkIfSelected($value, $old, $selected)
         <div class="row">
             <div class="col-md-12 mb-3">
                 <label>Main image:</label>
-                <div class="card" style="">
+                <div class="card @error('main_image_path') border-danger border-1 @enderror" style="">
                     <img src="{{ isset($place->main_image_path) ? asset('/uploads/images/'.$place->main_image_path) : asset('images/image-missing.webp') }}" class="card-img-top" alt="Main image">
                     <div class="card-body">
                             <div class="input-group">
                                 <input type="file" name="main_image_path" accept="image/*" class="form-control" value="{{ Request::is('add-new-place')? old('main_image_path'): old('main_image_path')->pathname ?? $place->main_image_path}}">
                             </div>
+                            @error('main_image_path')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                     </div>
                 </div>
-                @error('main_image_path')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
 
             </div>
             {{-- <div class="col-md-12 mb-3">
@@ -486,7 +486,7 @@ function checkIfSelected($value, $old, $selected)
                     @enderror
                 </div>
             </div>
-            <div class="mb-3">
+            <div class="">
                 {{-- Publish checkbox --}}
                 @if (Auth::user()->can('publish places'))
                     <div class="form-check form-switch">

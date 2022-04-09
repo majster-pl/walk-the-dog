@@ -19,7 +19,8 @@ use App\Http\Controllers\DashboardAllPlacesController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get( '/add-new-place', [AddNewPlaceController::class, "index"])->middleware('auth')->name('add-new-place');
-Route::post('/add-new-place', [AddNewPlaceController::class, "store"])->middleware('auth');
+Route::post( '/add-new-place', [AddNewPlaceController::class, "store"])->middleware('auth');
+Route::view('/add-new-confirmation', 'new-place-confirmation.index')->middleware('auth');
 
 Route::get('/places', [PlaceController::class, "index"])->name('places');
 Route::get('/place/{place}/edit', [PlaceEditController::class, "index"])->name('place.edit');

@@ -25,7 +25,7 @@ class AddNewPlaceController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|min:2',
-            'main_image_path' => 'required|mimes:png,jpg,jpeg,webp|max:5048',
+            'main_image_path' => 'required|mimes:png,jpg,jpeg,webp|max:12048',
             'address_state_or_region' => 'required|min:3',
             'address_country' => 'required|min:3',
             'address_city' => 'required|min:3',
@@ -80,7 +80,9 @@ class AddNewPlaceController extends Controller
             if ($request->has('status')) {
                 return redirect()->back()->with('success', 'New place added successfully!');
             } else {
-                return redirect()->back()->with('success', 'New place added and is now pending review...');
+                // return view('new-place-confirmation.index');
+                return redirect('add-new-confirmation')->with('success', true);
+                // return redirect()->back()->with('success', 'New place added and is now pending review...');
             }
         } else {
             return redirect()->back()->with('error', 'There was problem adding a new place... <br>Please try again later!');

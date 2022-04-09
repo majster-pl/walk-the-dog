@@ -49,6 +49,7 @@ class HomeController extends Controller
  
         // query places by id to get top rated
         $top = Place::find($order);
+        // dd($top);
 
         return view('home.index', [
             'recent' => $recent,
