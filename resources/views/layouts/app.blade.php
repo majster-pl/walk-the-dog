@@ -48,6 +48,10 @@
                             <a class="nav-link {{ Request::is('add-new-place*') ? 'active' : '' }}"
                                 href="{{ route('add-new-place') }}">Add New Place</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('contact*') ? 'active' : '' }}"
+                                href="{{ route('contact') }}">Contact</a>
+                        </li>
                     </ul>
 
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -146,7 +150,7 @@
                     </div>
                 </div>
             @endif
-           
+
             @yield('content')
         </main>
         <nav class="navbar bottom mt-auto py-3 bg-dark">
