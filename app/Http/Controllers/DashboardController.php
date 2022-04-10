@@ -19,11 +19,11 @@ class DashboardController extends Controller
             switch ($request->sort) {
                 case 'created_at':
                 case 'status':
-                    $places = Place::orderByDesc($request->sort)->paginate(5);
+                    $places = Place::where('user_id', auth()->id())->orderByDesc($request->sort)->paginate(5);
                     break;
 
                 default:
-                    $places = Place::orderBy($request->sort)->paginate(5);
+                    $places = Place::where('user_id', auth()->id())->orderBy($request->sort)->paginate(5);
                     break;
             }
             // dd($places);
