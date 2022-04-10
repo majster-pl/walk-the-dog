@@ -3,12 +3,11 @@
 @section('content')
     <div class="container py-4">
         <div class="card">
-            <div class="card-header fs-4">{{ __('Contact me') }}</div>
+            <div class="card-header fs-4">{{ __('Contact') }}</div>
             <div class="card-body">
                 <div class="row justify-content-center">
                     <div class="col col-12 col-md-8">
-                        <p class="fs-5">You can reach out to me by filling the form below and I'll get back to you
-                            as soon as possible.</p>
+                        <p class="fs-5">If you have any queries please contact me by completing below form and I'll get back to you as soon as possible.</p>
                         <form>
                             <div class="form-floating mb-3">
 
