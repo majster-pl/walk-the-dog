@@ -39,13 +39,13 @@
 
             <div class="row justify-content-end h-100">
                 <div class="col-12 text-start text-md-end">
-                    <small class="">Created at: {{ $place->created_at->diffForHumans() }}
+                    <small class="">Created {{ $place->created_at->diffForHumans() }}
                     </small>
-                    @hasrole('super-user|editor')
-                        <p class="text-{{ $place->isPublic() ? 'success' : 'warning' }} fw-bold ">
-                            <small>{{ $place->status }}</small>
-                        </p>
-                    @endhasrole
+                    @if ( Request::is('dashboard'))
+                        <p>
+                            <small>Status:</small> <small class="text-{{ $place->isPublic() ? 'success' : 'warning' }}">{{ $place->status }}</small>
+                        </p>                        
+                    @endif
                 </div>
                 <div class="col-12">
                     @auth
