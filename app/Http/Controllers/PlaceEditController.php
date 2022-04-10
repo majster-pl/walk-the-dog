@@ -96,8 +96,11 @@ class PlaceEditController extends Controller
             if (!$update) {
                 return redirect()->back()->with('error', 'There was problem updating place... Please try again later!');
             } else {
-                return redirect()->back()->with('success', 'Thank you for submitting update!<br>
-                New information is now under review and will be public shortly :)');
+                return redirect('place/'. $request->id)->with('warning', 'Thank you for updating this place!<br>
+                New information is now under review and will be public shortly!<br>
+                Please get <a href="">in touch</a> if you want to become editor!');
+                // return redirect()->back()->with('success', 'Thank you for submitting update!<br>
+                // New information is now under review and will be public shortly :)');
             }
         } else {
             abort(403);

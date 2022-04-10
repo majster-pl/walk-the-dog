@@ -1,9 +1,10 @@
-<a href="{{ route('place.preview', $place->id) }}" class="list-group-item list-group-item-action mb-3 border" aria-current="true">
+<a href="{{ route('place.preview', $place->id) }}" class="list-group-item list-group-item-action mb-3 border"
+    aria-current="true">
     <div class="row mt-2 mt-md-0">
         <div class="col col-md-2">
             <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
-                class="img-fluid"
-                style="height: 100%; width: 100%; max-height: 7rem; object-fit: cover;" alt="Main Image">
+                class="img-fluid" style="height: 100%; width: 100%; max-height: 7rem; object-fit: cover;"
+                alt="Main Image">
         </div>
         <div class="col-12 col-md-6">
             <h5 class="my-1">
@@ -54,22 +55,22 @@
                                     <form method="get"
                                         action="{{ $place->status !== 'pending' ? route('place.edit', $place) : route('place.review', $place) }}">
                                         @csrf
-                                        @if ($place->status !== 'pending')
+                                        @if ($place->status !== 'pending' || $place->isUsersPost(Auth::user()))
                                             <button class="btn btn-info text-white" type="submit">Edit</button>
                                         @else
                                             <button class="btn btn-info text-white" type="submit">Review</button>
                                         @endif
                                     </form>
                                 </div>
+                                <div class="col-auto mt-auto pt-2">
+                                    <form method="post" action="{{ route('places.delete', $place) }}">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-danger text-white" type="submit"
+                                            onClick='return confirmSubmit()'>Remove</button>
+                                    </form>
+                                </div>
                                 @unlessrole('user')
-                                    <div class="col-auto mt-auto pt-2">
-                                        <form method="post" action="{{ route('places.delete', $place) }}">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button class="btn btn-danger text-white" type="submit"
-                                                onClick='return confirmSubmit()'>Remove</button>
-                                        </form>
-                                    </div>
                                     @if ($place->status !== 'pending')
                                         <div class="col-auto mt-auto pt-2">
 
@@ -87,8 +88,8 @@
                                             @endif
                                             </form>
                                         </div>
-                                    @endunlessrole
-                                @endif
+                                    @endif
+                                @endunlessrole
                             @endif
                         </div>
                     @endauth

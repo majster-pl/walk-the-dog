@@ -29,6 +29,7 @@ Route::get('/place/{id}', [PlacePreviewController::class, "index"])->name('place
 Route::patch('/place/edit', [PlaceEditController::class, "edit"])->middleware('auth')->name('edit-place');
 Route::post('/places/{place}/likes', [PlaceLikeController::class, "store"])->name('places.likes');
 Route::delete('/places/{place}/likes', [PlaceLikeController::class, "destroy"])->name('places.likes');
+Route::delete('/places/{place}/delete', [PlaceRemoveController::class, "delete"])->name('places.delete');
 
 Route::get( '/dashboard', [DashboardController::class, 'index'])->name("dashboard");
 Route::group(['middleware' => ['role:super-user|editor']], function () {
@@ -36,7 +37,6 @@ Route::group(['middleware' => ['role:super-user|editor']], function () {
     Route::get('/dashboard/all_places', [DashboardAllPlacesController::class, 'index'])->name("dashboard.all_places");
     Route::patch('/places/{place}/publish', [PlacePublishController::class, "publish"])->name('places.publish');
     Route::patch('/places/{place}/unpublish', [PlacePublishController::class, "unpublish"])->name('places.unpublish');
-    Route::delete('/places/{place}/delete', [PlaceRemoveController::class, "delete"])->name('places.delete');
 });
 Route::group(['middleware' => ['role:super-user']], function () {
     Route::get('/dashboard/users', [DashboardUsersController::class, 'index'])->name("dashboard.users");

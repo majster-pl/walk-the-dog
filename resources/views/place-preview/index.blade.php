@@ -9,16 +9,22 @@
             <div class="card">
                 <div class="card-header">
                     <span class="fs-4">
-                        {{ $place->title }}
+                        {{ $place->title }} <span
+                            class="text-danger">{{ $place->status == 'pending' ? '  (Pending review...)' : '' }}</span>
                     </span>
                     @hasrole('super-user|editor')
                         <form class="float-end" method="get" action="{{ route('place.edit', $place) }}">
                             @csrf
                             <button class="btn btn-sm btn-info text-white" type="submit">Edit</button>
                         </form>
+                    @elseif ($place->isUsersPost(Auth::user()))
+                        <form class="float-end" method="get" action="{{ route('place.edit', $place) }}">
+                            @csrf
+                            <button class="btn btn-sm btn-info text-white" type="submit">Edit</button>
+                        </form>
                     @endhasrole
                 </div>
-                <div class="card-body">
+                <div class="card-body {{ $place->status == 'pending' ? 'opacity-50 unselectable' : '' }}">
                     <div class="row">
                         <div class="col col-12 col-md-8">
                             <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
@@ -143,7 +149,7 @@
 
                 </div>
                 {{-- <hr class="mx-3 my-2"> --}}
-                <div class="card-body pt-0">
+                <div class="card-body pt-0  {{ $place->status == 'pending' ? 'opacity-50 unselectable' : '' }}">
                     <span class="fs-5">Pictures</span>
                     <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 pt-2">
                         <div class="col text-center">

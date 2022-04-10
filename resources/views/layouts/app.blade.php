@@ -119,6 +119,34 @@
 
 
         <main style="min-height: calc(100vh - 6.9rem)">
+            @if (\Session::has('success'))
+                <div class="container">
+                    <div class="alert mt-4 alert-success alert-dismissible fade show container mb-0" role="alert">
+                        {!! \Session::get('success') !!}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
+            @if (\Session::has('error'))
+                <div class="container">
+                    <div class="alert mt-4 alert-danger alert-dismissible fade show mb-0" role="alert">
+                        {!! \Session::get('error') !!}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
+            @if (\Session::has('warning'))
+                <div class="container">
+                    <div class="alert mt-4 alert-warning alert-dismissible fade show mb-0" role="alert">
+                        {!! \Session::get('warning') !!}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+            @endif
+           
             @yield('content')
         </main>
         <nav class="navbar bottom mt-auto py-3 bg-dark">
@@ -134,6 +162,15 @@
             </div>
         </nav>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(function() {
+                $("[data-toggle='popover']").popover({
+                    html: true
+                });
+            })
+        });
+    </script>
 </body>
 
 </html>
