@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlaceEditController;
 use App\Http\Controllers\PlaceLikeController;
 use App\Http\Controllers\AddNewPlaceController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PlaceRemoveController;
 use App\Http\Controllers\PlaceReviewController;
 use App\Http\Controllers\PlacePreviewController;
@@ -23,13 +24,14 @@ Route::post( '/add-new-place', [AddNewPlaceController::class, "store"])->middlew
 Route::view('/add-new-confirmation', 'new-place-confirmation.index')->middleware('auth');
 
 Route::get('/places', [PlaceController::class, "index"])->name('places');
+Route::get('/contact', [ContactController::class, "index"])->name('contact');
 Route::get('/place/{place}/edit', [PlaceEditController::class, "index"])->name('place.edit');
 Route::get('/place/{place}/review', [ PlaceReviewController::class, "index"])->name('place.review');
 Route::get('/place/{id}', [PlacePreviewController::class, "index"])->name('place.preview');
 Route::patch('/place/edit', [PlaceEditController::class, "edit"])->middleware('auth')->name('edit-place');
 Route::post('/places/{place}/likes', [PlaceLikeController::class, "store"])->name('places.likes');
 Route::delete('/places/{place}/likes', [PlaceLikeController::class, "destroy"])->name('places.likes');
-Route::delete('/places/{place}/delete', [PlaceRemoveController::class, "delete"])->name('places.delete');
+Route::delete('/places/{place}/delete', [PlaceRemoveController::class, "delete"])->middleware('auth')->name('places.delete');
 
 Route::get( '/dashboard', [DashboardController::class, 'index'])->name("dashboard");
 Route::group(['middleware' => ['role:super-user|editor']], function () {
