@@ -24,13 +24,15 @@
     </button>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuFilter1">
         <li><a class="dropdown-item {{ Request::get('sort') == 'title' ? 'active' : '' }}"
-                href="{{ url()->current().'?sort=title' }}">Title</a></li>
+                href="{{ url()->current() . '?sort=title' }}">Title</a></li>
         {{-- <li><a class="dropdown-item" href="{{route('places'). '?sort=likes'}}">Likes</a></li> --}}
         <li><a class="dropdown-item {{ Request::get('sort') == 'address_city' ? 'active' : '' }}"
                 href="{{ url()->current() . '?sort=address_city' }}">City</a></li>
         <li><a class="dropdown-item {{ Request::get('sort') == 'created_at' ? 'active' : '' }}"
                 href="{{ url()->current() . '?sort=created_at' }}">Newest</a></li>
-        <li><a class="dropdown-item {{ Request::get('sort') == 'status' ? 'active' : '' }}"
-                href="{{ url()->current() . '?sort=status' }}">Status</a>
+        @if (!Request::is('places*'))
+            <li><a class="dropdown-item {{ Request::get('sort') == 'status' ? 'active' : '' }}"
+                    href="{{ url()->current() . '?sort=status' }}">Status</a></li>
+        @endif
     </ul>
 </div>
