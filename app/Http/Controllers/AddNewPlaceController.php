@@ -78,11 +78,9 @@ class AddNewPlaceController extends Controller
         
         if ($newPlace) {
             if ($request->has('status')) {
-                return redirect()->back()->with('success', 'New place added successfully!');
+                return redirect('place/' . $newPlace->id)->with('success', 'New place added successfully!');
             } else {
-                // return view('new-place-confirmation.index');
-                return redirect('add-new-confirmation')->with('success', true);
-                // return redirect()->back()->with('success', 'New place added and is now pending review...');
+                return redirect('add-new-confirmation')->with('success_', true);
             }
         } else {
             return redirect()->back()->with('error', 'There was problem adding a new place... <br>Please try again later!');

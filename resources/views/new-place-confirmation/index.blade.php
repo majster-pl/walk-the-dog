@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header fs-4">{{ __('Submission confirmation') }}</div>
             <div class="card-body">
-                @if (!Session::get('success'))
+                @if (!Session::get('success_'))
                     <span class="fs-2">Looks like something went wrong... <i class="fa fa-frown-o"
                             aria-hidden="true"></i></span>
                     <div class="row-">
