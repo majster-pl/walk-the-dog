@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container py-2">
+
+        <a class="link-success" href="{{ url()->previous() }}">back</a>
 
         @if ($place->count())
             {{-- <h1>{{$place->title}}</h1>
             <p>{{ $place }}</p> --}}
-            <div class="card">
+            <div class="card mt-2">
                 <div class="card-header">
                     <span class="fs-4">
                         {{ $place->title }} <span
