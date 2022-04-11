@@ -23,8 +23,9 @@ Route::get( '/add-new-place', [AddNewPlaceController::class, "index"])->middlewa
 Route::post( '/add-new-place', [AddNewPlaceController::class, "store"])->middleware('auth');
 Route::view('/add-new-confirmation', 'new-place-confirmation.index')->middleware('auth');
 
-Route::get('/places', [PlaceController::class, "index"])->name('places');
 Route::get('/contact', [ContactController::class, "index"])->name('contact');
+Route::post('/contact', [ContactController::class, "store"])->name('contact');
+Route::get('/places', [PlaceController::class, "index"])->name('places');
 Route::get('/place/{place}/edit', [PlaceEditController::class, "index"])->name('place.edit');
 Route::get('/place/{place}/review', [ PlaceReviewController::class, "index"])->name('place.review');
 Route::get('/place/{id}', [PlacePreviewController::class, "index"])->name('place.preview');
