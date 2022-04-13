@@ -120,7 +120,7 @@
                                         <div class="d-flex flex-row ">
                                             <div>
                                                 <span class="align-text-bottom me-2">
-                                                    <i class="text-danger fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
+                                                    <i class="text-success fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
                                                         aria-hidden="true"></i>
                                                     <span style="font-size: 0.68rem">
                                                         {{ $place->likes->count() }}
