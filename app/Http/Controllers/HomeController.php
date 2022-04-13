@@ -35,7 +35,6 @@ class HomeController extends Controller
             // ->take(6)
             ->get();
 
-            // dd($ordered);
         // create array and loop through ordered to add only place_id to array
         $order = array();
         foreach ($ordered as $key => $value) {
@@ -46,10 +45,11 @@ class HomeController extends Controller
                 }
             }
         }
- 
-        // query places by id to get top rated
-        $top = Place::find($order);
-        // dd($top);
+        // get places in correct order and marge results together
+        $top1 = Place::where('id', $order[0])->get();
+        $top2 = Place::where('id', $order[1])->get();
+        $top3 = Place::where('id', $order[2])->get();
+        $top = $top1->merge($top2)->merge($top3);
 
         return view('home.index', [
             'recent' => $recent,
