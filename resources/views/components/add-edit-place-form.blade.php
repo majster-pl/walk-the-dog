@@ -129,19 +129,22 @@ function checkIfSelected($value, $old, $selected)
             </div>
         </div>
     </div>
+    {{-- Image --}}
     <div class="col-md-4">
         <div class="row">
             <div class="col-md-12 mb-3">
                 <label>Main image:</label>
                 <div class="card @error('main_image_path') border-danger border-1 @enderror" style="">
-                    <img src="{{ isset($place->main_image_path) ? asset('/uploads/images/'.$place->main_image_path) : asset('images/image-missing.webp') }}" class="card-img-top" alt="Main image">
+                    <img id="main_image_src" src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
+                        class="card-img-top" alt="Main image">
                     <div class="card-body">
-                            <div class="input-group">
-                                <input type="file" name="main_image_path" accept="image/*" class="form-control" value="{{ Request::is('add-new-place')? old('main_image_path'): old('main_image_path')->pathname ?? $place->main_image_path}}">
-                            </div>
-                            @error('main_image_path')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                        <div class="input-group">
+                            <input type="file" id="main_image_path" name="main_image_path" accept="image/*" class="form-control"
+                                value="{{ Request::is('add-new-place')? old('main_image_path'): old('main_image_path')->pathname ?? $place->main_image_path }}" onchange="document.getElementById('main_image_src').src = window.URL.createObjectURL(this.files[0])">
+                        </div>
+                        @error('main_image_path')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
