@@ -59,8 +59,11 @@ class Place extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function isUsersPost(User $user)
+    public function isUsersPost(User $user = null)
     {
+        if (!isset($user)) {
+            return false;
+        }
         return $this->user_id === $user->id;
     }
 
