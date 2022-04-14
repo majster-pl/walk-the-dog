@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlaceEditController;
 use App\Http\Controllers\PlaceLikeController;
 use App\Http\Controllers\AddNewPlaceController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PlaceRemoveController;
 use App\Http\Controllers\PlaceReviewController;
 use App\Http\Controllers\PlacePreviewController;
@@ -22,7 +23,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get( '/add-new-place', [AddNewPlaceController::class, "index"])->middleware('auth')->name('add-new-place');
 Route::post( '/add-new-place', [AddNewPlaceController::class, "store"])->middleware('auth');
 Route::view('/add-new-confirmation', 'new-place-confirmation.index')->middleware('auth');
-
+Route::get('/about', [AboutController::class, "index"])->name('about');
 Route::get('/contact', [ContactController::class, "index"])->name('contact');
 Route::post('/contact', [ContactController::class, "store"])->name('contact');
 Route::get('/places', [PlaceController::class, "index"])->name('places');
