@@ -9,6 +9,10 @@
             <p class="truncate-line-clamp mb-0">
                 {{ Str::length($place->description) > 0 ? $place->description : '[Info not set]' }}</p>
         </div>
+        <div class="mx-3">
+            <p class="truncate-line-clamp mb-1"><i class="fa fa-location-arrow me-1 text-success" aria-hidden="true"></i> 
+                {{ Str::length($place->address_city) > 0 ? $place->address_city : '[Info not set]' }}</p>
+        </div>
         <div class="d-flex flex-row mx-3">
             <div>
                 <span class="align-text-bottom me-2">
@@ -22,13 +26,15 @@
             @if (!$place->likedBy(Auth::user()))
                 <form method="post" action="{{ route('places.likes', $place) }}">
                     @csrf
-                    <button type="submit" class="btn btn-link link-secondary p-0 pe-1 text-decoration-none">Like</button>
+                    <button type="submit"
+                        class="btn btn-link link-secondary p-0 pe-1 text-decoration-none">Like</button>
                 </form>
             @else
                 <form method="post" action="{{ route('places.likes', $place) }}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-link link-secondary p-0 pe-1 text-decoration-none">Unlike</button>
+                    <button type="submit"
+                        class="btn btn-link link-secondary p-0 pe-1 text-decoration-none">Unlike</button>
                 </form>
             @endif
         </div>
@@ -37,7 +43,8 @@
                 {{ $place->likes->count() }}
                 {{ Str::plural('like', $place->likes->count()) }}</small></p> --}}
         <p class="card-text m-0 mx-3"><small class="text-muted">Added
-                {{ $place->created_at->diffForHumans() }} by <span class="fw-bold">{{ $place->user->name}}</span></small></p>
+                {{ $place->created_at->diffForHumans() }} by <span
+                    class="fw-bold">{{ $place->user->name }}</span></small></p>
         <div class="card-footer p-0 m-0">
             <a href="{{ route('place.preview', $place->id) }}"
                 class="btn btn-success text-white d-block mx-0">Details</a>
