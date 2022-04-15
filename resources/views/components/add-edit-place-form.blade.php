@@ -134,13 +134,17 @@ function checkIfSelected($value, $old, $selected)
         <div class="row">
             <div class="col-md-12 mb-3">
                 <label>Main image:</label>
-                <div class="card @error('main_image_path') border-danger border-1 @enderror" style="">
+                <div class="card position-relative @error('main_image_path') border-danger border-1 @enderror" style="">
+                    <div class="w-100 position-absolute">
+                        <button id="clearButton" type="button" class="btn-close float-end m-2 bg-danger"
+                            aria-label="Close"></button>
+                    </div>
                     <img id="main_image_src"
                         src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
                         class="card-img-top" alt="Main image">
                     <div class="card-body">
                         <div class="input-group">
-                            <input type="file" name="main_image_path" class="form-control"
+                            <input id="main_image_input" type="file" name="main_image_path" class="form-control"
                                 onchange="document.getElementById('main_image_src').src = window.URL.createObjectURL(this.files[0])">
                         </div>
                         @error('main_image_path')
@@ -513,7 +517,21 @@ function checkIfSelected($value, $old, $selected)
                 $("[data-toggle='popover']").popover({
                     html: true
                 });
-            })
+            });
+
+            $('#clearButton').click(function() {
+                document.getElementById('main_image_src').src = "images/image-missing.webp";
+                document.getElementById('main_image_input').value = "";
+                var element = document.getElementById("clearButton");
+                element.classList.add("d-none");
+            });
+
+            $('#main_image_input').change(function() {
+                console.log('Setting image...');
+                var element = document.getElementById("clearButton");
+                element.classList.remove("d-none");
+            });
+
         });
     </script>
 </form>
