@@ -136,7 +136,7 @@ function checkIfSelected($value, $old, $selected)
                 <label>Main image:</label>
                 <div class="card position-relative @error('main_image_path') border-danger border-1 @enderror" style="">
                     <div class="w-100 position-absolute">
-                        <button id="clearButton" type="button" class="btn-close float-end m-2 bg-danger"
+                        <button id="clearButton" type="button" class="btn-close float-end m-2 bg-danger d-none"
                             aria-label="Close"></button>
                     </div>
                     <img id="main_image_src"
