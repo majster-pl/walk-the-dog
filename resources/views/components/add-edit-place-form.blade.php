@@ -520,7 +520,7 @@ function checkIfSelected($value, $old, $selected)
             });
 
             $('#clearButton').click(function() {
-                document.getElementById('main_image_src').src = "images/image-missing.webp";
+                document.getElementById('main_image_src').src = "/images/image-missing.webp";
                 document.getElementById('main_image_input').value = "";
                 var element = document.getElementById("clearButton");
                 element.classList.add("d-none");
