@@ -8,7 +8,7 @@
         </div>
         <div class="col-12 col-md-6">
             <h5 class="my-1">
-                {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}</h5>
+                {{ Str::length($place->title) > 0 ? $place->title . ' - '. $place->address_city : '[Title not set]' }}</h5>
             <p class="mb-1 truncate-line-clamp-2">{{ $place->description }}</p>
             <div class="d-flex flex-row ">
                 <div>
