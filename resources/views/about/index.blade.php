@@ -41,7 +41,7 @@
                             submit your proposal changes on official
                             <a href="https://github.com/majster-pl" target="_blank" rel="noreferrer">
                                 github <i class="fa fa-github" style="font-size: 1.0rem" aria-hidden="true"></i></a>
-                            page or <a href="{{ route('contact') }}">contact me</a> directly to disuse any feature changes to this project..
+                            page or <a href="{{ route('contact') }}">contact</a> me directly to disuse any feature changes to this project..
 
                         </li>
                     </ul>
