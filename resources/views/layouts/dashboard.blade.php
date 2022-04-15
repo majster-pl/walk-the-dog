@@ -36,7 +36,7 @@
             <div class="col-12 col-md-4 text-end mb-3">
                 @hasrole('user')
                     <div class="d-grid d-md-block gap-2">
-                        <a class="btn-warning btn text-white" href="{{ route('contact') }}">Become an editor</a>
+                        <a class="btn-warning btn text-white" href="{{ route('contact', 'editor') }}">Become an editor</a>
                     </div>
                 @endhasrole
             </div>

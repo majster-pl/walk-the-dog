@@ -8,9 +8,16 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('contact.index');
+        if ($request->has('editor')) {
+            # code...
+            return view('contact.index', [
+                'editor' => 'Please drop me short message and tick box at the bottom of this form if you want to become an editor.'
+            ]);
+        } else {
+            return view('contact.index');
+        }
     }
 
     public function store(Request $request)

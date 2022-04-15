@@ -1,6 +1,14 @@
 @extends('layouts.app')
-
 @section('content')
+    @if (isset($editor))
+        <div class="container pt-2">
+            <div class="alert mt-4 alert-success alert-dismissible fade show mb-0" role="alert">
+                {{ $editor }}
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
     <div class="container py-4">
         <div class="card">
             <div class="card-header fs-4">{{ __('Contact') }}</div>
@@ -31,7 +39,7 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <textarea class="form-control @error('message') is-invalid @enderror"" name=" message" placeholder="Enter your message"
-                                    id="ContactInputMessage" style="height: 150px">{{old('message')}}</textarea>
+                                    id="ContactInputMessage" style="height: 150px">{{ old('message') }}</textarea>
                                 <label class="text-secondary" for="ContactInputMessage">Message</label>
                                 @error('message')
                                     <small class="text-danger">{{ $message }}</small>
@@ -43,7 +51,8 @@
                                     editor, I'll reveiw your request as soon as posibble.</small>
                             </div>
                             <div class="form-check form-switch mb-3">
-                                <input class="form-check-input rounded-3" name="editorRequest" type="checkbox" id="ContactInputEditorRequest">
+                                <input class="form-check-input rounded-3" name="editorRequest" type="checkbox"
+                                    id="ContactInputEditorRequest">
                                 <label class="form-check-label unselectable" for="ContactInputEditorRequest">Request
                                     editor</label>
                             </div>
