@@ -30,7 +30,7 @@
 
                         <li>If you want to help to maintain this site by reviewing newly added places or editing/updating
                             information, please feel free to drop me an message via <a
-                                href="{{ route('contact') }}">contact</a> form with brief information about yourself and
+                                href="{{ route('contact', 'editor') }}">contact</a> form with brief information about yourself and
                             why you want to become an editor. I'll review your request and respond to it as soon as possible
                             so you can start contributing without delays.</li>
                     </ul>
