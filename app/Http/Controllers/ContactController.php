@@ -40,14 +40,13 @@ class ContactController extends Controller
             $details['editorRequest'] = true;
         }
 
-        Mail::to('waliczek.szymon@gmail.com')->send(new ContactMeMail($details));
-
-        // check for failures
-        if (Mail::failures()) {
+        try {
+            Mail::to('waliczek.szymon@gmail.com')->send(new ContactMeMail($details));
+        } catch (\Exception $th) {
             return redirect()->back()->with(
                 'error',
                 '<i class="fa fa-paper-plane-o pe-2" aria-hidden="true"></i>
-       There was a problem sending a message, please try again later!!'
+       There was a problem sending a message, please try again later!!<br>'. $th
             );
         }
 
