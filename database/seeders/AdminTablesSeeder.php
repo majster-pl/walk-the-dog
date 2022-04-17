@@ -19,14 +19,6 @@ class AdminTablesSeeder extends Seeder
         \Encore\Admin\Auth\Database\Menu::insert(
             [
                 [
-                    "icon" => "fa-bar-chart",
-                    "order" => 4,
-                    "parent_id" => 0,
-                    "permission" => NULL,
-                    "title" => "Dashboard",
-                    "uri" => "/"
-                ],
-                [
                     "icon" => "fa-tasks",
                     "order" => 5,
                     "parent_id" => 0,
@@ -76,7 +68,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "icon" => "fa-paw",
-                    "order" => 1,
+                    "order" => 2,
                     "parent_id" => 0,
                     "permission" => NULL,
                     "title" => "Place Types",
@@ -84,7 +76,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "icon" => "fa-plus-square",
-                    "order" => 3,
+                    "order" => 4,
                     "parent_id" => 8,
                     "permission" => NULL,
                     "title" => "Add New",
@@ -92,11 +84,19 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "icon" => "fa-paw",
-                    "order" => 2,
+                    "order" => 3,
                     "parent_id" => 8,
                     "permission" => NULL,
                     "title" => "All",
                     "uri" => "/place-types"
+                ],
+                [
+                    "icon" => "fa-users",
+                    "order" => 1,
+                    "parent_id" => 0,
+                    "permission" => NULL,
+                    "title" => "Users",
+                    "uri" => "/users"
                 ]
             ]
         );
