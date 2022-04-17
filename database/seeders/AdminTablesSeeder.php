@@ -19,8 +19,16 @@ class AdminTablesSeeder extends Seeder
         \Encore\Admin\Auth\Database\Menu::insert(
             [
                 [
+                    "icon" => "fa-bar-chart",
+                    "order" => 1,
+                    "parent_id" => 0,
+                    "permission" => NULL,
+                    "title" => "Dashboard",
+                    "uri" => "/"
+                ],
+                [
                     "icon" => "fa-tasks",
-                    "order" => 5,
+                    "order" => 4,
                     "parent_id" => 0,
                     "permission" => NULL,
                     "title" => "Admin",
@@ -28,7 +36,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "icon" => "fa-users",
-                    "order" => 6,
+                    "order" => 5,
                     "parent_id" => 2,
                     "permission" => NULL,
                     "title" => "Users",
@@ -36,7 +44,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "icon" => "fa-user",
-                    "order" => 7,
+                    "order" => 6,
                     "parent_id" => 2,
                     "permission" => NULL,
                     "title" => "Roles",
@@ -44,7 +52,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "icon" => "fa-ban",
-                    "order" => 8,
+                    "order" => 7,
                     "parent_id" => 2,
                     "permission" => NULL,
                     "title" => "Permission",
@@ -52,7 +60,7 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "icon" => "fa-bars",
-                    "order" => 9,
+                    "order" => 8,
                     "parent_id" => 2,
                     "permission" => NULL,
                     "title" => "Menu",
@@ -60,43 +68,27 @@ class AdminTablesSeeder extends Seeder
                 ],
                 [
                     "icon" => "fa-history",
-                    "order" => 10,
+                    "order" => 9,
                     "parent_id" => 2,
                     "permission" => NULL,
                     "title" => "Operation log",
                     "uri" => "auth/logs"
                 ],
                 [
-                    "icon" => "fa-paw",
-                    "order" => 2,
-                    "parent_id" => 0,
-                    "permission" => NULL,
-                    "title" => "Place Types",
-                    "uri" => NULL
-                ],
-                [
-                    "icon" => "fa-plus-square",
-                    "order" => 4,
-                    "parent_id" => 8,
-                    "permission" => NULL,
-                    "title" => "Add New",
-                    "uri" => "/place-types/create"
-                ],
-                [
-                    "icon" => "fa-paw",
-                    "order" => 3,
-                    "parent_id" => 8,
-                    "permission" => NULL,
-                    "title" => "All",
-                    "uri" => "/place-types"
-                ],
-                [
                     "icon" => "fa-users",
-                    "order" => 1,
+                    "order" => 2,
                     "parent_id" => 0,
                     "permission" => NULL,
                     "title" => "Users",
                     "uri" => "/users"
+                ],
+                [
+                    "icon" => "fa-map-signs",
+                    "order" => 3,
+                    "parent_id" => 0,
+                    "permission" => NULL,
+                    "title" => "Places Types",
+                    "uri" => "/place-types"
                 ]
             ]
         );
@@ -156,15 +148,27 @@ class AdminTablesSeeder extends Seeder
                     "role_id" => 1
                 ],
                 [
-                    "menu_id" => 8,
-                    "role_id" => 1
-                ],
-                [
-                    "menu_id" => 9,
-                    "role_id" => 1
-                ],
-                [
                     "menu_id" => 10,
+                    "role_id" => 1
+                ],
+                [
+                    "menu_id" => 14,
+                    "role_id" => 1
+                ],
+                [
+                    "menu_id" => 15,
+                    "role_id" => 1
+                ],
+                [
+                    "menu_id" => 17,
+                    "role_id" => 1
+                ],
+                [
+                    "menu_id" => 18,
+                    "role_id" => 1
+                ],
+                [
+                    "menu_id" => 19,
                     "role_id" => 1
                 ]
             ]
