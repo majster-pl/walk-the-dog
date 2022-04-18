@@ -46,4 +46,4 @@ Route::group(['middleware' => ['role:super-user']], function () {
     Route::get('/dashboard/users', [DashboardUsersController::class, 'index'])->name("dashboard.users");
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);

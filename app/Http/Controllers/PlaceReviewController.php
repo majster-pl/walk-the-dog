@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PlaceReviewController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
     public function index(Request $request)
     {
         // dd($request->route('place'));

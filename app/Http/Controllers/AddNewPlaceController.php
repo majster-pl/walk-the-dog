@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Validator;
 
 class AddNewPlaceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
     public function index()
     {
         $places = Place::where('user_id', auth()->id())->orderByDesc('created_at')->paginate(5);
