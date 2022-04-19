@@ -494,10 +494,10 @@ function checkIfSelected($value, $old, $selected)
                     @enderror
                 </div>
             </div>
-            <div class="">
+            <div>
                 {{-- Publish checkbox --}}
                 @if (Auth::user()->can('publish places'))
-                    <div class="form-check form-switch">
+                    <div class="form-check form-switch {{Request::segment(3) == 'review' ? 'd-none' : ' '}}">
                         <input class="form-check-input rounded-3" type="checkbox" id="publishedCheckbox" name="status"
                             {{ Auth::user()->can('publish places') ? 'checked' : '' }}
                             {{ Auth::user()->can('publish places') ? '' : 'disabled' }}>
@@ -506,7 +506,22 @@ function checkIfSelected($value, $old, $selected)
                             when submitted</label>
                     </div>
                 @endif
-                <button type="submit" class="btn btn-success text-white float-end">Submit</button>
+                {{-- @php
+                    dd(Request::segment(3));
+                @endphp --}}
+                <button type="submit" class="btn btn-success text-white float-end">
+                    @switch(Request::segment(3))
+                        @case('edit')
+                            Save
+                            @break
+                        @case('review')
+                            Publish
+                            @break
+                        @default
+                            Submit
+                            
+                    @endswitch
+                    </button>
             </div>
 
         </div>
