@@ -1,4 +1,9 @@
-@extends('layouts.app', ['title' => $place->title ])
+@extends('layouts.app', [
+'title' => $place->title,
+'description' => $place->description,
+'og_image' => isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path) :
+asset('images/logo-full.png')
+])
 
 @section('content')
     <div class="container py-2">
@@ -6,8 +11,6 @@
         <a class="link-success" href="{{ url()->previous() }}">back</a>
 
         @if ($place->count())
-            {{-- <h1>{{$place->title}}</h1>
-            <p>{{ $place }}</p> --}}
             <div class="card mt-2">
                 <div class="card-header">
                     <span class="fs-4">

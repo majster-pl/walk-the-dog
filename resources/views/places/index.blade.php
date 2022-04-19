@@ -1,4 +1,8 @@
-@extends('layouts.app', ['title' => 'List of all places' ])
+@extends('layouts.app', [
+'title' => 'List of all places available in our collection',
+'description' => 'Here you will find a list most liked placese where you can walk your dog.',
+'og_image' => asset('images/all-places.jpg')
+])
 
 @section('content')
     <div class="container py-4">

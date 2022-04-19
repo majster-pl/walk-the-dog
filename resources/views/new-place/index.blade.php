@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Add new place'])
+@extends('layouts.app', ['title' => 'Add new place', 'description' => 'You can help others find new places by adding new places to our collection.'])
 
 @section('content')
     <div class="container py-4">

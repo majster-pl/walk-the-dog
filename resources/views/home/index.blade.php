@@ -1,4 +1,4 @@
-@extends("layouts.app", ['title' => 'Find a place to walk your dog'])
+@extends("layouts.app", ['title' => 'Find a place to walk your dog', 'description' => 'Welcome to Walk The Dog! You can find here places near you to walk your pet! You can contribute by sharing with us new places where you like to spend time with your dog.'])
 @section('content')
     <div class="intro-bg-image text-black w-100 m-0 p-0">
         <div>

@@ -1,4 +1,8 @@
-@extends('layouts.app', ['title' => 'About Page'])
+@extends('layouts.app', [
+    'title' => 'About Page',
+    'description' => 'Walk The Dog was created by open source enthusiast (Szymon Waliczek) to help people explore new and beautiful places where they can take their pets for a walk and play with them. This is a side project developed to improve my skills with Laravel framework and at the same time create something useful for others.',
+    'og_image' => asset('images/about.jpg')
+    ])
 
 @section('content')
     <div class="container py-4">
