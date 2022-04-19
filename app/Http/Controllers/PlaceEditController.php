@@ -10,6 +10,7 @@ use App\Mail\PendingReviewMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PendingReviewToUserMail;
+use App\Mail\PlacePublishedToUserMail;
 use Spatie\Permission\Traits\HasRoles;
 
 class PlaceEditController extends Controller
@@ -54,6 +55,8 @@ class PlaceEditController extends Controller
             $input['status'] = $place->status === "pending" ? "pending" : "unpublished";
         }
 
+        $status = Place::find($request->id)['status'];
+
 
         $this->validate($request, [
             'title' => 'required|min:2',
@@ -82,16 +85,16 @@ class PlaceEditController extends Controller
             $input['main_image_path'] = $newImageName;
         }
 
-
         
-        // dd($newImageName);
-
         // if editor or admin, allow to publish otherwise change status to pending.
         if ($user->hasRole('editor|super-user')) {
             $update = $place->update($input);
             if (!$update) {
                 return redirect()->back()->with('error', 'There was problem updating place... Please try again later!');
             } else {
+                if ($status == 'pending') {
+                    Mail::to($user->email)->send(new PlacePublishedToUserMail($place, $user));
+                }
                 return redirect()->back()->with('success', 'Place updated successfully!');
             }
         } else if ($place->user->id === Auth::id()) {
@@ -100,8 +103,8 @@ class PlaceEditController extends Controller
             if (!$update) {
                 return redirect()->back()->with('error', 'There was problem updating place... Please try again later!');
             } else {
-                $writers = User::role('editor')->get('email');
                 $place = Place::find($request->id);
+                $writers = User::role('editor')->get('email');
                 Mail::to($writers)->send(new PendingReviewMail($place, $user));
                 Mail::to($user->email)->send(new PendingReviewToUserMail($place, $user));
                 return redirect('place/'. $request->id)->with('warning', 'Thank you for updating this place!<br>
