@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Walk The Dog {{ isset($title) ? '- '.$title : '' }}</title>
+    <title>Walk The Dog {{ isset($title) ? '- ' . $title : '' }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -22,6 +22,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- favicon --}}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon-16x16.png') }}">
@@ -29,6 +31,26 @@
     <link rel="mask-icon" href="{{ asset('images/safari-pinned-tab.svg') }}/" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+
+    {{-- social - Facebook --}}
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Walk The Dog {{ isset($title) ? '- ' . $title : '' }}">
+    <meta property="og:image" content="{{ isset($og_image) ? $og_image : asset('images/logo-full.png') }}">
+    <meta property="og:image:alt" content="Walk The Dog logo with text">
+    <meta property="og:description" content="{{ isset($description) ? $description : 'Find a place to walk your dog'}}">
+    <meta property="og:site_name" content="Walk The Dog">
+    <meta property="og:locale" content="en_GB">
+
+    {{-- social - twitter --}}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="Walk The Dog {{ isset($title) ? '- ' . $title : '' }}">
+    <meta name="twitter:description" content="{{ isset($description) ? $description : 'Find a place to walk your dog'}}">
+    <meta name="twitter:image" content="{{ isset($og_image) ? $og_image : asset('images/logo-full.png') }}">
+    <meta name="twitter:image:alt" content="Walk The Dog logo with text">
+
+
 </head>
 
 <body>

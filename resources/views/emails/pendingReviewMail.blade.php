@@ -1,5 +1,5 @@
 @component('mail::message')
-# Welcome Editor!
+# Hi Editor!
 
 Place **{{ $details['title'] }}** added by **{{ $user['name'] }}** is awaiting reveiw...
 
