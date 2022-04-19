@@ -6,7 +6,9 @@ use App\Models\User;
 use App\Models\Place;
 use App\Models\PlaceType;
 use Illuminate\Http\Request;
+use App\Mail\PendingReviewMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Traits\HasRoles;
 
 class PlaceEditController extends Controller
@@ -97,6 +99,9 @@ class PlaceEditController extends Controller
             if (!$update) {
                 return redirect()->back()->with('error', 'There was problem updating place... Please try again later!');
             } else {
+                $writers = User::role('editor')->get('email');
+                $place = Place::find($request->id);
+                Mail::to($writers)->send(new PendingReviewMail($place, $user));
                 return redirect('place/'. $request->id)->with('warning', 'Thank you for updating this place!<br>
                 New information is now under review and will be public shortly!<br>
                 Please get <a href="">in touch</a> if you want to become editor!');

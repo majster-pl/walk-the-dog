@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMeMail extends Mailable
+class PendingReviewMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +16,10 @@ class ContactMeMail extends Mailable
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($details, $user)
     {
         $this->details = $details;
+        $this->user = $user;
     }
 
     /**
@@ -28,9 +29,11 @@ class ContactMeMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Message from '. $this->details['name'] .' - WalkTheDog.info')
-        ->markdown('emails.contactMeMail')
-        ->replyTo($this->details['email'], $this->details['name'])
-        ->with('details', $this->details);
+        return $this->subject('New place pending review - WalkTheDog.info')
+        ->markdown('emails.pendingReviewMail')
+        ->with([
+            'details' => $this->details,
+            'user' => $this->user
+        ]);
     }
 }

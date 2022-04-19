@@ -32,7 +32,7 @@
             </div>
             <div>
                 <span class="align-text-bottom me-2">Submitted by: <span
-                        class="text-muted">{{ $place->user->name }}</span></span>
+                        class="text-muted">{{ isset($place->user->name) ? $place->user->name : "Remvoed" }}</span></span>
             </div>
         </div>
         <div class="col-12 col-md-4">

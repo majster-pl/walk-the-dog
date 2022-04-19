@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PendingReviewMail;
 use App\Models\User;
 use App\Models\Place;
 use App\Models\PlaceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -87,6 +89,8 @@ class AddNewPlaceController extends Controller
             if ($request->has('status')) {
                 return redirect('place/' . $newPlace->id)->with('success', 'New place added successfully!');
             } else {
+                $writers = User::role('editor')->get('email');
+                Mail::to($writers)->send(new PendingReviewMail($newPlace, $user));
                 return redirect('add-new-confirmation')->with('success_', true);
             }
         } else {
