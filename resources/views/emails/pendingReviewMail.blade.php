@@ -13,6 +13,6 @@ Please click on the button below to review this place.
     This is an automated message please do not reply.
 @endcomponent
 
-Thanks,<br>
+Regards,<br>
 {{ config('app.name') }}
 @endcomponent

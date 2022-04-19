@@ -9,6 +9,6 @@ User **{{ $details['name'] }}** send you a message:
 
 Respond to [sender](mailto:{{ $details['email'] }})
 
-Thanks,<br>
+Regards,<br>
 {{ config('app.name') }}
 @endcomponent

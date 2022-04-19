@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\PendingReviewMail;
+use App\Mail\PendingReviewToUserMail;
 use App\Models\User;
 use App\Models\Place;
 use App\Models\PlaceType;
@@ -91,6 +92,7 @@ class AddNewPlaceController extends Controller
             } else {
                 $writers = User::role('editor')->get('email');
                 Mail::to($writers)->send(new PendingReviewMail($newPlace, $user));
+                Mail::to($user->email)->send(new PendingReviewToUserMail($newPlace, $user));
                 return redirect('add-new-confirmation')->with('success_', true);
             }
         } else {

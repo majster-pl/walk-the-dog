@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PendingReviewMail extends Mailable
+class PendingReviewToUserMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +30,7 @@ class PendingReviewMail extends Mailable
     public function build()
     {
         return $this->subject('Place pending review - WalkTheDog.info')
-        ->markdown('emails.pendingReviewMail')
+        ->markdown('emails.PendingReveiwToUserEmail')
         ->with([
             'details' => $this->details,
             'user' => $this->user
