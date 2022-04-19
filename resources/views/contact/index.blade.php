@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Contact Me'])
 @section('content')
     @if (isset($editor))
         <div class="container pt-2">

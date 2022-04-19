@@ -1,4 +1,4 @@
-@extends("layouts.dashboard")
+@extends("layouts.dashboard", ['title' => 'Places added by you'])
 @section('content-card-title')
 <span class="fs-4">
     

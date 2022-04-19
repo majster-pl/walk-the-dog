@@ -1,4 +1,4 @@
-@extends("layouts.dashboard")
+@extends("layouts.dashboard", ['title' => 'All Places'])
 @section('content-card-title')
     <span class="fs-4">
         All places

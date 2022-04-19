@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => $place->title ])
 
 @section('content')
     <div class="container py-2">

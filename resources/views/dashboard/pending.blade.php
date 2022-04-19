@@ -1,4 +1,4 @@
-@extends("layouts.dashboard")
+@extends("layouts.dashboard", ['title' => 'Places awaiting review'])
 @section('content-card-title')
     <span class="fs-4">
         Places awaiting review

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Search results for: "'. Request::get('search'). '"' ])
 
 @section('content')
     <div class="container pb-5 pt-4">
