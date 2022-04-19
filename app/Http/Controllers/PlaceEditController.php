@@ -49,13 +49,14 @@ class PlaceEditController extends Controller
         $place = Place::find($request->id);
         //get all request values and check status to assign correct status.
         $input = $request->all();
+
+        $status = $place->status;
         if ($request->has('status')) {
             $input['status'] = "published";
         } else {
             $input['status'] = $place->status === "pending" ? "pending" : "unpublished";
         }
 
-        $status = Place::find($request->id)['status'];
 
 
         $this->validate($request, [
@@ -93,7 +94,7 @@ class PlaceEditController extends Controller
                 return redirect()->back()->with('error', 'There was problem updating place... Please try again later!');
             } else {
                 if ($status == 'pending') {
-                    Mail::to($user->email)->send(new PlacePublishedToUserMail($place, $user));
+                    Mail::to($place->user->email)->send(new PlacePublishedToUserMail($place, $user));
                 }
                 return redirect()->back()->with('success', 'Place updated successfully!');
             }
