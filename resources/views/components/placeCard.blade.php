@@ -44,7 +44,7 @@
                 {{ Str::plural('like', $place->likes->count()) }}</small></p> --}}
         <p class="card-text m-0 mx-3"><small class="text-muted">Added
                 {{ $place->created_at->diffForHumans() }} by <span
-                    class="fw-bold">{{ $place->user->name }}</span></small></p>
+                    class="fw-bold">{{ isset($place->user->name) ? $place->user->name : "Remvoed" }}</span></small></p>
         <div class="card-footer p-0 m-0">
             <a href="{{ route('place.preview', $place->id) }}"
                 class="btn btn-success text-white d-block mx-0">Details</a>
