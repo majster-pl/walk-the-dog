@@ -21,8 +21,11 @@
                             @csrf
                             <div class="form-floating mb-3">
 
+                                @php
+                                    // dd(Auth::user()->name);
+                                @endphp
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"" name=" name"
-                                    id="ContactInputName" value="{{ old('name') }}" placeholder="Jan Kowalski">
+                                    id="ContactInputName" value="{{ Auth::check() ? Auth::user()->name : old('name') }}"  placeholder="Jan Kowalski" {{Auth::check() ? 'disabled' : ''}}>
                                 <label class="text-secondary" for="ContactInputName">Your Name</label>
                                 @error('name')
                                     <small class="text-danger">{{ $message }}</small>
@@ -31,7 +34,7 @@
                             <div class="form-floating mb-3">
 
                                 <input type="text" class="form-control @error('email') is-invalid @enderror"" name=" email"
-                                    id="ContactInputEmail" value="{{ old('email') }}" placeholder="name@example.com">
+                                    id="ContactInputEmail" value="{{ Auth::check() ? Auth::user()->email : old('email') }}" placeholder="name@example.com" {{Auth::check() ? 'disabled' : ''}}>
                                 <label class="text-secondary" for="ContactInputEmail">Your e-mail address</label>
                                 @error('email')
                                     <small class="text-danger">{{ $message }}</small>
