@@ -1,5 +1,11 @@
-<a href="{{ route('place.preview', $place->id) }}" class="list-group-item list-group-item-action mb-3 border"
-    aria-current="true">
+<a href="{{ route('place.preview', $place->id) }}"
+    class="list-group-item list-group-item-action mb-3 border position-relative" aria-current="true">
+    @if ($place->isUsersPost(Auth::user()))
+        
+    <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-warning" style="transform: rotate(-15deg) !important;">
+        Added by you
+    </span>
+    @endif
     <div class="row mt-2 mt-md-0">
         <div class="col col-md-2">
             <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
@@ -8,7 +14,8 @@
         </div>
         <div class="col-12 col-md-6">
             <h5 class="my-1">
-                {{ Str::length($place->title) > 0 ? $place->title . ' - '. $place->address_city : '[Title not set]' }}</h5>
+                {{ Str::length($place->title) > 0 ? $place->title . ' - ' . $place->address_city : '[Title not set]' }}
+            </h5>
             <p class="mb-1 truncate-line-clamp-2">{{ $place->description }}</p>
             <div class="d-flex flex-row ">
                 <div>
@@ -32,7 +39,7 @@
             </div>
             <div>
                 <span class="align-text-bottom me-2">Submitted by: <span
-                        class="text-muted">{{ isset($place->user->name) ? $place->user->name : "Remvoed" }}</span></span>
+                        class="text-muted">{{ isset($place->user->name) ? $place->user->name : 'Remvoed' }}</span></span>
             </div>
         </div>
         <div class="col-12 col-md-4">
@@ -41,10 +48,11 @@
                 <div class="col-12 text-start text-md-end">
                     <small class="">Created {{ $place->created_at->diffForHumans() }}
                     </small>
-                    @if ( Request::is('dashboard'))
+                    @if (Request::is('dashboard'))
                         <p>
-                            <small>Status:</small> <small class="text-{{ $place->isPublic() ? 'success' : 'warning' }}">{{ $place->status }}</small>
-                        </p>                        
+                            <small>Status:</small> <small
+                                class="text-{{ $place->isPublic() ? 'success' : 'warning' }}">{{ $place->status }}</small>
+                        </p>
                     @endif
                 </div>
                 <div class="col-12">
