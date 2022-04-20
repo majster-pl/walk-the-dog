@@ -13,5 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        exec('php artisan admin:install');
+        $this->call(AdminTablesSeeder::class);
+        $this->call(PermissionsDemoSeeder::class);
     }
 }

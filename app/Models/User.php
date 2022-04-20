@@ -13,7 +13,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
-
+    
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
     /**
      * The attributes that are mass assignable.
      *

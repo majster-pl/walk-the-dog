@@ -46,21 +46,21 @@ class PermissionsDemoSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'Example Noraml User',
             'email' => 'user@walkthedog.com',
-            'password' => Hash::make('password')
+            'password' => 'password'
         ]);
         $user->assignRole($role1);
 
         $user = User::factory()->create([
             'name' => 'Example Editor User',
             'email' => 'editor@walkthedog.com',
-            'password' => Hash::make('password')
+            'password' => 'password'
         ]);
         $user->assignRole($role2);
 
         $user = User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@walkthedog.com',
-            'password' => Hash::make('password')
+            'password' => 'password'
         ]);
         $user->assignRole($role3);
 
