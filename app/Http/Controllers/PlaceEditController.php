@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\PendingReviewToUserMail;
 use App\Mail\PlacePublishedToUserMail;
 use Spatie\Permission\Traits\HasRoles;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PlaceEditController extends Controller
 {
@@ -49,6 +50,8 @@ class PlaceEditController extends Controller
         $place = Place::find($request->id);
         //get all request values and check status to assign correct status.
         $input = $request->all();
+
+        $slug = isset($request->slug) ? $request->slug : SlugService::createSlug(Place::class, 'slug', $request->title);
 
         $status = $place->status;
         if ($request->has('status')) {

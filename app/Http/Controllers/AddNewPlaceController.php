@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\PendingReviewMail;
-use App\Mail\PendingReviewToUserMail;
 use App\Models\User;
 use App\Models\Place;
 use App\Models\PlaceType;
 use Illuminate\Http\Request;
+use App\Mail\PendingReviewMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\PendingReviewToUserMail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class AddNewPlaceController extends Controller
 {
@@ -82,13 +83,12 @@ class AddNewPlaceController extends Controller
             'access_to_water' => $request->access_to_water,
             'disposal_bins' => $request->activity,
             'description' => $request->description,
+            'slug' => SlugService::createSlug(Place::class, 'slug', $request->title),
         ]);
-
-        // dd($newPlace);
-        
+       
         if ($newPlace) {
             if ($request->has('status')) {
-                return redirect('place/' . $newPlace->id)->with('success', 'New place added successfully!');
+                return redirect('place/' . $newPlace->slug)->with('success', 'New place added successfully!');
             } else {
                 $writers = User::role('editor')->get('email');
                 Mail::to($writers)->send(new PendingReviewMail($newPlace, $user));

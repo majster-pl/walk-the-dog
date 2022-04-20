@@ -1,4 +1,4 @@
-<a href="{{ route('place.preview', $place->id) }}"
+<a href="{{ route('place.preview', isset($place->slug) ? $place->slug : $place->id) }}"
     class="list-group-item list-group-item-action mb-3 border position-relative" aria-current="true">
     @if ($place->isUsersPost(Auth::user()))
         

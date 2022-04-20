@@ -29,7 +29,7 @@ Route::post('/contact', [ContactController::class, "store"])->name('contact');
 Route::get('/places', [PlaceController::class, "index"])->name('places');
 Route::get('/place/{place}/edit', [PlaceEditController::class, "index"])->name('place.edit');
 Route::get('/place/{place}/review', [ PlaceReviewController::class, "index"])->name('place.review');
-Route::get('/place/{id}', [PlacePreviewController::class, "index"])->name('place.preview');
+Route::get('/place/{param}', [PlacePreviewController::class, "index"])->name('place.preview');
 Route::patch('/place/edit', [PlaceEditController::class, "edit"])->middleware('auth')->name('edit-place');
 Route::post('/places/{place}/likes', [PlaceLikeController::class, "store"])->name('places.likes');
 Route::delete('/places/{place}/likes', [PlaceLikeController::class, "destroy"])->name('places.likes');

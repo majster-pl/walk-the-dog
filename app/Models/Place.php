@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Models\Like;
-use App\Models\Place;
 use App\Models\PlaceType;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Place extends Model
 {
@@ -35,10 +35,12 @@ class Place extends Model
         'cafe_access',
         'access_to_water',
         'disposal_bins',
-        'description'
+        'description',
+        'slug'
     ];
 
     use HasFactory;
+    use Sluggable;
 
     public function likes()
     {
@@ -74,7 +76,15 @@ class Place extends Model
 
     public function placeType()
     {
-        return $this->hasOne(PlaceType::class,'id', 'type_id');
+        return $this->hasOne(PlaceType::class, 'id', 'type_id');
     }
 
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 }
