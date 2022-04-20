@@ -57,6 +57,11 @@
   overflow: hidden;
 }
 
+.btn {
+  font-weight: bold !important;
+  color: white !important;
+}
+
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
