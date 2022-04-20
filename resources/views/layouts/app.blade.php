@@ -38,7 +38,8 @@
     <meta property="og:title" content="Walk The Dog {{ isset($title) ? '- ' . $title : '' }}">
     <meta property="og:image" content="{{ isset($og_image) ? $og_image : asset('images/logo-full.png') }}">
     <meta property="og:image:alt" content="Walk The Dog logo with text">
-    <meta property="og:description" content="{{ isset($description) ? $description : 'Find a place to walk your dog'}}">
+    <meta property="og:description"
+        content="{{ isset($description) ? $description : 'Find a place to walk your dog' }}">
     <meta property="og:site_name" content="Walk The Dog">
     <meta property="og:locale" content="en_GB">
 
@@ -46,7 +47,8 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:url" content="{{ url()->current() }}">
     <meta name="twitter:title" content="Walk The Dog {{ isset($title) ? '- ' . $title : '' }}">
-    <meta name="twitter:description" content="{{ isset($description) ? $description : 'Find a place to walk your dog'}}">
+    <meta name="twitter:description"
+        content="{{ isset($description) ? $description : 'Find a place to walk your dog' }}">
     <meta name="twitter:image" content="{{ isset($og_image) ? $og_image : asset('images/logo-full.png') }}">
     <meta name="twitter:image:alt" content="Walk The Dog logo with text">
 
@@ -133,6 +135,8 @@
                                     <li><a class="dropdown-item {{ Request::is('dashboard/users') ? 'active' : '' }}"
                                             href="{{ route('dashboard.users') }}">Users</a></li>
                                 @endcan
+                                <li><a class="dropdown-item {{ Request::is('dashboard/settings') ? 'active' : '' }}"
+                                        href="{{ route('dashboard.settings') }}">Settings</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
