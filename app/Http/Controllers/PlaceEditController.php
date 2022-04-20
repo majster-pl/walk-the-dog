@@ -51,7 +51,7 @@ class PlaceEditController extends Controller
         //get all request values and check status to assign correct status.
         $input = $request->all();
 
-        $slug = isset($request->slug) ? $request->slug : SlugService::createSlug(Place::class, 'slug', $request->title);
+        $input['slug'] = $place->slug === null ? $place->slug : SlugService::createSlug(Place::class, 'slug', $request->title);
 
         $status = $place->status;
         if ($request->has('status')) {

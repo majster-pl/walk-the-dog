@@ -85,7 +85,7 @@ return [
     | Html title for all pages.
     |
     */
-    'title' => 'Walk The Dog - [Admin Panel]',
+    'title' => 'Walk The Dog - Admin Panel',
 
     /*
     |--------------------------------------------------------------------------
