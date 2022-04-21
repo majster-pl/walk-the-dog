@@ -6,17 +6,17 @@
             <div class="col-12 col-md-8">
                 <ul class="nav nav-pills pb-3">
                     <li class="nav-item">
-                        <a class="nav-link text-black {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="my places page"
+                        <a class="nav-link text-black {{ Request::is('dashboard') ? 'active fw-bold' : '' }}" aria-current="my places page"
                             href="{{ route('dashboard') }}">My Places</a>
                     </li>
                     @hasanyrole('editor|super-user')
                         <li class="nav-item">
-                            <a class="nav-link text-black position-relative {{ Request::is('dashboard/all_places') ? 'active' : '' }}" aria-current="all places page"
+                            <a class="nav-link text-black position-relative {{ Request::is('dashboard/all_places') ? 'active fw-bold' : '' }}" aria-current="all places page"
                                 href="{{ route('dashboard.all_places') }}">All Places
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black position-relative {{ Request::is('dashboard/pending') ? 'active' : '' }}" aria-current="pending places page"
+                            <a class="nav-link text-black position-relative {{ Request::is('dashboard/pending') ? 'active fw-bold' : '' }}" aria-current="pending places page"
                                 href="{{ route('dashboard.pending') }}">Pending
                                 {{-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {{"99"}}
@@ -27,12 +27,12 @@
                     @endhasanyrole
                     @can('super-user')
                         <li class="nav-item">
-                            <a class="nav-link text-black {{ Request::is('dashboard/users') ? 'active' : '' }}" aria-current="users page"
+                            <a class="nav-link text-black {{ Request::is('dashboard/users') ? 'active fw-bold' : '' }}" aria-current="users page"
                                 href="{{ route('dashboard.users') }}">Users</a>
                         </li>
                     @endcan
                     <li class="nav-item">
-                        <a class="nav-link text-black {{ Request::is('dashboard/settings') ? 'active' : '' }}" aria-current="settings page"
+                        <a class="nav-link text-black {{ Request::is('dashboard/settings') ? 'active fw-bold' : '' }}" aria-current="settings page"
                             href="{{ route('dashboard.settings') }}">Settings</a>
                     </li>
                 </ul>
