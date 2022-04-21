@@ -36,7 +36,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-info float-end">Update</button>
+                        <button type="submit" class="btn btn-success float-end text-white fw-bold">Update</button>
                     </form>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-info float-end">Update</button>
+                        <button type="submit" class="btn btn-success float-end text-white fw-bold">Change</button>
                     </form>
                 </div>
             </div>

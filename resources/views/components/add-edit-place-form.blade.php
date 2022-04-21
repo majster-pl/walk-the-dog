@@ -509,7 +509,7 @@ function checkIfSelected($value, $old, $selected)
                 {{-- @php
                     dd(Request::segment(3));
                 @endphp --}}
-                <button type="submit" class="btn btn-success text-white float-end">
+                <button type="submit" class="btn btn-success text-white fw-bold float-end">
                     @switch(Request::segment(3))
                         @case('edit')
                             Save

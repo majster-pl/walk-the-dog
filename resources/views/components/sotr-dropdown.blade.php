@@ -1,5 +1,5 @@
 <div class="dropdown">
-    <button class="btn btn-sm btn-success text-white dropdown-toggle" type="button" id="dropdownMenuFilter1"
+    <button class="btn btn-sm btn-success text-white fw-bold dropdown-toggle" type="button" id="dropdownMenuFilter1"
         data-bs-toggle="dropdown" aria-expanded="false">
         Sort by
         @switch(Request::get('sort'))

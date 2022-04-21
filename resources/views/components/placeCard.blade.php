@@ -47,7 +47,7 @@
                     class="fw-bold">{{ isset($place->user->name) ? $place->user->name : "Remvoed" }}</span></small></p>
         <div class="card-footer p-0 m-0">
             <a href="{{ route('place.preview', $place->id) }}"
-                class="btn btn-success text-white d-block mx-0">Details</a>
+                class="btn btn-success text-white fw-bold d-block mx-0">Details</a>
         </div>
     </div>
 </div>

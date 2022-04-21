@@ -64,9 +64,9 @@
                                         action="{{ $place->status !== 'pending' ? route('place.edit', $place) : route('place.review', $place) }}">
                                         @csrf
                                         @if ($place->status !== 'pending' || $place->isUsersPost(Auth::user()))
-                                            <button class="btn btn-info text-white" type="submit">Edit</button>
+                                            <button class="btn btn-info text-white fw-bold" type="submit">Edit</button>
                                         @else
-                                            <button class="btn btn-info text-white" type="submit">Review</button>
+                                            <button class="btn btn-info text-white fw-bold" type="submit">Review</button>
                                         @endif
                                     </form>
                                 </div>
@@ -74,7 +74,7 @@
                                     <form method="post" action="{{ route('places.delete', $place) }}">
                                         @method('DELETE')
                                         @csrf
-                                        <button class="btn btn-danger text-white" type="submit"
+                                        <button class="btn btn-danger text-white fw-bold" type="submit"
                                             onClick='return confirmSubmit()'>Remove</button>
                                     </form>
                                 </div>
@@ -86,13 +86,13 @@
                                                 <form method="post" action="{{ route('places.unpublish', $place) }}">
                                                     @method('PATCH')
                                                     @csrf
-                                                    <button type="submit" class="btn btn-success text-white">Unpublish</button>
+                                                    <button type="submit" class="btn btn-success text-white fw-bold">Unpublish</button>
                                                 @else
                                                     <form method="post" action="{{ route('places.publish', $place) }}">
                                                         @method('PATCH')
                                                         @csrf
                                                         <button type="submit"
-                                                            class="btn btn-success text-white">Publish</button>
+                                                            class="btn btn-success text-white fw-bold">Publish</button>
                                             @endif
                                             </form>
                                         </div>

@@ -68,7 +68,7 @@ as possible.',
                                     editor</label>
                             </div>
                             <div class="d-grid d-md-block gap-2">
-                                <button type="submit" class="btn btn-success text-white float-end">Send Message</button>
+                                <button type="submit" class="btn btn-success text-white fw-bold float-end">Send Message</button>
                             </div>
                         </form>
                     </div>

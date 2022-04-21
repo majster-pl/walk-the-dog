@@ -8,7 +8,7 @@
                     <div class="card-header p-0">
                         <div class="row">
                             <div class="btn-group text-center">
-                                <a href="{{ route('login') }}" class="btn btn-success active"
+                                <a href="{{ route('login') }}" class="btn btn-success active text-white fw-bold"
                                     aria-current="page">Login</a>
                                 <a href="{{ route('register') }}" class="btn btn-secondary">Regrister</a>
                             </div>
@@ -67,7 +67,7 @@
 
                             <div class="mb-3 row">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-success">
+                                    <button type="submit" class="btn btn-success text-white fw-bold">
                                         {{ __('Login') }}
                                     </button>
 

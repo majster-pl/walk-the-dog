@@ -24,7 +24,7 @@
                             <img src="{{ asset('images/happy_dog.png') }}" class="img-fluid" alt="Happy dog">
                         </div>
                     </div>
-                    <a class="btn btn-success float-end text-white" href="{{ route('add-new-place') }}">Add another</a>
+                    <a class="btn btn-success float-end text-white fw-bold" href="{{ route('add-new-place') }}">Add another</a>
                     <p>Please get <a href="{{route('contact')}}">in touch</a> if you want to become editor!</p>
                 @endif
             </div>

@@ -20,12 +20,12 @@ asset('images/logo-full.png')
                     @hasrole('super-user|editor')
                         <form class="float-end" method="get" action="{{ route('place.edit', $place) }}">
                             @csrf
-                            <button class="btn btn-sm btn-info text-white" type="submit">Edit</button>
+                            <button class="btn btn-sm btn-info text-white fw-bold" type="submit">Edit</button>
                         </form>
                     @elseif ($place->isUsersPost(Auth::user()))
                         <form class="float-end" method="get" action="{{ route('place.edit', $place) }}">
                             @csrf
-                            <button class="btn btn-sm btn-info text-white" type="submit">Edit</button>
+                            <button class="btn btn-sm btn-info text-white fw-bold" type="submit">Edit</button>
                         </form>
                     @endhasrole
                 </div>
@@ -55,7 +55,7 @@ asset('images/logo-full.png')
                                         <li>{{ $place->address_postcode_or_zip }}</li>
                                         <li>{{ $place->address_country }}</li>
                                     </ul>
-                                    <a class="btn btn-success text-white w-100"
+                                    <a class="btn btn-success text-white fw-bold w-100"
                                         href="{{ 'https://www.google.com/maps/place/' . $place->address_latitude }}"
                                         target="_blank" rel="noreferrer">Navigate</a>
                                 </div>

@@ -10,7 +10,7 @@
                             <div class="btn-group text-center">
                                 <a href="{{ route('login') }}" class="btn btn-secondary"
                                     aria-current="page">Login</a>
-                                <a href="{{ route('register') }}" class="btn btn-success active">Regrister</a>
+                                <a href="{{ route('register') }}" class="btn btn-success text-white fw-bold active">Regrister</a>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
 
                             <div class="mb-3 row">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-success">
+                                    <button type="submit" class="btn btn-success text-white fw-bold">
                                         {{ __('Register') }}
                                     </button>
                                 </div>
