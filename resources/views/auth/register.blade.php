@@ -8,9 +8,9 @@
                     <div class="card-header p-0">
                         <div class="row">
                             <div class="btn-group text-center">
-                                <a href="{{ route('login') }}" class="btn btn-secondary"
-                                    aria-current="page">Login</a>
-                                <a href="{{ route('register') }}" class="btn btn-success text-white fw-bold active">Regrister</a>
+                                <a href="{{ route('login') }}" class="btn btn-secondary" aria-current="page">Login</a>
+                                <a href="{{ route('register') }}"
+                                    class="btn btn-success text-white fw-bold active">Regrister</a>
                             </div>
                         </div>
                     </div>
@@ -80,6 +80,16 @@
                                     <input id="password-confirm" type="password"
                                         class="form-control @error('password') is-invalid @enderror"
                                         name="password_confirmation" required autocomplete="new-password">
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <div class="col-md-6 offset-md-4">
+                                    {!! NoCaptcha::renderJs() !!}
+                                    {!! NoCaptcha::display() !!}
+                                    @error('g-recaptcha-response')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
 
