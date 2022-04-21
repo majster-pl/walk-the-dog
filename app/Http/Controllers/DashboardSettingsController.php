@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 
 class DashboardSettingsController extends Controller
 {
@@ -28,9 +29,13 @@ class DashboardSettingsController extends Controller
         $input = $request->all();
 
         $this->validate($request, [
-            'password' => $request->has('password') ? ['required', 'string', 'min:8', 'confirmed'] : [],
-            'name' => $request->has('name') ? ['required', 'string', 'max:255'] : [],
-            'email' => $request->has('email') ? ['required', 'string', 'email', 'max:255', $request->email != $user->email ? 'unique:users' : ''] : [],
+            'password' => $request->has('password') ? ['required', 'string', Password::min(8)
+                ->mixedCase()
+                ->numbers()
+                ->symbols()
+                ->uncompromised(), 'confirmed'] : [],
+            'name' => ($request->has('email') && $request->email !== $user->email) ? ['required', 'string', 'max:255'] : [],
+            'email' => ($request->has('name') && $request->name != $user->name)  ? ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users'] : [],
         ]);
 
         $updatedData = [];

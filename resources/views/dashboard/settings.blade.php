@@ -17,8 +17,8 @@
                         @method('PATCH')
                         <div class="mb-3">
                             <label for="userEmail" class="form-label">Email address:</label>
-                            <input type="text" class="form-control" id="userEmail" name="email"
-                                value="{{ $user->email ?? old('email') }}">
+                            <input type="text" class="form-control @error('email') is-invalid @enderror" id="userEmail" name="email"
+                                value="{{ old('email') ? old('email') : $user->email }}" placeholder="test">
                             @error('email')
                                 <div class="form-text text-danger">
                                     <strong>{{ $message }}</strong>
@@ -27,7 +27,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="userName" class="form-label">Name:</label>
-                            <input type="text" class="form-control" id="userName" name="name"
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="userName" name="name"
                                 value="{{ $user->name ?? old('name') }}">
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -82,6 +82,7 @@
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-success float-end text-white fw-bold">Change</button>
+                        
                     </form>
                 </div>
             </div>
