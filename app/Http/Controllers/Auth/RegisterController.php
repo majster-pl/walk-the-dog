@@ -60,6 +60,7 @@ class RegisterController extends Controller
                 ->numbers()
                 ->symbols()
                 ->uncompromised(), 'confirmed'],
+            'g-recaptcha-response' => 'required|captcha'
         ]);
     }
 
