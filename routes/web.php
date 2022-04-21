@@ -37,10 +37,10 @@ Route::delete('/places/{place}/likes', [PlaceLikeController::class, "destroy"])-
 Route::delete('/places/{place}/delete', [PlaceRemoveController::class, "delete"])->middleware('auth')->name('places.delete');
 
 Route::get( '/dashboard', [DashboardController::class, 'index'])->name("dashboard");
+Route::get('/dashboard/settings', [DashboardSettingsController::class, 'index'])->name("dashboard.settings")->middleware('auth');
+Route::patch('/dashboard/settings', [DashboardSettingsController::class, 'update'])->name("dashboard.settings")->middleware('auth');
 Route::group(['middleware' => ['role:super-user|editor']], function () {
     Route::get('/dashboard/pending', [DashboardPendingController::class, 'index'])->name("dashboard.pending");
-    Route::patch('/dashboard/settings', [DashboardSettingsController::class, 'update'])->name("dashboard.settings");
-    Route::get('/dashboard/settings', [DashboardSettingsController::class, 'index'])->name("dashboard.settings");
     Route::get('/dashboard/all_places', [DashboardAllPlacesController::class, 'index'])->name("dashboard.all_places");
     Route::patch('/places/{place}/publish', [PlacePublishController::class, "publish"])->name('places.publish');
     Route::patch('/places/{place}/unpublish', [PlacePublishController::class, "unpublish"])->name('places.unpublish');
