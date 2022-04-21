@@ -67,6 +67,17 @@
 
                             <div class="mb-3 row">
                                 <div class="col-md-6 offset-md-4">
+                                    {!! NoCaptcha::renderJs() !!}
+                                    {!! NoCaptcha::display() !!}
+                                    @error('g-recaptcha-response')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="mb-3 row">
+                                <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-success text-white fw-bold">
                                         {{ __('Login') }}
                                     </button>

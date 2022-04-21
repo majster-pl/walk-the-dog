@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "anhskohbo/no-captcha": "^3.4",
         "cviebrock/eloquent-sluggable": "^9.0",
         "encore/laravel-admin": "^1.8",
         "fruitcake/laravel-cors": "^2.0",

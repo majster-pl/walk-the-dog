@@ -67,8 +67,16 @@ as possible.',
                                 <label class="form-check-label unselectable" for="ContactInputEditorRequest">Request
                                     editor</label>
                             </div>
+                            <div class="mb-3">
+                                {!! NoCaptcha::renderJs() !!}
+                                {!! NoCaptcha::display() !!}
+                                @error('g-recaptcha-response')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
                             <div class="d-grid d-md-block gap-2">
-                                <button type="submit" class="btn btn-success text-white fw-bold float-end">Send Message</button>
+                                <button type="submit" class="btn btn-success text-white fw-bold float-end">Send
+                                    Message</button>
                             </div>
                         </form>
                     </div>

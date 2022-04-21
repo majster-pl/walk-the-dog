@@ -25,7 +25,8 @@ class ContactController extends Controller
         $this->validate($request, [
             'name' => 'required|min:2',
             'email' => 'required|email',
-            'message' => 'required|min:10'
+            'message' => 'required|min:10',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
 
         $details = [
