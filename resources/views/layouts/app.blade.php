@@ -190,18 +190,17 @@
 
             @yield('content')
         </main>
-        <nav class="navbar bottom mt-auto py-3 bg-dark">
-            <div class="px-3">
-                <span class="text-white">
-                    Copyright © 2022 -
-                    <a class="text-decoration-none text-success" href="https://github.com/majster-pl" target="_blank"
-                        rel="noreferrer">
-                        Szymon Waliczek
-                        <i class="fa fa-github" style="font-size: 1.2rem" aria-hidden="true"></i>
+        <footer class="bottom py-3 mt-auto bg-dark">
+            <div class="row mx-0 px-3 justify-content-between text-white">
+                <div class="col-12 col-md-5 my-3 text-center text-md-start">© 2022 - Walk The Dog</div>
+                <div class="col-12 col-md-5 my-3 text-center text-md-end">Made with <i
+                        class="fa fa-heart text-danger mx-1" aria-hidden="true"></i> by <a
+                        class="text-decoration-none text-success" href="https://github.com/majster-pl" target="_blank"
+                        rel="noreferrer"> Szymon Waliczek
                     </a>
-                </span>
+                </div>
             </div>
-        </nav>
+        </footer>
     </div>
     <script type="text/javascript">
         $(document).ready(function() {

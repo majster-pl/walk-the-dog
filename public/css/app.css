@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap);
 @charset "UTF-8";
+body {
+  font-family: "Montserrat Alternates", sans-serif !important;
+}
+
 /* INTRO */
 .intro-bg-image {
   background-image: url(/images/bg-paw-print1.png?1a3f4a377d512eccd9f270614e7355a6), linear-gradient(to right, #3bc46c, #70da97);
@@ -55,11 +60,6 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-.btn {
-  font-weight: bold;
-  color: white;
 }
 
 /*!
