@@ -163,7 +163,7 @@
         </nav>
 
 
-        <main style="min-height: calc(100vh - 8.9rem)">
+        <main style="min-height: calc(100vh - 8.25rem)">
             @if (\Session::has('success'))
                 <div class="container">
                     <div class="alert mt-4 alert-success alert-dismissible fade show container mb-0" role="alert">
@@ -194,7 +194,7 @@
 
             @yield('content')
         </main>
-        <footer class="bottom py-3 mt-auto bg-dark">
+        <footer class="bottom py-2 mt-auto bg-dark">
             <div class="row mx-0 px-3 justify-content-between text-white">
                 <div class="col-12 col-md-5 my-3 text-center text-md-start">© 2022 - Walk The Dog</div>
                 <div class="col-12 col-md-5 my-3 text-center text-md-end">Made with <i
