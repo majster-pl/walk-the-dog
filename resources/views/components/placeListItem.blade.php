@@ -1,10 +1,10 @@
 <a href="{{ route('place.preview', isset($place->slug) ? $place->slug : $place->id) }}"
     class="list-group-item list-group-item-action mb-3 border position-relative" aria-current="true">
     @if ($place->isUsersPost(Auth::user()))
-        
-    <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-warning" style="transform: rotate(-15deg) !important;">
-        Added by you
-    </span>
+        <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-warning"
+            style="transform: rotate(-15deg) !important;">
+            Added by you
+        </span>
     @endif
     <div class="row mt-2 mt-md-0">
         <div class="col col-md-2">
@@ -17,25 +17,28 @@
                 {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}
             </h5>
             <p class="mb-1 truncate-line-clamp-2">{{ $place->description }}</p>
-            <p class="truncate-line-clamp mb-1"><i class="fa fa-location-arrow me-1 text-success" aria-hidden="true"></i> 
+            <p class="truncate-line-clamp mb-1"><i class="fa fa-location-arrow me-1 text-success" aria-hidden="true"></i>
                 {{ Str::length($place->address_city) > 0 ? $place->address_city : '[Info not set]' }}</p>
             <div class="d-flex flex-row ">
                 <div>
-                    <span class="align-text-bottom me-2">
-                        <i class="fa fa-heart-o me-1" aria-hidden="true"></i>
-                        {{ $place->likes->count() }}
+                    <span class="align-text-bottom me-1">
+                        <i class="text-success fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
+                            aria-hidden="true"></i>
+                        <span style="font-size: 0.85rem">
+                            {{ $place->likes->count() }}
+                        </span>
                     </span>
                 </div>
                 @if (!$place->likedBy(Auth::user()))
                     <form method="post" action="{{ route('places.likes', $place) }}">
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 pe-1 text-decoration-none">Like</button>
+                        <button type="submit" class="btn link-primary p-0 pe-1">Like</button>
                     </form>
                 @else
                     <form method="post" action="{{ route('places.likes', $place) }}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-link p-0 pe-1 text-decoration-none">Unlike</button>
+                        <button type="submit" class="btn link-primary p-0 pe-1">Unlike</button>
                     </form>
                 @endif
             </div>
@@ -88,7 +91,8 @@
                                                 <form method="post" action="{{ route('places.unpublish', $place) }}">
                                                     @method('PATCH')
                                                     @csrf
-                                                    <button type="submit" class="btn btn-success text-white fw-bold">Unpublish</button>
+                                                    <button type="submit"
+                                                        class="btn btn-success text-white fw-bold">Unpublish</button>
                                                 @else
                                                     <form method="post" action="{{ route('places.publish', $place) }}">
                                                         @method('PATCH')

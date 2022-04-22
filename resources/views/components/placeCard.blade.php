@@ -15,10 +15,10 @@
         </div>
         <div class="d-flex flex-row mx-3">
             <div>
-                <span class="align-text-bottom me-2">
+                <span class="align-text-bottom me-1">
                     <i class="text-success fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
                         aria-hidden="true"></i>
-                    <span style="font-size: 0.68rem">
+                    <span style="font-size: 0.85rem">
                         {{ $place->likes->count() }}
                     </span>
                 </span>
@@ -27,14 +27,14 @@
                 <form method="post" action="{{ route('places.likes', $place) }}">
                     @csrf
                     <button type="submit"
-                        class="btn btn-link link-secondary p-0 pe-1 text-decoration-none">Like</button>
+                        class="btn link-primary p-0 pe-1">Like</button>
                 </form>
             @else
                 <form method="post" action="{{ route('places.likes', $place) }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit"
-                        class="btn btn-link link-secondary p-0 pe-1 text-decoration-none">Unlike</button>
+                        class="btn link-primary p-0 pe-1">Unlike</button>
                 </form>
             @endif
         </div>
