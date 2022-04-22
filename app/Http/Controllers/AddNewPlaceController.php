@@ -55,7 +55,8 @@ class AddNewPlaceController extends Controller
             'description' => 'required|min:10'
         ]);
 
-        $newImageName = 'main_photo-' . time() . '.' . $request->main_image_path->extension();
+        $slug = SlugService::createSlug(Place::class, 'slug', $request->title);
+        $newImageName = 'main_photo-' . $slug . '-'. $request->id. '.' . $request->main_image_path->extension();
         $request->main_image_path->move(public_path('uploads/images'), $newImageName);
 
         $user = User::find(Auth::id());
@@ -83,7 +84,7 @@ class AddNewPlaceController extends Controller
             'access_to_water' => $request->access_to_water,
             'disposal_bins' => $request->activity,
             'description' => $request->description,
-            'slug' => SlugService::createSlug(Place::class, 'slug', $request->title),
+            'slug' => $slug,
         ]);
        
         if ($newPlace) {

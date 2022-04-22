@@ -8,6 +8,7 @@ use App\Models\PlaceType;
 use Illuminate\Http\Request;
 use App\Mail\PendingReviewMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PendingReviewToUserMail;
 use App\Mail\PlacePublishedToUserMail;
@@ -51,7 +52,8 @@ class PlaceEditController extends Controller
         //get all request values and check status to assign correct status.
         $input = $request->all();
 
-        $input['slug'] = $place->slug === null ? $place->slug : SlugService::createSlug(Place::class, 'slug', $request->title);
+        $slug = SlugService::createSlug(Place::class, 'slug', $request->title);
+        $input['slug'] = $place->slug === null ? $place->slug : $slug;
 
         $status = $place->status;
         if ($request->has('status')) {
@@ -83,8 +85,12 @@ class PlaceEditController extends Controller
             'description' => 'required|min:10'
         ]);
 
+        //if new photo selected, remove old photo and upload new one.
         if ($request->has('main_image_path')) {
-            $newImageName = 'main_photo-' . time() . '.' . $request->main_image_path->extension();
+            $newImageName = 'main_photo-' . $slug . '-' . $request->id . '.' . $request->main_image_path->extension();
+            if (File::exists(public_path('uploads/images/' . $place->main_image_path))) {
+                File::delete(public_path('uploads/images/'. $place->main_image_path));
+            }
             $request->main_image_path->move(public_path('uploads/images'), $newImageName);
             $input['main_image_path'] = $newImageName;
         }
