@@ -159,7 +159,7 @@
         </nav>
 
 
-        <main style="min-height: calc(100vh - 6.9rem)">
+        <main style="min-height: calc(100vh - 8.9rem)">
             @if (\Session::has('success'))
                 <div class="container">
                     <div class="alert mt-4 alert-success alert-dismissible fade show container mb-0" role="alert">
