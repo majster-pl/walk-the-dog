@@ -122,10 +122,10 @@ asset('images/logo-full.png')
                                     <div class="col mt-2">
                                         <div class="d-flex flex-row ">
                                             <div>
-                                                <span class="align-text-bottom me-2">
+                                                <span class="align-text-bottom me-1">
                                                     <i class="text-success fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
                                                         aria-hidden="true"></i>
-                                                    <span style="font-size: 0.68rem">
+                                                    <span style="font-size: 0.85rem">
                                                         {{ $place->likes->count() }}
                                                     </span>
                                                 </span>
@@ -133,15 +133,13 @@ asset('images/logo-full.png')
                                             @if (!$place->likedBy(Auth::user()))
                                                 <form method="post" action="{{ route('places.likes', $place) }}">
                                                     @csrf
-                                                    <button type="submit"
-                                                        class="btn btn-link p-0 pe-1 text-decoration-none">Like</button>
+                                                    <button type="submit" class="btn link-primary p-0 pe-1">Like</button>
                                                 </form>
                                             @else
                                                 <form method="post" action="{{ route('places.likes', $place) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                        class="btn btn-link p-0 pe-1 text-decoration-none">Unlike</button>
+                                                    <button type="submit" class="btn link-primary p-0 pe-1">Unlike</button>
                                                 </form>
                                             @endif
                                         </div>
