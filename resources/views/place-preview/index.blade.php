@@ -110,14 +110,14 @@ asset('images/logo-full.png')
                                                 aria-hidden="true"></i>
                                         </span>
                                         <span
-                                            style="font-size: 0.8rem">{{ $place->parking_details ? $place->parking_details : ' (details missing)' }}</span>
+                                            style="font-size: 0.75rem">{{ $place->parking_details ? '(' . $place->parking_details . ')' : ' (n/a)' }}</span>
                                     </div>
 
                                     <div class="col">Seasonal access: <span class="fw-bold">
                                             <i class="fa fa-{{ $place->seasonal_access ? 'check text-success' : 'times text-danger' }}"
                                                 aria-hidden="true"></i></span>
                                         <span
-                                            style="font-size: 0.8rem">{{ $place->seasonal_details ? $place->seasonal_details : ' (details missing)' }}</span>
+                                            style="font-size: 0.75rem">{{ $place->seasonal_details ? '(' . $place->seasonal_details . ')' : ' (n/a)' }}</span>
                                     </div>
                                     <div class="col mt-2">
                                         <div class="d-flex flex-row ">
