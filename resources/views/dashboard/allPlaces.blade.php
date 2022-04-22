@@ -4,7 +4,9 @@
         All places
     </span>
     <div class="float-end">
-        @include('components.sotr-dropdown')
+        @if ($places->count() > 1)
+            @include('components.sotr-dropdown')
+        @endif
     </div>
 @endsection
 @section('content-card')

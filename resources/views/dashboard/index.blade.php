@@ -1,11 +1,13 @@
 @extends("layouts.dashboard", ['title' => 'Places added by you'])
 @section('content-card-title')
-<span class="fs-4">
-    
-    Places added by you
-</span>
-<div class="float-end">
-        @include('components.sotr-dropdown')
+    <span class="fs-4">
+
+        Places added by you
+    </span>
+    <div class="float-end">
+        @if ($places->count() > 1)
+            @include('components.sotr-dropdown')
+        @endif
     </div>
 @endsection
 @section('content-card')
