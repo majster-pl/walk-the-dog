@@ -59,7 +59,11 @@
     <div id="app">
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark unselectable">
             <div class="container">
-                <a class="navbar-brand text-white" href="/">Walk The Dog</a>
+                <a class="navbar-brand text-white" href="/">
+                    <img src="{{asset('images/logo-dog.png')}}" alt="logo" height="35"
+                        class="d-inline-block align-text-center">
+                    Walk The Dog
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
                     aria-label="Toggle navigation">
