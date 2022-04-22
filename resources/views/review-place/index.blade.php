@@ -1,9 +1,9 @@
 @extends('layouts.app', ['title' => 'Review Place: '. $place->title])
 
 @section('content')
-    <div class="container py-4">
-        <a class="btn btn-success mb-3 text-white fw-bold" href="{{ URL::previous() }}">Back</a>
-        <div class="card">
+    <div class="container py-2">
+        <a class="link-success" href="{{ URL::previous() }}">Go Back</a>
+        <div class="card mt-2">
             <div class="card-header fs-5">{{ __('Review Place') }}</div>
             <div class="card-body">
                 @include('components.add-edit-place-form')

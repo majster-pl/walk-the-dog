@@ -8,7 +8,7 @@ asset('images/logo-full.png')
 @section('content')
     <div class="container py-2">
 
-        <a class="link-success" href="{{ url()->previous() }}">back</a>
+        <a class="link-success" href="{{ URL::previous() }}">Go Back</a>
 
         @if ($place->count())
             <div class="card mt-2">
