@@ -14,9 +14,11 @@
         </div>
         <div class="col-12 col-md-6">
             <h5 class="my-1">
-                {{ Str::length($place->title) > 0 ? $place->title . ' - ' . $place->address_city : '[Title not set]' }}
+                {{ Str::length($place->title) > 0 ? $place->title : '[Title not set]' }}
             </h5>
             <p class="mb-1 truncate-line-clamp-2">{{ $place->description }}</p>
+            <p class="truncate-line-clamp mb-1"><i class="fa fa-location-arrow me-1 text-success" aria-hidden="true"></i> 
+                {{ Str::length($place->address_city) > 0 ? $place->address_city : '[Info not set]' }}</p>
             <div class="d-flex flex-row ">
                 <div>
                     <span class="align-text-bottom me-2">
