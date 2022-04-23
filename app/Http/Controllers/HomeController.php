@@ -48,7 +48,7 @@ class HomeController extends Controller
         $top1 = isset($order[0]) ? Place::where('id', $order[0])->get() : [];
         $top2 = isset($order[1]) ? Place::where('id', $order[1])->get() : [];
         $top3 = isset($order[2]) ? Place::where('id', $order[2])->get() : [];
-        $top = $top1->merge($top2)->merge($top3);
+        $top = is_object($top1) ? $top1->merge($top2)->merge($top3) : null;
 
         return view('home.index', [
             'recent' => $recent,

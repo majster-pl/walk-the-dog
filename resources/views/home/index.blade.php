@@ -30,11 +30,8 @@
         @endif
 
         <h3 class="">Top Rated</h3>
-        @if ($top->count())
+        @if ($top)
             <div class="row justify-content-evenly mb-5">
-                {{-- @php
-                    dd($top);
-                @endphp --}}
                 @foreach ($top as $place)
                     @include('components.placeCard')
                 @endforeach
