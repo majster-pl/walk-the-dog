@@ -57,7 +57,8 @@ asset('images/logo-full.png')
                                     </ul>
                                     <a class="btn btn-success text-white fw-bold w-100"
                                         href="{{ 'https://www.google.com/maps/place/' . $place->address_latitude }}"
-                                        target="_blank" rel="noreferrer">Navigate</a>
+                                        target="_blank" rel="noreferrer"><i class="fa fa-location-arrow me-1 text-white"
+                                            style="font-size: 1.1rem" aria-hidden="true"></i> Navigate</a>
                                 </div>
                                 {{-- <div class="col-12 mb-2">
                                     <span class="fs-5">Weather forcast:</span>
