@@ -52,6 +52,7 @@
     <meta name="twitter:image" content="{{ isset($og_image) ? $og_image : asset('images/logo-full.png') }}">
     <meta name="twitter:image:alt" content="Walk The Dog logo with text">
 
+    @livewireStyles
 
 </head>
 
@@ -215,6 +216,8 @@
             })
         });
     </script>
+
+    @livewireScripts
 </body>
 
 </html>
