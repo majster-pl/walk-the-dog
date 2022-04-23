@@ -18,6 +18,7 @@ use App\Http\Controllers\DashboardUsersController;
 use App\Http\Controllers\DashboardPendingController;
 use App\Http\Controllers\DashboardAllPlacesController;
 use App\Http\Controllers\DashboardSettingsController;
+use App\Http\Controllers\PlacePicturesController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

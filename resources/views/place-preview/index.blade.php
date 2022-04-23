@@ -155,6 +155,12 @@ asset('images/logo-full.png')
                 <div class="card-body pt-0  {{ $place->status == 'pending' ? 'opacity-50 unselectable' : '' }}">
                     <span class="fs-5">Pictures</span>
                     <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 pt-2">
+                        @foreach ($place->pictures as $picture)
+                            <div class="col text-center">
+                                <img class="img-fluid" src="{{ asset('uploads/images/' . $picture->name) }}"
+                                    style="height: 100%; object-fit: cover;" alt="">
+                            </div>
+                        @endforeach
                         <div class="col text-center">
                             <img class="img-fluid" src="https://picsum.photos/300/200"
                                 style="width: 100%; height: 100%" alt="">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Like;
 use App\Models\PlaceType;
+use App\Models\PlacePicture;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -77,6 +78,11 @@ class Place extends Model
     public function placeType()
     {
         return $this->hasOne(PlaceType::class, 'id', 'type_id');
+    }
+
+    public function pictures()
+    {
+        return $this->hasMany(PlacePicture::class);
     }
 
     public function sluggable(): array
