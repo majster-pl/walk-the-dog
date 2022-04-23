@@ -21,7 +21,6 @@ class HomeController extends Controller
                 'search' => $places,
                 'recent' => $recent
             ]);
-            
         }
 
         // get recently added places
@@ -32,7 +31,7 @@ class HomeController extends Controller
             ->selectRaw('count(place_id) as qty')
             ->groupBy('place_id')
             ->orderBy('qty', 'DESC')
-            // ->take(6)
+            ->take(6)
             ->get();
 
         // create array and loop through ordered to add only place_id to array
@@ -46,9 +45,9 @@ class HomeController extends Controller
             }
         }
         // get places in correct order and marge results together
-        $top1 = Place::where('id', isset($order[0]) ?? $order[0])->get();
-        $top2 = Place::where('id', isset($order[1]) ?? $order[1])->get();
-        $top3 = Place::where('id', isset($order[2]) ?? $order[2])->get();
+        $top1 = isset($order[0]) ? Place::where('id', $order[0])->get() : [];
+        $top2 = isset($order[1]) ? Place::where('id', $order[1])->get() : [];
+        $top3 = isset($order[2]) ? Place::where('id', $order[2])->get() : [];
         $top = $top1->merge($top2)->merge($top3);
 
         return view('home.index', [
