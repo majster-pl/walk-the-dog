@@ -40,8 +40,7 @@ class Place extends Model
         'slug'
     ];
 
-    use HasFactory;
-    use Sluggable;
+    use HasFactory, Sluggable;
 
     public function likes()
     {
@@ -59,7 +58,7 @@ class Place extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id')->withTrashed();
     }
 
     public function isUsersPost(User $user = null)
