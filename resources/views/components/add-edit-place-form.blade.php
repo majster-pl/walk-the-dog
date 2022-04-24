@@ -34,6 +34,7 @@ function checkIfSelected($value, $old, $selected)
         </div>
     </div>
 
+
     {{-- address --}}
     <div class="col-md-8">
         {{-- Address 1 --}}
@@ -495,10 +496,18 @@ function checkIfSelected($value, $old, $selected)
                     @enderror
                 </div>
             </div>
+            <div class="col col-12">
+                {{-- Additional Pictures --}}
+                <label>Additional Pictures:</label>
+                <div class="form-floating mb-3">
+                    @livewire('place-pictures-wire', ['pictures' => isset($place->pictures) ? $place->pictures : [], 'place_id' =>
+                    isset($place->id) ? $place->id: '0'])
+                </div>
+            </div>
             <div>
                 {{-- Publish checkbox --}}
                 @if (Auth::user()->can('publish places'))
-                    <div class="form-check form-switch {{Request::segment(3) == 'review' ? 'd-none' : ' '}}">
+                    <div class="form-check form-switch {{ Request::segment(3) == 'review' ? 'd-none' : ' ' }}">
                         <input class="form-check-input rounded-3" type="checkbox" id="publishedCheckbox" name="status"
                             {{ Auth::user()->can('publish places') ? 'checked' : '' }}
                             {{ Auth::user()->can('publish places') ? '' : 'disabled' }}>
@@ -514,15 +523,16 @@ function checkIfSelected($value, $old, $selected)
                     @switch(Request::segment(3))
                         @case('edit')
                             Save
-                            @break
+                        @break
+
                         @case('review')
                             Publish
-                            @break
+                        @break
+
                         @default
                             Submit
-                            
                     @endswitch
-                    </button>
+                </button>
             </div>
 
         </div>
