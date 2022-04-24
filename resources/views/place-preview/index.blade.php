@@ -18,11 +18,11 @@ asset('images/logo-full.png')
                             class="text-danger">{{ $place->status == 'pending' ? '  (Pending review...)' : '' }}</span>
                     </span>
                     @hasrole('super-user|editor')
-                        <a class="btn btn-sm btn-info text-white fw-bold float-end" href="{{ route('place.edit', $place) }}"
-                            >Edit</a>
+                        <a class="btn btn-sm btn-info text-white fw-bold float-end"
+                            href="{{ route('place.edit', $place) }}">Edit</a>
                     @elseif ($place->isUsersPost(Auth::user()))
-                        <a class="btn btn-sm btn-info text-white fw-bold float-end" href="{{ route('place.edit', $place) }}"
-                            >Edit</a>
+                        <a class="btn btn-sm btn-info text-white fw-bold float-end"
+                            href="{{ route('place.edit', $place) }}">Edit</a>
                     @endhasrole
                 </div>
                 <div class="card-body {{ $place->status == 'pending' ? 'opacity-50 unselectable' : '' }}">
@@ -152,12 +152,19 @@ asset('images/logo-full.png')
                 <div class="card-body pt-0  {{ $place->status == 'pending' ? 'opacity-50 unselectable' : '' }}">
                     <span class="fs-5">Pictures</span>
                     <div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 pt-2">
-                        @foreach ($place->pictures as $picture)
-                            <div class="col text-center">
-                                <img class="img-fluid" src="{{ asset('storage/uploads/images/' . $picture->name) }}"
-                                    style="height: 100%; object-fit: cover;" alt="">
-                            </div>
-                        @endforeach
+                        @if (count($place->pictures))
+                            @foreach ($place->pictures as $picture)
+                                <div class="col text-center">
+                                    <img class="img-fluid"
+                                        src="{{ asset('storage/uploads/images/' . $picture->name) }}"
+                                        style="height: 100%; object-fit: cover;" alt="">
+                                </div>
+                            @endforeach
+                        @else
+                            <p class="text-break">
+                                No pictures added yet.
+                            </p>
+                        @endif
                     </div>
                 </div>
 
