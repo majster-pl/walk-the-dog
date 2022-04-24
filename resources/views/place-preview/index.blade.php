@@ -18,15 +18,11 @@ asset('images/logo-full.png')
                             class="text-danger">{{ $place->status == 'pending' ? '  (Pending review...)' : '' }}</span>
                     </span>
                     @hasrole('super-user|editor')
-                        <form class="float-end" method="get" action="{{ route('place.edit', $place) }}">
-                            @csrf
-                            <button class="btn btn-sm btn-info text-white fw-bold" type="submit">Edit</button>
-                        </form>
+                        <a class="btn btn-sm btn-info text-white fw-bold float-end" href="{{ route('place.edit', $place) }}"
+                            >Edit</a>
                     @elseif ($place->isUsersPost(Auth::user()))
-                        <form class="float-end" method="get" action="{{ route('place.edit', $place) }}">
-                            @csrf
-                            <button class="btn btn-sm btn-info text-white fw-bold" type="submit">Edit</button>
-                        </form>
+                        <a class="btn btn-sm btn-info text-white fw-bold float-end" href="{{ route('place.edit', $place) }}"
+                            >Edit</a>
                     @endhasrole
                 </div>
                 <div class="card-body {{ $place->status == 'pending' ? 'opacity-50 unselectable' : '' }}">

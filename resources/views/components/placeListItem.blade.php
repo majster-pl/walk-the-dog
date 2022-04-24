@@ -65,15 +65,17 @@
                         <div class="row gx-2 justify-content-end h-100 py-1">
                             @if (auth()->user()->hasrole('super-user|editor') || $place->isUsersPost(Auth::user()))
                                 <div class="col-auto mt-auto pt-2">
-                                    <form method="get"
-                                        action="{{ $place->status !== 'pending' ? route('place.edit', $place) : route('place.review', $place) }}">
-                                        @csrf
-                                        @if ($place->status !== 'pending' || $place->isUsersPost(Auth::user()))
-                                            <button class="btn btn-info text-white fw-bold" type="submit">Edit</button>
-                                        @else
-                                            <button class="btn btn-info text-white fw-bold" type="submit">Review</button>
-                                        @endif
-                                    </form>
+                                    @if ($place->status !== 'pending' || $place->isUsersPost(Auth::user()))
+                                        <object>
+                                            <a href="{{ $place->status !== 'pending' ? route('place.edit', $place) : route('place.review', $place) }}"
+                                                class="btn btn-info text-white fw-bold">Edit</a>
+                                        </object>
+                                    @else
+                                        <object>
+                                            <a href="{{ $place->status !== 'pending' ? route('place.edit', $place) : route('place.review', $place) }}"
+                                                class="btn btn-info text-white fw-bold">Review</a>
+                                        </object>
+                                    @endif
                                 </div>
                                 <div class="col-auto mt-auto pt-2">
                                     <form method="post" action="{{ route('places.delete', $place) }}">
