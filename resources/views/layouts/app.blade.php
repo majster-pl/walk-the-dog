@@ -81,7 +81,7 @@
                                 href="{{ route('places') }}">Places</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('add-new-place*') ? 'active' : '' }}"
+                            <a class="nav-link {{ Request::is('place/*/add') ? 'active' : '' }}"
                                 href="{{ route('add-new-place') }}">Add New Place</a>
                         </li>
                         <li class="nav-item">

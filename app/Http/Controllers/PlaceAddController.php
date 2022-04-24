@@ -10,32 +10,39 @@ use App\Mail\PendingReviewMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PendingReviewToUserMail;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
-class AddNewPlaceController extends Controller
+class PlaceAddController extends Controller
 {
-    public function __construct()
+    public function index(Request $request)
     {
-        $this->middleware(['auth', 'verified']);
+        // dd($request->route('place'));
+        $place = Place::find($request->route('id'));
+        $user = User::find(Auth::id());
+        $types = PlaceType::all();
+
+        // dd($place);
+
+        if (($place->user->id === Auth::id()) || $user->hasRole('editor|super-user')) {
+            return view('new-place.index', [
+                'access' => true,
+                'place' => $place,
+                'placeTypes' => $types
+            ]);
+        } else {
+            return view('edit-place.index', [
+                'access' => false
+            ]);
+        }
     }
 
-    public function index()
+    public function add()
     {
-        $places = Place::where('user_id', auth()->id())->orderByDesc('created_at')->paginate(5);
-        $types = PlaceType::all();
         $user = Auth::user();
-
-        $newPlace = $user->places()->create([
+        $place = $user->places()->create([
             'status' => 'draft',
         ]);
-
-        return view("new-place.index", [
-            'places' => $places,
-            'place' => $newPlace,
-            'placeTypes' => $types
-        ]);
+        return redirect('place/' . $place->id . '/add')->with(['success' => 'Draft of new place started']);
     }
 
     public function store(Request $request)
@@ -62,7 +69,7 @@ class AddNewPlaceController extends Controller
         ]);
 
         $slug = SlugService::createSlug(Place::class, 'slug', $request->title);
-        $newImageName = 'main_photo-' . $slug . '-'. $request->id. '.' . $request->main_image_path->extension();
+        $newImageName = 'main_photo-' . $slug . '-' . $request->id . '.' . $request->main_image_path->extension();
         $request->main_image_path->move(public_path('uploads/images'), $newImageName);
 
         $user = User::find(Auth::id());
@@ -92,7 +99,7 @@ class AddNewPlaceController extends Controller
             'description' => $request->description,
             'slug' => $slug,
         ]);
-       
+
         if ($newPlace) {
             if ($request->has('status')) {
                 return redirect('place/' . $newPlace->slug)->with('success', 'New place added successfully!');
@@ -106,5 +113,4 @@ class AddNewPlaceController extends Controller
             return redirect()->back()->with('error', 'There was problem adding a new place... <br>Please try again later!');
         }
     }
-
 }

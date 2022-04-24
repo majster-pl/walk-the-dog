@@ -9,7 +9,6 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlaceEditController;
 use App\Http\Controllers\PlaceLikeController;
-use App\Http\Controllers\AddNewPlaceController;
 use App\Http\Controllers\PlaceRemoveController;
 use App\Http\Controllers\PlaceReviewController;
 use App\Http\Controllers\PlacePreviewController;
@@ -18,12 +17,13 @@ use App\Http\Controllers\DashboardUsersController;
 use App\Http\Controllers\DashboardPendingController;
 use App\Http\Controllers\DashboardAllPlacesController;
 use App\Http\Controllers\DashboardSettingsController;
-use App\Http\Controllers\PlacePicturesController;
+use App\Http\Controllers\PlaceAddController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get( '/add-new-place', [AddNewPlaceController::class, "index"])->middleware('auth')->name('add-new-place');
-Route::post( '/add-new-place', [AddNewPlaceController::class, "store"])->middleware('auth');
+Route::get( '/place/add', [PlaceAddController::class, "add"])->middleware('auth')->name('add-new-place');
+Route::get('/place/{id}/add', [PlaceAddController::class, "index"])->middleware('auth')->name('add');
+Route::post('/place/add', [PlaceAddController::class, "store"])->middleware('auth')->name('add-place');
 Route::view('/add-new-confirmation', 'new-place-confirmation.index')->middleware('auth');
 Route::get('/about', [AboutController::class, "index"])->name('about');
 Route::get('/contact', [ContactController::class, "index"])->name('contact');

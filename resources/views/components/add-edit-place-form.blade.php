@@ -1,21 +1,17 @@
 @php
 function checkIfSelected($value, $old, $selected)
 {
-    if (Request::is('add-new-place')) {
+    if (Str::length($old) > 0) {
         return $old == $value ? 'selected' : '';
     } else {
-        if (Str::length($old) > 0) {
-            return $old == $value ? 'selected' : '';
-        } else {
-            return $value == $selected ? 'selected' : '';
-        }
+        return $value == $selected ? 'selected' : '';
     }
 }
 @endphp
 
-<form class="mt-1 row" action="{{ Request::is('add-new-place') ? route('add-new-place') : route('edit-place') }}"
+<form class="mt-1 row" action="{{ Request::is('place/*/add') ? route('add-place') : route('edit-place') }}"
     method="post" enctype="multipart/form-data">
-    @if (!Request::is('add-new-place'))
+    @if (!Request::is('place/*/add'))
         @method('PATCH')
         <input type="hidden" name="id" value="{{ $place->id }}">
     @endif
@@ -25,7 +21,7 @@ function checkIfSelected($value, $old, $selected)
         <div class="form-floating mb-3">
             <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
                 placeholder="Title" title="Short title eg. 'Beautiful open plan field for dogs' "
-                value="{{ Request::is('add-new-place') ? old('title') : old('title') ?? $place->title }}"
+                value="{{ old('title') ?? $place->title }}"
                 autocomplete="off">
             <label class="text-secondary" for="title">Title <span class="text-danger">*</span></label>
             @error('title')
@@ -42,7 +38,7 @@ function checkIfSelected($value, $old, $selected)
         <div class="form-floating mb-3">
             <input type="text" class="form-control @error('address_line1') is-invalid @enderror" name="address_line1"
                 id="address_line1" placeholder="30 Diana Garder" title="Only enter if you know street name"
-                value="{{ Request::is('add-new-place') ? old('address_line1') : old('address_line1') ?? $place->address_line1 }}">
+                value="{{ old('address_line1') ?? $place->address_line1 }}">
             <label class="text-secondary" for="address_line1">Address 1</label>
             @error('address_line1')
                 <small class="text-danger">{{ $message }}</small>
@@ -51,7 +47,7 @@ function checkIfSelected($value, $old, $selected)
         {{-- Address 2 --}}
         <div class="form-floating mb-3">
             <input type="text" class="form-control" name="address_line2" id="address_line2" placeholder="Downend"
-                value="{{ Request::is('add-new-place') ? old('address_line2') : old('address_line2') ?? $place->address_line2 }}">
+                value="{{ old('address_line2') ?? $place->address_line2 }}">
             <label class="text-secondary" for="address_line2">Address 2</label>
         </div>
         <div class="row">
@@ -61,7 +57,7 @@ function checkIfSelected($value, $old, $selected)
                     <input type="text" class="form-control @error('address_state_or_region') is-invalid @enderror"
                         name="address_state_or_region" id="address_state_or_region" placeholder="Town county"
                         title="Town name"
-                        value="{{ Request::is('add-new-place')? old('address_state_or_region'): old('address_state_or_region') ?? $place->address_state_or_region }}">
+                        value="{{ old('address_state_or_region') ?? $place->address_state_or_region }}">
                     <label class="text-secondary" for="address_state_or_region">Town <span
                             class="text-danger">*</span></label>
                     @error('address_state_or_region')
@@ -74,7 +70,7 @@ function checkIfSelected($value, $old, $selected)
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control @error('address_city') is-invalid @enderror"
                         name="address_city" id="address_city" placeholder="Town county" title="City name"
-                        value="{{ Request::is('add-new-place') ? old('address_city') : old('address_city') ?? $place->address_city }}">
+                        value="{{ old('address_city') ?? $place->address_city }}">
                     <label class="text-secondary" for="address_city">City <span class="text-danger">*</span></label>
                     @error('address_city')
                         <small class="text-danger">{{ $message }}</small>
@@ -86,7 +82,7 @@ function checkIfSelected($value, $old, $selected)
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control @error('address_country') is-invalid @enderror"
                         name="address_country" id="address_country" placeholder="Town county" title="Full country name"
-                        value="{{ Request::is('add-new-place')? (old('address_country')? old('address_country'): 'United Kingdom'): old('address_country') ?? $place->address_country }}">
+                        value="{{ old('address_country') ?? $place->address_country }}">
                     <label class="text-secondary" for="address_country">Country <span
                             class="text-danger">*</span></label>
                     @error('address_country')
@@ -100,7 +96,7 @@ function checkIfSelected($value, $old, $selected)
                     <input type="text" class="form-control  @error('address_postcode_or_zip') is-invalid @enderror"
                         name="address_postcode_or_zip" id="address_postcode_or_zip" placeholder="Town county"
                         title="Only enter post code if you know it"
-                        value="{{ Request::is('add-new-place')? old('address_postcode_or_zip'): old('address_postcode_or_zip') ?? $place->address_postcode_or_zip }}">
+                        value="{{ old('address_postcode_or_zip') ?? $place->address_postcode_or_zip }}">
                     <label class="text-secondary" for="address_postcode_or_zip">Post Code</label>
                     @error('address_postcode_or_zip')
                         <small class="text-danger">{{ $message }}</small>
@@ -121,7 +117,7 @@ function checkIfSelected($value, $old, $selected)
                     <input type="text" class="form-control @error('address_latitude') is-invalid @enderror"
                         name="address_latitude" id="address_latitude" placeholder="Lat Coordinates"
                         title="Enter coordinates for the place"
-                        value="{{ Request::is('add-new-place') ? old('address_latitude') : old('address_latitude') ?? $place->address_latitude }}">
+                        value="{{ old('address_latitude') ?? $place->address_latitude }}">
                     <label for="address_latitude" class="text-secondary">Latitude (51.547170, -2.582637)
                         <span class="text-danger">*</span></label>
                     @error('address_latitude')
@@ -291,9 +287,9 @@ function checkIfSelected($value, $old, $selected)
                         {{-- Parking details --}}
                         <div class="form-floating pb-3 h-100" title="Enter additional information about parking">
                             <textarea class="form-control h-100" name="parking_details" id="parking_details"
-                                placeholder="Free parking for 2h">{{ Request::is('add-new-place') ? old('parking_details') : old('parking_details') ?? $place->parking_details }}</textarea>
+                                placeholder="Free parking for 2h">{{ old('parking_details') ?? $place->parking_details }}</textarea>
                             <label class="text-secondary" for="parking_details"
-                                value="{{ Request::is('add-new-place') ? old('parking_details') : old('parking_details') ?? $place->parking_details }}"
+                                value="{{ old('parking_details') ?? $place->parking_details }}"
                                 required>Parking details</label>
                         </div>
                     </div>
@@ -414,9 +410,9 @@ function checkIfSelected($value, $old, $selected)
                     <div class="form-floating pb-3 h-100"
                         title="Additional information about seasonal access eg. Dogs not allowed in summer between Jun and October'">
                         <textarea class="form-control h-100" id="seasonal_details" name="seasonal_details"
-                            placeholder="Dogs not allowed in summer">{{ Request::is('add-new-place') ? old('seasonal_details') : old('seasonal_details') ?? $place->seasonal_details }}</textarea>
+                            placeholder="Dogs not allowed in summer">{{ old('seasonal_details') ?? $place->seasonal_details }}</textarea>
                         <label class="text-secondary" for="seasonal_details"
-                            value="{{ Request::is('add-new-place') ? old('seasonal_details') : old('seasonal_details') ?? $place->parking_details }}"
+                            value="{{ old('seasonal_details') ?? $place->parking_details }}"
                             required>Seasonal access details</label>
                     </div>
                 </div>
@@ -488,7 +484,7 @@ function checkIfSelected($value, $old, $selected)
                 <div class="form-floating mb-3" title="Enter more about this page what might be usefull for others">
                     <textarea class="form-control @error('description') is-invalid @enderror" placeholder="Description of this place"
                         id="description" name="description"
-                        style="height: 10rem">{{ Request::is('add-new-place') ? old('description') : old('description') ?? $place->description }}</textarea>
+                        style="height: 10rem">{{ old('description') ?? $place->description }}</textarea>
                     <label class="text-secondary" for="description">Description of this place <span
                             class="text-danger">*</span></label>
                     @error('description')
