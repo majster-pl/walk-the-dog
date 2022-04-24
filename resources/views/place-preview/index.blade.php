@@ -158,26 +158,6 @@ asset('images/logo-full.png')
                                     style="height: 100%; object-fit: cover;" alt="">
                             </div>
                         @endforeach
-                        <div class="col text-center">
-                            <img class="img-fluid" src="https://picsum.photos/300/200"
-                                style="width: 100%; height: 100%" alt="">
-                        </div>
-                        <div class="col text-center">
-                            <img class="img-fluid" src="https://picsum.photos/300/250"
-                                style="width: 100%; height: 100%" alt="">
-                        </div>
-                        <div class="col text-center">
-                            <img class="img-fluid" src="https://picsum.photos/300/210"
-                                style="width: 100%; height: 100%" alt="">
-                        </div>
-                        <div class="col text-center">
-                            <img class="img-fluid" src="https://picsum.photos/300/270"
-                                style="width: 100%; height: 100%" alt="">
-                        </div>
-                        <div class="col text-center">
-                            <img class="img-fluid" src="https://picsum.photos/200/200"
-                                style="width: 100%; height: 100%" alt="">
-                        </div>
                     </div>
                 </div>
 
