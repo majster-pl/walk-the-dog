@@ -25,9 +25,15 @@ class AddNewPlaceController extends Controller
     {
         $places = Place::where('user_id', auth()->id())->orderByDesc('created_at')->paginate(5);
         $types = PlaceType::all();
+        $user = Auth::user();
+
+        $newPlace = $user->places()->create([
+            'status' => 'draft',
+        ]);
 
         return view("new-place.index", [
             'places' => $places,
+            'place' => $newPlace,
             'placeTypes' => $types
         ]);
     }

@@ -500,8 +500,7 @@ function checkIfSelected($value, $old, $selected)
                 {{-- Additional Pictures --}}
                 <label>Additional Pictures:</label>
                 <div class="form-floating mb-3">
-                    @livewire('place-pictures-wire', ['pictures' => isset($place->pictures) ? $place->pictures : [], 'place_id' =>
-                    isset($place->id) ? $place->id: '0'])
+                    @livewire('place-pictures-wire', ['pictures' => $place->pictures, 'place_id' => $place->id])
                 </div>
             </div>
             <div>
@@ -516,9 +515,6 @@ function checkIfSelected($value, $old, $selected)
                             when submitted</label>
                     </div>
                 @endif
-                {{-- @php
-                    dd(Request::segment(3));
-                @endphp --}}
                 <button type="submit" class="btn btn-success text-white fw-bold float-end">
                     @switch(Request::segment(3))
                         @case('edit')

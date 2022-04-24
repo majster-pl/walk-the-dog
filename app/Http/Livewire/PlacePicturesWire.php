@@ -10,7 +10,7 @@ use Livewire\WithFileUploads;
 class PlacePicturesWire extends Component
 {
     use WithFileUploads;
-    public $pictures = [];
+    public $pictures = null;
     public $images;
     public $place_id;
 
@@ -45,8 +45,8 @@ class PlacePicturesWire extends Component
             // dd($img);
             $newImage = PlacePicture::create(['name' => $img_name, 'place_id' => $this->place_id, 'creator_id' => Auth::user()->id]);
             $newImage->save();
-
-            $this->pictures = $this->pictures->add($newImage);
+            // dd(count($this->pictures));
+            $this->pictures->add($newImage);
         }
     }
 }

@@ -1,5 +1,6 @@
 <div class="border-bottom pb-4">
     <div class="row row-cols-1 row-cols-md-3 g-3">
+
         @foreach ($pictures as $indexKey => $picture)
             <div class="col">
                 <div class="card h-100">
@@ -17,7 +18,7 @@
 
                 <div class="card h-100" style="cursor: pointer">
                     <a class="position-relevent">
-                        <h4 class="position-absolute ms-3 mt-3 text-decoration-none text-black  @error('images.*') d-none @enderror">Add New
+                        <h4 class="position-absolute ms-3 mt-3 text-decoration-none text-black  @error('images.*') d-none @enderror">Add Picture
                         </h4>
                             @error('images.*') <h5 class="position-absolute ms-4 mt-4 text-decoration-none text-danger">{{$message }} <br>Please try again...</h5>
                             @enderror
