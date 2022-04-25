@@ -117,9 +117,7 @@ class PlaceEditController extends Controller
                 $writers = User::role('editor')->get('email');
                 Mail::to($writers)->send(new PendingReviewMail($place, $user));
                 Mail::to($user->email)->send(new PendingReviewToUserMail($place, $user));
-                return redirect('place/'. $request->id)->with('warning', 'Thank you for updating this place!<br>
-                New information is now under review and will be public shortly!<br>
-                Please get <a href="">in touch</a> if you want to become editor!');
+                return redirect('new-place-confirmation')->with('warning', 'Your place is currently awaiting moderator review...');
             }
         } else {
             abort(403);

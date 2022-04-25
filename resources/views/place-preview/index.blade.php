@@ -14,7 +14,7 @@ asset('images/logo-full.png')
             <div class="card mt-2">
                 <div class="card-header">
                     <span class="fs-4">
-                        {{ $place->title }} <span
+                        {{ isset($place->title) ? $place->title : '--- Draft ---' }} <span
                             class="text-danger">{{ $place->status == 'pending' ? '  (Pending review...)' : '' }}</span>
                     </span>
                     @hasrole('super-user|editor')
@@ -67,7 +67,7 @@ asset('images/logo-full.png')
                                                 {{ $place->walk_time }}h </span></div>
 
                                         <div class="col">Type: <span class="fw-bold">
-                                                {{ $place->placeType->name }} </span></div>
+                                                {{ isset($place->placeType->name) ?? $place->placeType->name }} </span></div>
                                         <div class="col">Activity:
                                             @switch($place->activity)
                                                 @case(1)

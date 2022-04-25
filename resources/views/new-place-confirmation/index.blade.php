@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <a class="btn btn-success float-end text-white fw-bold" href="{{ route('add-new-place') }}">Add another</a>
-                    <p>Please get <a href="{{route('contact')}}">in touch</a> if you want to become editor!</p>
+                    <p>Please get <a href="{{route('contact', 'editor')}}">in touch</a> if you want to become editor!</p>
                 @endif
             </div>
         </div>
