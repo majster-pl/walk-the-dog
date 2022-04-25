@@ -34,8 +34,8 @@ class DashboardSettingsController extends Controller
                 ->numbers()
                 ->symbols()
                 ->uncompromised(), 'confirmed'] : [],
-            'name' => ($request->has('email') && $request->email !== $user->email) ? ['required', 'string', 'max:255'] : [],
-            'email' => ($request->has('name') && $request->name != $user->name)  ? ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users'] : [],
+            'name' => ($request->has('name') && $request->name !== $user->name) ? ['required', 'string', 'max:255'] : [],
+            'email' => ($request->has('email') && $request->email != $user->email)  ? ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users'] : [],
         ]);
 
         $updatedData = [];
