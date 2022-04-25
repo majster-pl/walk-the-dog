@@ -39,10 +39,16 @@ class PlaceAddController extends Controller
     public function add()
     {
         $user = Auth::user();
-        $place = $user->places()->create([
-            'status' => 'draft',
-        ]);
-        return redirect('place/' . $place->id . '/add')->with(['success' => 'Draft of new place started']);
+        // check if draft already exists, if so redirect to the same id to prevent from creating more drafts...
+        $draft = Place::where('user_id', $user->id)->where(['status' => 'draft', 'title' => null])->get();
+        if (count($draft) > 0) {
+            return redirect('place/' . $draft[0]->id . '/add')->with(['success' => 'Continue with your draft']);
+        } else {
+            $place = $user->places()->create([
+                'status' => 'draft',
+            ]);
+            return redirect('place/' . $place->id . '/add')->with(['success' => 'Draft created']);
+        }
     }
 
     public function store(Request $request)
