@@ -5,30 +5,46 @@
             <div class="col">
                 <div class="card h-100">
                     <img class="h-100" style="object-fit: cover; height: 22rem !important"
-                        src="{{ asset('storage/uploads/images/' . $picture->name) }}" alt="{{ $picture->name }}" title="{{ $picture->name }}">
+                        src="{{ asset('storage/uploads/images/' . $picture->name) }}" alt="{{ $picture->name }}"
+                        title="{{ $picture->name }}">
                     <button type="button" wire:click="removeImage({{ $indexKey }}, {{ $picture->id }})"
                         class="btn-close position-absolute end-0 mt-2 me-2" aria-label="Close" title="Remove"></button>
                 </div>
             </div>
         @endforeach
+        @if (count($pictures) < 6)
+            
         <input id="upload-btn" name="name" type="file" wire:model.lazy="images" multiple hidden>
         <input type="text" name="place_id" value="{{ $place_id }}" hidden>
         <div class="col">
             <label for="upload-btn">
-
-                <div class="card h-100" style="cursor: pointer">
-                    <a class="position-relevent">
-                        <h4 class="position-absolute ms-3 mt-3 text-decoration-none text-black  @error('images.*') d-none @enderror">Add Picture
+                <div class="card h-100 " style="cursor: pointer">
+                    <a class="">
+                        <h4
+                            class="position-absolute ms-3 mt-3 text-decoration-none text-black  @error('images.*') d-none @enderror">
+                            Add Picture <small>({{ $pictures->count() }}/6)</small>
                         </h4>
-                            @error('images.*') <h5 class="position-absolute ms-4 mt-4 text-decoration-none text-danger">{{$message }} <br>Please try again...</h5>
-                            @enderror
-                        <img class="card-img-top img-fluid " style="object-fit: cover; height: 22rem" src="{{ asset('images/add-new2.png') }}"
-                            alt="Add new picture">
-                        <small class="position-absolute bottom-0 start-0 text-decoration-none text-secondary ms-2 mb-1">You can add multiple pictures (hold Ctrl)</small>
+                        @error('images.*')
+                            <h5 class="position-absolute ms-4 mt-4 text-decoration-none text-danger">{{ $message }}
+                                <br>Please try again...
+                            </h5>
+                        @enderror
+                        <img class="card-img-top img-fluid " style="object-fit: cover; height: 22rem"
+                            src="{{ asset('images/add-new2.png') }}" alt="Add new picture">
+                        <small
+                            class="position-absolute bottom-0 start-0 text-decoration-none text-secondary ms-2 mb-1">You
+                            can add multiple pictures (hold Ctrl)</small>
 
                     </a>
+                    <button wire:loading wire:target="images" class="btn btn-primary" style="z-index: 10" type="button">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Uploading...
+                    </button>
+
                 </div>
             </label>
         </div>
+                @endif
+
     </div>
 </div>

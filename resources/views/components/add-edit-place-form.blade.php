@@ -494,7 +494,7 @@ function checkIfSelected($value, $old, $selected)
             </div>
             <div class="col col-12">
                 {{-- Additional Pictures --}}
-                <label>Additional Pictures:</label>
+                <label>Additional Pictures: <small>(max 6)</small></label>
                 <div class="form-floating mb-3">
                     @livewire('place-pictures-wire', ['pictures' => $place->pictures, 'place_id' => $place->id])
                 </div>
