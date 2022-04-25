@@ -5,7 +5,7 @@
             <div class="col">
                 <div class="card h-100">
                     <img class="h-100" style="object-fit: cover; height: 22rem !important"
-                        src="{{ asset('storage/uploads/images/' . $picture->name) }}" alt="{{ $picture->name }}"
+                        src="{{ asset('place-images/' . $picture->name) }}" alt="{{ $picture->name }}"
                         title="{{ $picture->name }}">
                     <button type="button" wire:click="removeImage({{ $indexKey }}, {{ $picture->id }})"
                         class="btn-close position-absolute end-0 mt-2 me-2" aria-label="Close" title="Remove"></button>

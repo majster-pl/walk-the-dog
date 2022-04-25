@@ -156,7 +156,7 @@ asset('images/logo-full.png')
                             @foreach ($place->pictures as $picture)
                                 <div class="col text-center">
                                     <img class="img-fluid"
-                                        src="{{ asset('storage/uploads/images/' . $picture->name) }}"
+                                        src="{{ asset('place-images/' . $picture->name) }}"
                                         style="height: 100%; object-fit: cover;" alt="">
                                 </div>
                             @endforeach

@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\PlacePicture;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PlacePicturesWire extends Component
 {
@@ -30,8 +31,10 @@ class PlacePicturesWire extends Component
     public function removeImage($index, $id)
     {
         $img = PlacePicture::find($id);
-        $img->delete();
-        $this->pictures = $this->pictures->forget($index);
+        if ($img->delete()) {
+            Storage::disk('place-images')->delete($img->name);
+            $this->pictures = $this->pictures->forget($index);
+        }
     }
 
     public function updatedImages()
@@ -40,14 +43,12 @@ class PlacePicturesWire extends Component
             'images.*' => 'mimes:png,jpg,jpeg,webp|max:12048',
         ]);
 
-        foreach ($this->images as $image) {
-            if ($this->pictures->count() < 6) {
+        if ($this->pictures->count() < 6) {
+            foreach ($this->images as $image) {
                 $img_name =  $this->place_id . '-' . Str::uuid() . '.' .  $image->extension();
-                $img = $image->storeAs('uploads/images', $img_name, 'public');
-                // dd($img);
+                $img = $image->storeAs('', $img_name, 'place-images');
                 $newImage = PlacePicture::create(['name' => $img_name, 'place_id' => $this->place_id, 'creator_id' => Auth::user()->id]);
                 $newImage->save();
-                // dd(count($this->pictures));
                 $this->pictures->add($newImage);
             }
         }
