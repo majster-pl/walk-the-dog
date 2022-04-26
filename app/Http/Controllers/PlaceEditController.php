@@ -100,8 +100,8 @@ class PlaceEditController extends Controller
             if (!$update) {
                 return redirect()->back()->with('error', 'There was problem updating place... Please try again later!');
             } else {
-                Mail::to($place->user->email)->send(new PlacePublishedToUserMail($place, $place->user));
                 if ($status == 'pending') {
+                    Mail::to($place->user->email)->send(new PlacePublishedToUserMail($place, $place->user));
                     return redirect('place/' . $request->id)->with('success', 'Place published successfully!');
                 }
                 return redirect('place/' . $request->id)->with('success', 'Place updated successfully!');
