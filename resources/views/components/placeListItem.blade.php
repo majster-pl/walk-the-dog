@@ -53,7 +53,7 @@
                 <div class="col-12 text-start text-md-end">
                     <small class="">Created {{ $place->created_at->diffForHumans() }}
                     </small>
-                    @if (Request::is('dashboard'))
+                    @if (Request::is('dashboard') || Request::is('dashboard/all_places'))
                         <p>
                             <small>Status:</small> <small
                                 class="text-{{ $place->isPublic() ? 'success' : 'warning' }}">{{ $place->status }}</small>
