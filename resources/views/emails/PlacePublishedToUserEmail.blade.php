@@ -1,18 +1,19 @@
 @component('mail::message')
 # Hi {{$user['name']}}!
 
-Gread news! **{{ $details['title'] }}** has been reviewed and is now available to everyone!
+Gread news! Your place **{{ $details['title'] }}** has now been published and is available to everyone!
 
-Please click on the button below to view it.
+Please click on the button below to view your place.
 
 @component('mail::button', ['url' => route('place.preview', $details['id'])])
     View Place
 @endcomponent
 
-@component('mail::subcopy')
-    This is an automated message please do not reply.
-@endcomponent
-
 Regards,<br>
 {{ config('app.name') }}
+
+@component('mail::subcopy')
+<sub>This is an automated message please do not reply.</sub>
+@endcomponent
+
 @endcomponent
