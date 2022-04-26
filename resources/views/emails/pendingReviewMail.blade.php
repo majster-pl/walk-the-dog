@@ -9,10 +9,11 @@ Please click on the button below to review this place.
     Review Plac
 @endcomponent
 
-@component('mail::subcopy')
-    This is an automated message please do not reply.
-@endcomponent
-
 Regards,<br>
 {{ config('app.name') }}
+
+@component('mail::subcopy')
+<sub>This is an automated message please do not reply.</sub>
+@endcomponent
+
 @endcomponent
