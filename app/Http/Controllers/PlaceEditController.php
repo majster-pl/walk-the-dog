@@ -62,8 +62,6 @@ class PlaceEditController extends Controller
             $input['status'] = $place->status === "pending" ? "pending" : "unpublished";
         }
 
-
-
         $this->validate($request, [
             'title' => 'required|min:2',
             'main_image_path' => $request->has('main_image_path') ? 'required|mimes:png,jpg,jpeg,webp|max:5048' : 'nullable',
@@ -102,8 +100,9 @@ class PlaceEditController extends Controller
             if (!$update) {
                 return redirect()->back()->with('error', 'There was problem updating place... Please try again later!');
             } else {
+                Mail::to($place->user->email)->send(new PlacePublishedToUserMail($place, $place->user));
                 if ($status == 'pending') {
-                    Mail::to($place->user->email)->send(new PlacePublishedToUserMail($place, $user));
+                    return redirect('place/' . $request->id)->with('success', 'Place published successfully!');
                 }
                 return redirect('place/' . $request->id)->with('success', 'Place updated successfully!');
             }
@@ -116,7 +115,7 @@ class PlaceEditController extends Controller
                 $place = Place::find($request->id);
                 $writers = User::role('editor')->get('email');
                 Mail::to($writers)->send(new PendingReviewMail($place, $user));
-                Mail::to($user->email)->send(new PendingReviewToUserMail($place, $user));
+                Mail::to($place->user->email)->send(new PendingReviewToUserMail($place, $place->user));
                 return redirect('new-place-confirmation')->with('warning', 'Your place is currently awaiting moderator review...');
             }
         } else {

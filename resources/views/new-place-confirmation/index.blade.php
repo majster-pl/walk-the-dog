@@ -13,7 +13,7 @@
                             <img src="{{ asset('images/scared_dog.png') }}" class="img-fluid" alt="Happy dog">
                         </div>
                     </div>
-                    Please try to <a class="link-success" href="{{ route('add-new-place') }}">add new place</a> again.
+                    Please try to <a class="link-primary" href="{{ route('add-new-place') }}">add new place</a> again.
                 @else
                     <span class="fs-2">Thank you for taking your time to submit new place <i
                             class="fa fa-smile-o" aria-hidden="true"></i></span>

@@ -11,10 +11,8 @@ function checkIfSelected($value, $old, $selected)
 
 <form class="mt-1 row" action="{{ Request::is('place/*/add') ? route('add-place') : route('edit-place') }}"
     method="post" enctype="multipart/form-data">
-    @if (!Request::is('place/*/add'))
-        @method('PATCH')
-        <input type="hidden" name="id" value="{{ $place->id }}">
-    @endif
+    @method('PATCH')
+    <input type="hidden" name="id" value="{{ $place->id }}">
     @csrf
     <div class="col col-12">
         {{-- Title --}}

@@ -7,9 +7,11 @@ use App\Models\Place;
 use App\Models\PlaceType;
 use Illuminate\Http\Request;
 use App\Mail\PendingReviewMail;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PendingReviewToUserMail;
+use App\Mail\PlacePublishedToUserMail;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PlaceAddController extends Controller
@@ -53,9 +55,24 @@ class PlaceAddController extends Controller
 
     public function store(Request $request)
     {
+        $user = User::find(Auth::id());
+        $place = Place::find($request->id);
+        //get all request values and check status to assign correct status.
+        $input = $request->all();
+
+        $slug = SlugService::createSlug(Place::class, 'slug', $request->title);
+        $input['slug'] = $place->slug === null ? $place->slug : $slug;
+
+        $status = $place->status;
+        if ($request->has('status')) {
+            $input['status'] = "published";
+        } else {
+            $input['status'] = $place->status === "pending" ? "pending" : "unpublished";
+        }
+
         $this->validate($request, [
             'title' => 'required|min:2',
-            'main_image_path' => 'required|mimes:png,jpg,jpeg,webp|max:12048',
+            'main_image_path' => $request->has('main_image_path') ? 'required|mimes:png,jpg,jpeg,webp|max:5048' : 'nullable',
             'address_state_or_region' => 'required|min:3',
             'address_country' => 'required|min:3',
             'address_city' => 'required|min:3',
@@ -74,49 +91,43 @@ class PlaceAddController extends Controller
             'description' => 'required|min:10'
         ]);
 
-        $slug = SlugService::createSlug(Place::class, 'slug', $request->title);
-        $newImageName = 'main_photo-' . $slug . '-' . $request->id . '.' . $request->main_image_path->extension();
-        $request->main_image_path->move(public_path('uploads/images'), $newImageName);
+        //if new photo selected, remove old photo and upload new one.
+        if ($request->has('main_image_path')) {
+            $newImageName = 'main_photo-' . $slug . '-' . $request->id . '.' . $request->main_image_path->extension();
+            if (File::exists(public_path('uploads/images/' . $place->main_image_path))) {
+                File::delete(public_path('uploads/images/' . $place->main_image_path));
+            }
+            $request->main_image_path->move(public_path('uploads/images'), $newImageName);
+            $input['main_image_path'] = $newImageName;
+        }
 
-        $user = User::find(Auth::id());
-        $newPlace = $request->user()->places()->create([
-            'status' => (($request->has('status') && $user->hasRole('editor|super-user')) ? 'published' : 'pending'),
-            'title' => $request->title,
-            'main_image_path' => $newImageName,
-            'address_line1' => $request->address_line1,
-            'address_line2' => $request->address_line2,
-            'address_state_or_region' => $request->address_state_or_region,
-            'address_city' => $request->address_city,
-            'address_country' => $request->address_country,
-            'address_postcode_or_zip' => $request->address_postcode_or_zip,
-            'address_latitude' => $request->address_latitude,
-            'walk_time' => $request->walk_time,
-            'parking' => $request->parking,
-            'parking_details' => $request->parking_details,
-            'type_id' => $request->type_id,
-            'activity' => $request->activity,
-            'dogs_only' => $request->dogs_only,
-            'seasonal_access' => $request->seasonal_access,
-            'seasonal_details' => $request->seasonal_details,
-            'off_lead' => $request->off_lead,
-            'cafe_access' => $request->activity,
-            'access_to_water' => $request->access_to_water,
-            'disposal_bins' => $request->activity,
-            'description' => $request->description,
-            'slug' => $slug,
-        ]);
 
-        if ($newPlace) {
-            if ($request->has('status')) {
-                return redirect('place/' . $newPlace->slug)->with('success', 'New place added successfully!');
+        // if editor or admin, allow to publish otherwise change status to pending.
+        if ($user->hasRole('editor|super-user')) {
+            $update = $place->update($input);
+            if (!$update) {
+                return redirect()->back()->with('error', 'There was problem adding new place... Please try again.');
             } else {
+                if ($status == 'pending') {
+                    Mail::to($place->user->email)->send(new PlacePublishedToUserMail($place, $user));
+                }
+                return redirect('place/' . $request->id)->with('success', 'Place added successfully!');
+            }
+        } else if ($place->user->id === Auth::id()) {
+            $input['status'] = "pending";
+            $update = $place->update($input);
+            if (!$update) {
+                return redirect('new-place-confirmation')->with('error', 'There was problem updating place... Please try again later!');
+            } else {
+                $place = Place::find($request->id);
                 $writers = User::role('editor')->get('email');
-                Mail::to($writers)->send(new PendingReviewMail($newPlace, $user));
-                Mail::to($user->email)->send(new PendingReviewToUserMail($newPlace, $user));
-                return redirect('add-new-confirmation')->with('success_', true);
+                Mail::to($writers)->send(new PendingReviewMail($place, $user));
+                Mail::to($place->user->email)->send(new PendingReviewToUserMail($place, $place->user));
+                return redirect('new-place-confirmation')->with('success_', true);
             }
         } else {
-            return redirect()->back()->with('error', 'There was problem adding a new place... <br>Please try again later!');
+            abort(403);
         }
+
     }
 }

@@ -23,7 +23,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get( '/place/add', [PlaceAddController::class, "add"])->middleware('auth')->name('add-new-place');
 Route::get('/place/{id}/add', [PlaceAddController::class, "index"])->middleware('auth')->name('add');
-Route::post('/place/add', [PlaceAddController::class, "store"])->middleware('auth')->name('add-place');
+Route::patch('/place/add', [PlaceAddController::class, "store"])->middleware('auth')->name('add-place');
 Route::view('/new-place-confirmation', 'new-place-confirmation.index')->middleware('auth')->name('new-place-confirmation');
 Route::get('/about', [AboutController::class, "index"])->name('about');
 Route::get('/contact', [ContactController::class, "index"])->name('contact');
