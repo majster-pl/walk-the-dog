@@ -21,18 +21,23 @@ class PlaceReviewController extends Controller
         $place = Place::find($request->route('place'));
         $user = User::find(Auth::id());
         $types = PlaceType::all();
-
-        if (($place->user->id === Auth::id()) || $user->hasRole('editor|super-user')) {
-            return view('review-place.index', [
-                'access' => true,
-                'place' => $place,
-                'placeTypes' => $types
-            ]);
+        // if place allready review redirect to edit page with message
+        if ($place->status == 'pending') {
+            if (($place->user->id === Auth::id()) || $user->hasRole('editor|super-user')) {
+                return view('review-place.index', [
+                    'access' => true,
+                    'place' => $place,
+                    'placeTypes' => $types
+                ]);
+            } else {
+                return view('review-place.index', [
+                    'access' => false
+                ]);
+            }
         } else {
-            return view('review-place.index', [
-                'access' => false
-            ]);
+            return redirect('place/'.$place->slug)->with('success', 'This place has already been reviewed!');
         }
+
     }
 
 }
