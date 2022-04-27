@@ -18,7 +18,9 @@ class PlaceReviewController extends Controller
     public function index(Request $request)
     {
         // dd($request->route('place'));
-        $place = Place::find($request->route('place'));
+        $place = Place::where("id", $request->route('place'))->orWhere('slug', $request->route('place'))->get()->first();
+
+        // $place = Place::find($request->route('place'));
         $user = User::find(Auth::id());
         $types = PlaceType::all();
         // if place allready review redirect to edit page with message

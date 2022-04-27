@@ -18,12 +18,13 @@ asset('images/logo-full.png')
                             class="text-danger">{{ $place->status == 'pending' ? '  (Pending review...)' : '' }}</span>
                     </span>
                     @hasrole('super-user|editor')
-                        <a class="btn btn-sm btn-info text-white fw-bold float-end"
+                        <a class="btn btn-sm btn-info text-white fw-bold float-end ms-3"
                             href="{{ route('place.edit', $place) }}">Edit</a>
                     @elseif ($place->isUsersPost(Auth::user()))
-                        <a class="btn btn-sm btn-info text-white fw-bold float-end"
+                        <a class="btn btn-sm btn-info text-white fw-bold float-end ms-3"
                             href="{{ route('place.edit', $place) }}">Edit</a>
                     @endhasrole
+                    <span class="float-end mt-2"><small>Status: <b>{{ $place->status }}</b> </small></span>
                 </div>
                 <div class="card-body {{ $place->status == 'pending' ? 'opacity-50 unselectable' : '' }}">
                     <div class="row">
@@ -67,7 +68,8 @@ asset('images/logo-full.png')
                                                 {{ $place->walk_time }}h </span></div>
 
                                         <div class="col">Type: <span class="fw-bold">
-                                                {{ isset($place->placeType->name) ?? $place->placeType->name }} </span></div>
+                                                {{ isset($place->placeType->name) ?? $place->placeType->name }} </span>
+                                        </div>
                                         <div class="col">Activity:
                                             @switch($place->activity)
                                                 @case(1)
@@ -133,8 +135,7 @@ asset('images/logo-full.png')
                         @if (count($place->pictures))
                             @foreach ($place->pictures as $picture)
                                 <div class="col text-center">
-                                    <img class="img-fluid"
-                                        src="{{ asset('place-images/' . $picture->name) }}"
+                                    <img class="img-fluid" src="{{ asset('place-images/' . $picture->name) }}"
                                         style="height: 100%; object-fit: cover;" alt="">
                                 </div>
                             @endforeach
