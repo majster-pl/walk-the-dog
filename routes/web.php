@@ -8,7 +8,6 @@ use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlaceEditController;
-use App\Http\Controllers\PlaceLikeController;
 use App\Http\Controllers\PlaceRemoveController;
 use App\Http\Controllers\PlaceReviewController;
 use App\Http\Controllers\PlacePreviewController;
@@ -33,8 +32,6 @@ Route::get('/place/{place}/edit', [PlaceEditController::class, "index"])->name('
 Route::get('/place/{place}/review', [ PlaceReviewController::class, "index"])->name('place.review');
 Route::get('/place/{param}', [PlacePreviewController::class, "index"])->name('place.preview');
 Route::patch('/place/edit', [PlaceEditController::class, "edit"])->middleware('auth')->name('edit-place');
-Route::post('/places/{place}/likes', [PlaceLikeController::class, "store"])->name('places.likes');
-Route::delete('/places/{place}/likes', [PlaceLikeController::class, "destroy"])->name('places.likes');
 Route::delete('/places/{place}/delete', [PlaceRemoveController::class, "delete"])->middleware('auth')->name('places.delete');
 
 Route::get( '/dashboard', [DashboardController::class, 'index'])->name("dashboard");

@@ -27,11 +27,11 @@ class PlaceEditController extends Controller
 
     public function index(Request $request)
     {
-        // dd($request->route('place'));
-        $place = Place::find($request->route('place'));
+        $place = Place::where("id", $request->route('place'))->orWhere('slug', $request->route('place'))->get()->first();
         $user = User::find(Auth::id());
         $types = PlaceType::all();
 
+        // dd($place);
         if (($place->user->id === Auth::id()) || $user->hasRole('editor|super-user')) {
             return view('edit-place.index', [
                 'access' => true,
@@ -40,7 +40,8 @@ class PlaceEditController extends Controller
             ]);
         } else {
             return view('edit-place.index', [
-                'access' => false
+                'access' => false,
+                'place' => $place,
             ]);
         }
     }
@@ -87,13 +88,13 @@ class PlaceEditController extends Controller
         if ($request->has('main_image_path')) {
             $newImageName = 'main_photo-' . $slug . '-' . $request->id . '.' . $request->main_image_path->extension();
             if (File::exists(public_path('uploads/images/' . $place->main_image_path))) {
-                File::delete(public_path('uploads/images/'. $place->main_image_path));
+                File::delete(public_path('uploads/images/' . $place->main_image_path));
             }
             $request->main_image_path->move(public_path('uploads/images'), $newImageName);
             $input['main_image_path'] = $newImageName;
         }
 
-        
+
         // if editor or admin, allow to publish otherwise change status to pending.
         if ($user->hasRole('editor|super-user')) {
             $update = $place->update($input);
