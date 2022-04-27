@@ -19,28 +19,8 @@
             <p class="mb-1 truncate-line-clamp-2">{{ $place->description }}</p>
             <p class="truncate-line-clamp mb-1"><i class="fa fa-location-arrow me-1 text-success" aria-hidden="true"></i>
                 {{ Str::length($place->address_city) > 0 ? $place->address_city : '[Info not set]' }}</p>
-            <div class="d-flex flex-row ">
-                <div>
-                    <span class="align-text-bottom me-1">
-                        <i class="text-success fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
-                            aria-hidden="true"></i>
-                        <span style="font-size: 0.85rem">
-                            {{ $place->likes->count() }}
-                        </span>
-                    </span>
-                </div>
-                @if (!$place->likedBy(Auth::user()))
-                    <form method="post" action="{{ route('places.likes', $place) }}">
-                        @csrf
-                        <button type="submit" class="btn link-primary p-0 pe-1">Like</button>
-                    </form>
-                @else
-                    <form method="post" action="{{ route('places.likes', $place) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn link-primary p-0 pe-1">Unlike</button>
-                    </form>
-                @endif
+            <div>
+                @livewire('place-like-component', ['place' => $place])
             </div>
             <div>
                 <span class="align-text-bottom me-2">Submitted by: <span
