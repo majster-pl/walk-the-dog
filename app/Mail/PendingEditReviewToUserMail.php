@@ -30,7 +30,7 @@ class PendingEditReviewToUserMail extends Mailable
     public function build()
     {
         return $this->subject('Place pending review - WalkTheDog.info')
-        ->markdown('emails.PendingEditReveiwToUserEmail')
+        ->markdown('emails.PendingEditReviewToUserEmail')
         ->with([
             'details' => $this->details,
             'user' => $this->user
