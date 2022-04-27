@@ -1,5 +1,5 @@
 <div>
-    <div class="d-flex flex-row mx-3 mb-2">
+    <div class="d-flex flex-row ">
         <div>
             <span class="align-text-bottom me-1">
                 <i class="text-success fa fa-heart{{ !$like ? '-o' : '' }} me-1" aria-hidden="true"></i>

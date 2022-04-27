@@ -15,7 +15,9 @@
                     style="font-size: 1.1rem" aria-hidden="true"></i>
                 {{ Str::length($place->address_city) > 0 ? $place->address_city : '[Info not set]' }}</p>
         </div>
-        @livewire('place-like-component', ['place' => $place])
+        <div class="mx-3 mb-2">
+            @livewire('place-like-component', ['place' => $place])
+        </div>
         <div class="card-footer px-0">
 
             <p class="card-text m-0 mx-3"><small class="text-muted">Added
