@@ -15,7 +15,8 @@
                     style="font-size: 1.1rem" aria-hidden="true"></i>
                 {{ Str::length($place->address_city) > 0 ? $place->address_city : '[Info not set]' }}</p>
         </div>
-        <div class="d-flex flex-row mx-3 mb-2">
+        @livewire('place-like-component', ['place' => $place])
+        {{-- <div class="d-flex flex-row mx-3 mb-2">
             <div>
                 <span class="align-text-bottom me-1">
                     <i class="text-success fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
@@ -39,7 +40,7 @@
                         class="btn link-primary p-0 pe-1 text-decoration-underline">Unlike</button>
                 </form>
             @endif
-        </div>
+        </div> --}}
         <div class="card-footer px-0">
 
             <p class="card-text m-0 mx-3"><small class="text-muted">Added
