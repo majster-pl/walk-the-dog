@@ -16,31 +16,6 @@
                 {{ Str::length($place->address_city) > 0 ? $place->address_city : '[Info not set]' }}</p>
         </div>
         @livewire('place-like-component', ['place' => $place])
-        {{-- <div class="d-flex flex-row mx-3 mb-2">
-            <div>
-                <span class="align-text-bottom me-1">
-                    <i class="text-success fa fa-heart{{ !$place->likedBy(Auth::user()) ? '-o' : '' }} me-1"
-                        aria-hidden="true"></i>
-                    <span style="font-size: 0.85rem">
-                        {{ $place->likes->count() }}
-                    </span>
-                </span>
-            </div>
-            @if (!$place->likedBy(Auth::user()))
-                <form method="post" action="{{ route('places.likes', $place) }}">
-                    @csrf
-                    <button type="submit" style="position: relative; z-index:3"
-                        class="btn link-primary p-0 pe-1 text-decoration-underline">Like</button>
-                </form>
-            @else
-                <form method="post" action="{{ route('places.likes', $place) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" style="position: relative; z-index:3"
-                        class="btn link-primary p-0 pe-1 text-decoration-underline">Unlike</button>
-                </form>
-            @endif
-        </div> --}}
         <div class="card-footer px-0">
 
             <p class="card-text m-0 mx-3"><small class="text-muted">Added
