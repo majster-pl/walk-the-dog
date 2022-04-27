@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Place;
 use App\Models\PlaceType;
 use Illuminate\Http\Request;
-use App\Mail\PendingReviewMail;
+use App\Mail\PendingReviewToEditorsMail;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -121,7 +121,7 @@ class PlaceAddController extends Controller
             } else {
                 $place = Place::find($request->id);
                 $writers = User::role('editor')->get('email');
-                Mail::to($writers)->send(new PendingReviewMail($place, $user));
+                Mail::to($writers)->send(new PendingReviewToEditorsMail($place, $user));
                 Mail::to($place->user->email)->send(new PendingReviewToUserMail($place, $place->user));
                 return redirect('new-place-confirmation')->with('success_', true);
             }

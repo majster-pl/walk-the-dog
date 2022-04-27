@@ -5,7 +5,7 @@ Gread news! Your place **{{ $details['title'] }}** has now been published and is
 
 Please click on the button below to view your place.
 
-@component('mail::button', ['url' => route('place.preview', $details['id'])])
+@component('mail::button', ['url' => route('place.preview', $details['slug'])])
     View Place
 @endcomponent
 

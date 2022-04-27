@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\PendingReviewToUserMail;
 use App\Mail\PlacePublishedToUserMail;
 use Spatie\Permission\Traits\HasRoles;
+use App\Mail\PendingReviewToEditorsMail;
+use App\Mail\PendingEditReviewToUserMail;
+use App\Mail\PendingEditReviewToEditorsMail;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PlaceEditController extends Controller
@@ -30,6 +33,10 @@ class PlaceEditController extends Controller
         $place = Place::where("id", $request->route('place'))->orWhere('slug', $request->route('place'))->get()->first();
         $user = User::find(Auth::id());
         $types = PlaceType::all();
+
+        // dd(Place::where("slug", $request->route('place'))->get());
+        // dd($request->route('place'));
+        // dd($place);
 
         // dd($place);
         if (($place->user->id === Auth::id()) || $user->hasRole('editor|super-user')) {
@@ -53,10 +60,11 @@ class PlaceEditController extends Controller
         //get all request values and check status to assign correct status.
         $input = $request->all();
 
-        $slug = SlugService::createSlug(Place::class, 'slug', $request->title);
+        $slug = $input['slug'] ?? SlugService::createSlug(Place::class, 'slug', $request->title);
         $input['slug'] = $place->slug === null ? $place->slug : $slug;
 
         $status = $place->status;
+
         if ($request->has('status')) {
             $input['status'] = "published";
         } else {
@@ -115,9 +123,18 @@ class PlaceEditController extends Controller
             } else {
                 $place = Place::find($request->id);
                 $writers = User::role('editor')->get('email');
-                Mail::to($writers)->send(new PendingReviewMail($place, $user));
-                Mail::to($place->user->email)->send(new PendingReviewToUserMail($place, $place->user));
-                return redirect('new-place-confirmation')->with('warning', 'Your place is currently awaiting moderator review...');
+                
+                if ($status == 'draft') {
+                    // dd('new place...');
+                    Mail::to($writers)->send(new PendingReviewToEditorsMail($place, $user));
+                    Mail::to($place->user->email)->send(new PendingReviewToUserMail($place, $place->user));
+                    return redirect('new-place-confirmation')->with(['warning' => 'Your place is currently awaiting moderator review...', 'success_' => true]);
+                } else {
+                    // dd('EDIT PLACE...');
+                    Mail::to($writers)->send(new PendingEditReviewToEditorsMail($place, $user));
+                    Mail::to($place->user->email)->send(new PendingEditReviewToUserMail($place, $place->user));
+                    return redirect(route('place.preview', $place->slug))->with(['warning' => 'Thank you for taking your time to improve details for this place!<br>Your request is currently awaiting editor review, we\'ll drop you an email when it\'s published.']);
+                }
             }
         } else {
             abort(403);

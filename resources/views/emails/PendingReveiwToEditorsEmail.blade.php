@@ -5,7 +5,7 @@ Place **{{ $details['title'] }}** added by **{{ $user['name'] }}** is awaiting r
 
 Please click on the button below to review this place.
 
-@component('mail::button', ['url' => route('place.review', $details['id'])])
+@component('mail::button', ['url' => route('place.review', $details['slug'])])
     Review Plac
 @endcomponent
 

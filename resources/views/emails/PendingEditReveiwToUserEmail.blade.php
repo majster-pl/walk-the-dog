@@ -1,7 +1,7 @@
 @component('mail::message')
 # Hi {{$user['name']}}!
 
-We've received your request for **{{ $details['title'] }}** to be added to our collection and our team will reveiw it shortly.
+We've received your request for changes in **{{ $details['title'] }}** and our team will reveiw it shortly.
 
 Please click on the button below if you want to edit this palce.
 
