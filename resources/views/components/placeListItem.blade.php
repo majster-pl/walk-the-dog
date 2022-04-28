@@ -47,12 +47,12 @@
                                 <div class="col-auto mt-auto pt-2">
                                     @if ($place->status !== 'pending' || $place->isUsersPost(Auth::user()))
                                         <object>
-                                            <a href="{{ $place->status !== 'pending' ? route('place.edit', $place->slug ?? $place) : route('place.review', $place) }}"
+                                            <a href="{{ $place->status !== 'pending' ? route('place.edit', $place->slug ?? $place) : route('place.review', $place->slug ?? $place) }}"
                                                 class="btn btn-info text-white fw-bold">Edit</a>
                                         </object>
                                     @else
                                         <object>
-                                            <a href="{{ $place->status !== 'pending' ? route('place.edit', $place->slug ?? $place) : route('place.review', $place) }}"
+                                            <a href="{{ $place->status !== 'pending' ? route('place.edit', $place->slug ?? $place) : route('place.review', $place->slug ?? $place) }}"
                                                 class="btn btn-info text-white fw-bold">Review</a>
                                         </object>
                                     @endif

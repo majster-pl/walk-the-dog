@@ -34,11 +34,6 @@ class PlaceEditController extends Controller
         $user = User::find(Auth::id());
         $types = PlaceType::all();
 
-        // dd(Place::where("slug", $request->route('place'))->get());
-        // dd($request->route('place'));
-        // dd($place);
-
-        // dd($place);
         if (($place->user->id === Auth::id()) || $user->hasRole('editor|super-user')) {
             return view('edit-place.index', [
                 'access' => true,
@@ -60,9 +55,9 @@ class PlaceEditController extends Controller
         //get all request values and check status to assign correct status.
         $input = $request->all();
 
-        $slug = $input['slug'] ?? SlugService::createSlug(Place::class, 'slug', $request->title);
-        $input['slug'] = $place->slug === null ? $place->slug : $slug;
-
+        
+        $input['slug'] = $place['slug'] ?? SlugService::createSlug(Place::class, 'slug', $request->title);
+ 
         $status = $place->status;
 
         if ($request->has('status')) {
@@ -111,9 +106,9 @@ class PlaceEditController extends Controller
             } else {
                 if ($status == 'pending') {
                     Mail::to($place->user->email)->send(new PlacePublishedToUserMail($place, $place->user));
-                    return redirect('place/' . $request->id)->with('success', 'Place published successfully!');
+                    return redirect('place/' . $input['slug'])->with('success', 'Place published successfully!');
                 }
-                return redirect('place/' . $request->id)->with('success', 'Place updated successfully!');
+                return redirect('place/' . $input['slug'])->with('success', 'Place updated successfully!');
             }
         } else if ($place->user->id === Auth::id()) {
             $input['status'] = "pending";
