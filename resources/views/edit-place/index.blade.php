@@ -8,15 +8,7 @@
             <span class="float-end" style="font-size: .8rem">Status: <b>{{ $place->status }}</b></span>
             </div>
             <div class="card-body">
-                @if ($access)
-                    @include('components.add-edit-place-form')
-                @else
-                    <p class="fs-4 text-danger">
-                        You do not have privileges to edit this post!
-                    </p>
-                    <p>If you want to become an editor please contact admin via <a
-                            href="mailto:waliczek.szymon@gmail.com">email</a>.</p>
-                @endif
+                @include('components.add-edit-place-form')
             </div>
         </div>
     </div>

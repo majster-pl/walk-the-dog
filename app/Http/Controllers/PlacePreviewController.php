@@ -9,9 +9,9 @@ class PlacePreviewController extends Controller
 {
     public function index($param)
     {
-        $place = Place::where("id", $param)->orWhere('slug', $param)->get();
-        if (isset($place[0])) {
-            return view('place-preview.index', ['id'=> $param, 'place' => $place[0]]);
+        $place = Place::where("id", $param)->orWhere('slug', $param)->get()->first();
+        if (isset($place)) {
+            return view('place-preview.index', ['id'=> $param, 'place' => $place]);
         } else {
             return abort(404);
         }

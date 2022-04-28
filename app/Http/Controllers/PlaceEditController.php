@@ -36,15 +36,11 @@ class PlaceEditController extends Controller
 
         if (($place->user->id === Auth::id()) || $user->hasRole('editor|super-user')) {
             return view('edit-place.index', [
-                'access' => true,
                 'place' => $place,
                 'placeTypes' => $types
             ]);
         } else {
-            return view('edit-place.index', [
-                'access' => false,
-                'place' => $place,
-            ]);
+            abort(401);
         }
     }
 

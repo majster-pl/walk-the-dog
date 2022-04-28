@@ -6,7 +6,7 @@
         <hr class="mt-0">
             <div>
                 <p class="lead fs-4">We couldn't find the page you're looking for.</p>
-                <a class="btn btn-success text-white fw-bold" href="{{route('home')}}">Take me back to to homepage</a>
+                <a class="btn btn-success text-white fw-bold" href="{{route('home')}}">Take me back to homepage</a>
 
             </div>
 

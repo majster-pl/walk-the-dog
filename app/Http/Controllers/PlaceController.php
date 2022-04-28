@@ -10,8 +10,7 @@ class PlaceController extends Controller
 {
     public function index(Request $request)
     {
-
-        // return search page is search query present
+        // sort places if requeted
         if ($request->sort) {
             switch ($request->sort) {
                 case 'created_at':

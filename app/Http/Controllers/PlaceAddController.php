@@ -16,6 +16,13 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PlaceAddController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
+
     public function index(Request $request)
     {
         // dd($request->route('place'));
@@ -27,14 +34,11 @@ class PlaceAddController extends Controller
 
         if (($place->user->id === Auth::id()) || $user->hasRole('editor|super-user')) {
             return view('new-place.index', [
-                'access' => true,
                 'place' => $place,
                 'placeTypes' => $types
             ]);
         } else {
-            return view('edit-place.index', [
-                'access' => false
-            ]);
+            abort(401);
         }
     }
 
