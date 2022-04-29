@@ -19,7 +19,7 @@ asset('images/logo-full.png')
                     </span>
                     @hasrole('super-user|editor')
                         <a class="btn btn-sm btn-info text-white fw-bold float-end ms-3"
-                            href="{{ route('place.edit', $place->slug) }}">Edit</a>
+                            href="{{ route('place.edit', $place->slug ?? $place->id) }}">Edit</a>
                     @elseif ($place->isUsersPost(Auth::user()))
                         <a class="btn btn-sm btn-info text-white fw-bold float-end ms-3"
                             href="{{ route('place.edit', $place->slug ?? $place->id ) }}">Edit</a>
