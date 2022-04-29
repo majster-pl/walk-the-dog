@@ -85,7 +85,7 @@ class PlaceEditController extends Controller
 
         //if new photo selected, remove old photo and upload new one.
         if ($request->has('main_image_path')) {
-            $newImageName = 'main_photo-' . $slug . '-' . $request->id . '.' . $request->main_image_path->extension();
+            $newImageName = 'main_photo-' . $request->id . '.' . $request->main_image_path->extension();
             if (File::exists(public_path('uploads/images/' . $place->main_image_path))) {
                 File::delete(public_path('uploads/images/' . $place->main_image_path));
             }
