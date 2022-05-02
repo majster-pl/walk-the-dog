@@ -1,7 +1,7 @@
 @component('mail::message')
 # Hi {{$user['name']}}!
 
-Gread news! Your place **{{ $details['title'] }}** has now been published and is available to everyone!
+Great news! Your place **{{ $details['title'] }}** has now been published and is available to everyone!
 
 Please click on the button below to view your place.
 
