@@ -1,1 +1,0 @@
-@livewire('place-edit-form', ['place' => $place, 'placeTypes' => $placeTypes, 'page' => $page])
