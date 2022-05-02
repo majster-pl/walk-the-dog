@@ -27,6 +27,7 @@ class PlaceLikeComponent extends Component
 
     public function likePlace()
     {
+        // return redirect()->back()->with('success', 'Created successfully!');
         //check if user auth
         if (Auth::check()) {
             $query = false;
@@ -45,6 +46,7 @@ class PlaceLikeComponent extends Component
                 $this->like = $place_->likedBy(Auth::user());
                 $this->likes = $place_->likes->count();
             }
+            // Alert::success(session('success'));
         } else {
             return redirect()->guest('login');
         }
