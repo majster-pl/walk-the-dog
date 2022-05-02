@@ -426,8 +426,9 @@
                     @endif
                     {{-- Submit button --}}
                     <button type="submit" class="btn btn-success text-white fw-bold float-end">
+                        <span wire:loading wire:target="submit" class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
                         @if ($publishToggle)
-                            Publish
+                             Publish
                         @else
                             @switch($page)
                                 @case('add')
@@ -448,8 +449,12 @@
                         @endif
                     </button>
                     {{-- cancel button --}}
-                    <a  href="{{ URL::previous() }}" class="btn btn-danger float-end text-white fw-bold me-3">Cancel</a>
+                    <a href="{{ URL::previous() }}"
+                        class="btn btn-danger float-end text-white fw-bold me-3">Cancel</a>
                 </div>
+                @if ($errors->any())
+                    <small class="text-danger text-end">Error with form, check informations above and try again.</small>
+                @endif
             </div>
         </div>
     </form>
