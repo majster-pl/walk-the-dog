@@ -29,7 +29,7 @@ asset('images/logo-full.png')
                 <div class="card-body {{ $place->status == 'pending' ? 'opacity-50 unselectable' : '' }}">
                     <div class="row">
                         <div class="col col-12 col-md-8">
-                            <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
+                            <img src="{{ isset($place->main_image_path)? asset('place-images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
                                 class="img-fluid mb-1 me-3 float-sm-start"
                                 style="min-height: 14rem; max-height: 20rem; width: 100%; object-fit: cover;"
                                 alt="Main Image">

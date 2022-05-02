@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header fs-4">{{ __('Add New Place') }}</div>
             <div class="card-body">
-                @include('components.add-edit-place-form')
+                @include('components.add-edit-place-form', ['page' => 'add'])
             </div>
         </div>
     </div>

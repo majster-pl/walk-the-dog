@@ -8,7 +8,7 @@
             <span class="float-end" style="font-size: .8rem">Status: <b>{{ $place->status }}</b></span>
             </div>
             <div class="card-body">
-                @include('components.add-edit-place-form')
+                @include('components.add-edit-place-form', ['page' => 'edit'])
             </div>
         </div>
     </div>

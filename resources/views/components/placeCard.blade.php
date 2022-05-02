@@ -1,7 +1,7 @@
 <div class="col-md-4 col-12 mb-4">
     <a class="h-100 list-group-item-action card m-0 p-0 text-decoration-none" aria-current="true"
         href="{{ route('place.preview', $place->slug) }}">
-        <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
+        <img src="{{ isset($place->main_image_path) ? asset('place-images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
             class="card-img-top img-responsive h-100" style="height: 15rem !important; object-fit: cover;"
             alt="Main image">
         <div class="card-body">

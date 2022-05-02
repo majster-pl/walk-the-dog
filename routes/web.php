@@ -22,7 +22,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get( '/place/add', [PlaceAddController::class, "add"])->middleware('auth')->name('add-new-place');
 Route::get('/place/{id}/add', [PlaceAddController::class, "index"])->middleware('auth')->name('add');
-Route::patch('/place/add', [PlaceAddController::class, "store"])->middleware('auth')->name('add-place');
 Route::view('/new-place-confirmation', 'new-place-confirmation.index')->middleware('auth')->name('new-place-confirmation');
 Route::get('/about', [AboutController::class, "index"])->name('about');
 Route::get('/contact', [ContactController::class, "index"])->name('contact');
@@ -31,7 +30,6 @@ Route::get('/places', [PlaceController::class, "index"])->name('places');
 Route::get('/place/{place}/edit', [PlaceEditController::class, "index"])->name('place.edit');
 Route::get('/place/{place}/review', [ PlaceReviewController::class, "index"])->name('place.review');
 Route::get('/place/{param}', [PlacePreviewController::class, "index"])->name('place.preview');
-Route::patch('/place/edit', [PlaceEditController::class, "edit"])->middleware('auth')->name('edit-place');
 Route::delete('/places/{place}/delete', [PlaceRemoveController::class, "delete"])->middleware('auth')->name('places.delete');
 
 Route::get( '/dashboard', [DashboardController::class, 'index'])->name("dashboard");

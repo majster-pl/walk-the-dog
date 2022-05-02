@@ -8,7 +8,7 @@
     @endif
     <div class="row mt-2 mt-md-0">
         <div class="col col-md-2">
-            <img src="{{ isset($place->main_image_path)? asset('/uploads/images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
+            <img src="{{ isset($place->main_image_path)? asset('place-images/' . $place->main_image_path): asset('images/image-missing.webp') }}"
                 class="img-fluid" style="height: 100%; width: 100%; max-height: 7rem; object-fit: cover;"
                 alt="Main Image">
         </div>
@@ -47,7 +47,7 @@
                                 <div class="col-auto mt-auto pt-2">
                                     @if ($place->status !== 'pending' || $place->isUsersPost(Auth::user()))
                                         <object>
-                                            <a href="{{ $place->status !== 'pending' ? route('place.edit', $place->slug ?? $place) : route('place.review', $place->slug ?? $place) }}"
+                                            <a href="{{ $place->status !== 'pending' ? route('place.edit', $place->slug ?? $place) : route('place.edit', $place->slug ?? $place) }}"
                                                 class="btn btn-info text-white fw-bold">Edit</a>
                                         </object>
                                     @else
