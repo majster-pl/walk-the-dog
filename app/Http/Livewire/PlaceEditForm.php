@@ -10,12 +10,13 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PendingReviewToUserMail;
+use Illuminate\Auth\Events\Validated;
 use App\Mail\PlacePublishedToUserMail;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\PendingReviewToEditorsMail;
 use App\Mail\PendingEditReviewToUserMail;
+use Illuminate\Support\Facades\Validator;
 use App\Mail\PendingEditReviewToEditorsMail;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class PlaceEditForm extends Component
 {
@@ -115,7 +116,7 @@ class PlaceEditForm extends Component
             $propertyName => $value,
         ]);
     }
-    
+
     public function updatePlace($newStatus = 'draft')
     {
         $place = Place::find($this->place->id);
@@ -153,17 +154,19 @@ class PlaceEditForm extends Component
     {
         //if main picture not selected add to validation (work around).
         $this->rules['main_image_path'] = !$this->main_image_path ? 'required|mimes:png,jpg,jpeg,webp|max:5048' : 'nullable';
-                $this->dispatchBrowserEvent('swal:modal', [
-                'type' => 'success',  
-                'message' => 'User Created Successfully!', 
-                'text' => 'It will list on users table soon.'
+        $validator = Validator::make($this->all(), $this->rules);
+ 
+            // $validator = $this->validate();
+        if ($validator->fails()) {
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'error',
+                'message' => 'Form Error!',
+                'text' => 'Please check the form and try again!',
+                'confirmButtonColor' => '#38c172',
             ]);
-        Alert::alert('Title', 'Message', 'Type');
-
-        return;
-        $this->validate();
+        }
         $user = User::find(Auth::id());
-        
+
 
         // if editor or admin, allow to publish otherwise change status to pending.
         // $user = User::find(Auth::id());
@@ -181,7 +184,7 @@ class PlaceEditForm extends Component
                 return redirect('place/' . $this->place->slug)->with('success', 'Place published successfully!');
             }
             return redirect('place/' . $this->place->slug)->with('success', 'Place updated successfully!');
-        } 
+        }
 
         // if Auth user is also creator of the place change status to "pending" and send 
         // confirmation email to user and emails to the editors to review this place.
@@ -246,5 +249,4 @@ class PlaceEditForm extends Component
             ]);
         }
     }
-
 }

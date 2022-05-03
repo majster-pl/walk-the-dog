@@ -51,7 +51,7 @@
         content="{{ isset($description) ? $description : 'Find a place to walk your dog' }}">
     <meta name="twitter:image" content="{{ isset($og_image) ? $og_image : asset('images/logo-full.png') }}">
     <meta name="twitter:image:alt" content="Walk The Dog logo with text">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @livewireStyles
 
 </head>
@@ -61,7 +61,7 @@
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark unselectable">
             <div class="container">
                 <a class="navbar-brand text-white" href="/">
-                    <img src="{{asset('images/logo-dog.png')}}" alt="logo" height="35"
+                    <img src="{{ asset('images/logo-dog.png') }}" alt="logo" height="35"
                         class="d-inline-block align-text-center">
                     Walk The Dog
                 </a>
@@ -207,43 +207,34 @@
             </div>
         </footer>
     </div>
-    {{-- <script type="text/javascript">
-        $(document).ready(function() {
-            $(function() {
-                $("[data-toggle='popover']").popover({
-                    html: true
-                });
-            })
-        });
-    </script> --}}
-
-    {{-- @include('sweetalert::alert') --}}
 
     <script>
-  
-window.addEventListener('swal:modal', event => { 
-    swal({
-      title: event.detail.message,
-      text: event.detail.text,
-      icon: event.detail.type,
-    });
-});
-  
-window.addEventListener('swal:confirm', event => { 
-    swal({
-      title: event.detail.message,
-      text: event.detail.text,
-      icon: event.detail.type,
-      buttons: true,
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-        window.livewire.emit('remove');
-      }
-    });
-});
- </script>
+        window.addEventListener('swal:modal', event => {
+            new Swal({
+                title: event.detail.message,
+                text: event.detail.text,
+                icon: event.detail.type,
+                footer: event.detail.footer,
+                confirmButtonColor: event.detail.confirmButtonColor,
+            });
+        });
+
+        window.addEventListener('swal:confirm', event => {
+            new Swal({
+                    title: event.detail.message,
+                    text: event.detail.text,
+                    icon: event.detail.type,
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.livewire.emit('remove');
+                    }
+                });
+        });
+    </script>
+
 
     @livewireScripts
 </body>

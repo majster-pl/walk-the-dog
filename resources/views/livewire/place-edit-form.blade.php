@@ -426,8 +426,8 @@
                     @endif
                     {{-- Submit button --}}
                     <button type="submit" class="btn btn-success text-white fw-bold float-end">
-                        <span wire:loading wire:target="submit" class="spinner-border spinner-border-sm me-1" role="status"
-                                        aria-hidden="true"></span>
+                        <span wire:loading wire:target="submit" class="spinner-border spinner-border-sm me-1"
+                            role="status" aria-hidden="true"></span>
                         @if ($publishToggle)
                             Publish
                         @else
@@ -450,7 +450,8 @@
                         @endif
                     </button>
                     {{-- cancel button --}}
-                    <a  href="{{ URL::previous() }}" class="btn btn-danger float-end text-white fw-bold me-3">Cancel</a>
+                    <a href="{{ URL::previous() }}"
+                        class="btn btn-danger float-end text-white fw-bold me-3">Cancel</a>
                 </div>
             </div>
         </div>
