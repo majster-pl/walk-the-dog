@@ -29,13 +29,4 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(function() {
-                $("[data-toggle='popover']").popover({
-                    html: true
-                });
-            })
-        });
-    </script>
 @endsection
