@@ -426,6 +426,8 @@
                     @endif
                     {{-- Submit button --}}
                     <button type="submit" class="btn btn-success text-white fw-bold float-end">
+                        <span wire:loading wire:target="submit" class="spinner-border spinner-border-sm me-1" role="status"
+                                        aria-hidden="true"></span>
                         @if ($publishToggle)
                             Publish
                         @else

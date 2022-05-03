@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PlaceAddController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlaceEditController;
 use App\Http\Controllers\PlaceRemoveController;
@@ -14,9 +16,8 @@ use App\Http\Controllers\PlacePreviewController;
 use App\Http\Controllers\PlacePublishController;
 use App\Http\Controllers\DashboardUsersController;
 use App\Http\Controllers\DashboardPendingController;
-use App\Http\Controllers\DashboardAllPlacesController;
 use App\Http\Controllers\DashboardSettingsController;
-use App\Http\Controllers\PlaceAddController;
+use App\Http\Controllers\DashboardAllPlacesController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

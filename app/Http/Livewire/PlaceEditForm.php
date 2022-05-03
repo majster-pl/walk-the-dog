@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Mail\PendingReviewToEditorsMail;
 use App\Mail\PendingEditReviewToUserMail;
 use App\Mail\PendingEditReviewToEditorsMail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PlaceEditForm extends Component
 {
@@ -105,6 +106,8 @@ class PlaceEditForm extends Component
 
     public function updated($propertyName, $value)
     {
+        Alert::alert('Title', 'Message', 'Type');
+
         $this->validateOnly($propertyName, $this->rules);
         // if validated updated validated field in table
         $place = Place::find($this->place->id);
@@ -150,7 +153,14 @@ class PlaceEditForm extends Component
     {
         //if main picture not selected add to validation (work around).
         $this->rules['main_image_path'] = !$this->main_image_path ? 'required|mimes:png,jpg,jpeg,webp|max:5048' : 'nullable';
+                $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'success',  
+                'message' => 'User Created Successfully!', 
+                'text' => 'It will list on users table soon.'
+            ]);
+        Alert::alert('Title', 'Message', 'Type');
 
+        return;
         $this->validate();
         $user = User::find(Auth::id());
         

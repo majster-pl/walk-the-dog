@@ -51,7 +51,7 @@
         content="{{ isset($description) ? $description : 'Find a place to walk your dog' }}">
     <meta name="twitter:image" content="{{ isset($og_image) ? $og_image : asset('images/logo-full.png') }}">
     <meta name="twitter:image:alt" content="Walk The Dog logo with text">
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @livewireStyles
 
 </head>
@@ -207,7 +207,7 @@
             </div>
         </footer>
     </div>
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(document).ready(function() {
             $(function() {
                 $("[data-toggle='popover']").popover({
@@ -215,7 +215,35 @@
                 });
             })
         });
-    </script>
+    </script> --}}
+
+    {{-- @include('sweetalert::alert') --}}
+
+    <script>
+  
+window.addEventListener('swal:modal', event => { 
+    swal({
+      title: event.detail.message,
+      text: event.detail.text,
+      icon: event.detail.type,
+    });
+});
+  
+window.addEventListener('swal:confirm', event => { 
+    swal({
+      title: event.detail.message,
+      text: event.detail.text,
+      icon: event.detail.type,
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        window.livewire.emit('remove');
+      }
+    });
+});
+ </script>
 
     @livewireScripts
 </body>
