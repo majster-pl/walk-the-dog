@@ -107,14 +107,12 @@ class PlaceEditForm extends Component
 
     public function updated($propertyName, $value)
     {
-        Alert::alert('Title', 'Message', 'Type');
-
         $this->validateOnly($propertyName, $this->rules);
         // if validated updated validated field in table
-        $place = Place::find($this->place->id);
-        $place->update([
-            $propertyName => $value,
-        ]);
+        // $place = Place::find($this->place->id);
+        // $place->update([
+        //     $propertyName => $value,
+        // ]);
     }
 
     public function updatePlace($newStatus = 'draft')
