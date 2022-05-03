@@ -426,11 +426,8 @@
                     @endif
                     {{-- Submit button --}}
                     <button type="submit" class="btn btn-success text-white fw-bold float-end">
-<<<<<<< HEAD
                         <span wire:loading wire:target="submit" class="spinner-border spinner-border-sm me-1" role="status"
                                         aria-hidden="true"></span>
-=======
->>>>>>> parent of b3c9f5e (Revert "Revert "Add feedback to add/edit/review page when error and when form submiting."")
                         @if ($publishToggle)
                             Publish
                         @else
