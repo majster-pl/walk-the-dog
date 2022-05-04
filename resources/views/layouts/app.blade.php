@@ -53,10 +53,24 @@
     <meta name="twitter:image:alt" content="Walk The Dog logo with text">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @livewireStyles
+    <style>
+        .js-cookie-consent {
+            /* position: absolute; */
+            /* top: 0px; */
+            /* padding: 10px; */
+            /* text-align: center; */
+            /* width: 100%; */
+            /* z-index: 9999; */
+            /* background-color: #5f5f5f; */
+            /* border-color: #fffacc; */
+            /* border: solid 1px; */
+        }
 
+    </style>
 </head>
 
 <body>
+    @include('cookie-consent::index')
     <div id="app">
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark unselectable">
             <div class="container">
