@@ -179,9 +179,9 @@ class PlaceEditForm extends Component
             // if place was pending review, send email to creator
             if ($this->place->status == 'pending') {
                 Mail::to($this->place->user->email)->send(new PlacePublishedToUserMail($this->place, $this->place->user));
-                return redirect('place/' . $this->place->slug)->with('success', 'Place published successfully!');
+                return redirect('place/' . $this->place->idg)->with('success', 'Place published successfully!');
             }
-            return redirect('place/' . $this->place->slug)->with('success', 'Place updated successfully!');
+            return redirect('place/' . $this->place->id)->with('success', 'Place updated successfully!');
         }
 
         // if Auth user is also creator of the place change status to "pending" and send 

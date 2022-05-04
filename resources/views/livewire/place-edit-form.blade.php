@@ -245,7 +245,7 @@
                             {{-- Parking details --}}
                             <div class="form-floating pb-3 h-100" title="Enter additional information about parking">
                                 <textarea class="form-control h-100" name="parking_details" id="parking_details" placeholder="Free parking for 2h"
-                                    wire:model="parking_details">{{ $parking_details }}</textarea>
+                                    wire:model.lazy="parking_details">{{ $parking_details }}</textarea>
                                 <label class="text-secondary" for="parking_details"
                                     value="{{ $parking_details }}">Parking
                                     details</label>
