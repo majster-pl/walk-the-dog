@@ -240,8 +240,8 @@
             if (!Cookies.get('show_donation_banner') || Cookies.get('show_donation_banner') == 'later' ) {
                 setTimeout(function() {
                     Swal.fire({
-                        title: 'Hi!, I\'m sorry to bether you!',
-                        html: '<p> Please help me maintain this website by donating any amount <i class="fa fa-money text-success" aria-hidden="true"></i> </p> <p> Click on the button below to find out how you can help!.</p>',
+                        title: 'Hi!, I\'m sorry to bother you!',
+                        html: '<p> Please help me maintain this website by donating any amount <i class="fa fa-money text-success" aria-hidden="true"></i> </p> <p> Click on the button below to find out how you can help!</p>',
                         showDenyButton: 'true',
                         showCancelButton: true,
                         cancelButtonText: 'Ask me later',
