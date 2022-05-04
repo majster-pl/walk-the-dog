@@ -67,6 +67,12 @@ class UserController extends AdminController
      */
     protected function form()
     {
+        $states = [
+            'on'  => ['value' => 1, 'text' => 'Yes', 'color' => 'success'],
+            'off' => ['value' => 0, 'text' => 'No', 'color' => 'danger'],
+        ];
+
+
         $form = new Form(new User());
 
         $form->text('name', __('Name'));
@@ -74,6 +80,8 @@ class UserController extends AdminController
         $form->datetime('email_verified_at', __('Email verified at'))->default(date('Y-m-d H:i:s'));
         $form->password('password', __('Password'));
         $form->text('remember_token', __('Remember token'));
+
+        // $form->switch('isEditor', __('Editor'))->states($states);
 
         return $form;
     }
