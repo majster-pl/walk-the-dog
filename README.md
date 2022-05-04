@@ -1,18 +1,80 @@
-This repository containes a fresh installed <b>Laravel 9</b> project containing :
-<ul>
-    <li>laravel/ui</li>
-    <li>Authentification scaffolding</li>
-</ul>
 
-Bootstrap 4 is replaced by <b>Bootstrap 5</b> (including the Bootstrap 5 Icons) and the scaffolding files are recreated using the Bootstrap 5 framework.
+<p  align="center"><a  href="https://walkthedog.info"  target="_blank"><img  src="https://github.com/majster-pl/walk-the-dog/blob/main/public/images/logo-full-rect_new.png?raw=true"  width="400"></a></p>
 
-This is a very good starting point if you want to develop applications using <b>Laravel 9 and Bootstrap 5</b>.
+  
 
-<b>Be aware you need at least PHP 8.0 to use this project!</b>
+# Walk The Dog
 
-<hr/>
+  
 
-The documentation can be found on <a target="_blank" href="https://www.kreaweb.be/laravel-8-bootstrap-5/">kreaweb.be</a>.
+Walk The Dog is an [open source](https://opensource.com/resources/what-open-source) project created by [Szymon Waliczek](https://waliczek.org/) to help people explore new places, where they can take their four-legged pets for a walk. This is a side project created in free time to upskill knowledge about [Laravel framework](https://laravel.com/) and at the same time create something useful, handy and accessible for everyone.
 
-<img src="https://www.kreaweb.be/wp-content/uploads/2021/10/laravel-bootstrap-004.jpg" target="_blank" />
-<img src="https://www.kreaweb.be/wp-content/uploads/2021/10/laravel-bootstrap-004.png" target="_blank" />
+  
+
+Version 1.0 was released in May 2022 and the source code is available on [github](https://github.com/majster-pl/walk-the-dog)
+
+  
+
+## Get started
+
+Clone repo
+
+    git clone https://github.com/majster-pl/walk-the-dog && cd open-link-logger
+
+install packages
+
+    composer install
+    npm install -s
+Copy .env file
+
+    cp .env.example .env
+Change .evn file with your db etc. Make sure you add:
+
+    DB_CONNECTION=mysql
+	DB_HOST=127.0.0.1
+	DB_PORT=
+	DB_DATABASE=
+	DB_USERNAME=
+	DB_PASSWORD=
+	
+    NOCAPTCHA_SECRET="your_secret"
+    NOCAPTCHA_SITEKEY="your_site_key"
+    
+    MAIL_MAILER=
+	MAIL_HOST=
+	MAIL_PORT=
+	MAIL_USERNAME=
+	MAIL_PASSWORD=
+	MAIL_ENCRYPTION=
+	MAIL_FROM_ADDRESS=
+	MAIL_FROM_NAME="${APP_NAME}"
+
+
+
+Generate application key using command below and enter generated key to .env file.
+ 
+
+    php artisan key:generate
+
+Setup folder permissions
+
+    `chmod -R 755 storage`  `chmod -R 755 vendor`
+
+Create link to storage/app/public folder
+
+    php artisan storage:link
+
+## Running the project
+To build and run **locally**:
+
+    npm dun dev
+    php artisan serve
+
+  
+To build project for **production** run:
+  
+
+    npm run build
+Then upload project to the server.
+
+ 
