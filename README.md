@@ -13,7 +13,9 @@ Walk The Dog is an [open source](https://opensource.com/resources/what-open-sour
 
 Version 1.0 was released in May 2022 and the source code is available on [github](https://github.com/majster-pl/walk-the-dog)
 
-  
+
+ Link to the website [walkthedog.info](https://walkthedog.info)
+   
 
 ## Get started
 
