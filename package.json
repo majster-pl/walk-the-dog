@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "font-awesome": "^4.7.0",
+        "js-cookie": "^3.0.1",
         "sweetalert2": "^11.4.10"
     }
 }

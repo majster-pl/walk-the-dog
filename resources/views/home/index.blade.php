@@ -1,17 +1,20 @@
-@extends("layouts.app", ['title' => 'Find a place to walk your dog', 'description' => 'Welcome to Walk The Dog! You can find here places near you to walk your pet! You can contribute by sharing with us new places where you like to spend time with your dog.'])
+@extends("layouts.app", ['title' => 'Find a place to walk your dog', 'description' => 'Welcome to Walk The Dog! You can
+find here places near you to walk your pet! You can contribute by sharing with us new places where you like to spend
+time with your dog.'])
+
 @section('content')
     <div class="intro-bg-image text-black w-100 m-0 p-0">
         <div>
             <svg class="intro-bg-bottom-wave" viewBox="0 0 1440 100">
-                <path fill="#f8fafc" fillOpacity="1" 
-                d="M0,85L1440,1L1440,100L0,100Z"
-                ></path>
+                <path fill="#f8fafc" fillOpacity="1" d="M0,85L1440,1L1440,100L0,100Z"></path>
             </svg>
         </div>
         <div class="container py-4 text-white">
             <p class="display-4 pt-3">Welcome to Walk The Dog!</p>
             <p class="display-6">You can find here places near you to walk your pet!</p>
-            <p class="fs-3">Please contribute by sharing with us <a class="link-light fw-bold" href="{{ route('add-new-place') }}">new places</a> where you like to spend time with your dog <i class="fa fa-smile-o" aria-hidden="true"></i></p>
+            <p class="fs-3">Please contribute by sharing with us <a class="link-light fw-bold"
+                    href="{{ route('add-new-place') }}">new places</a> where you like to spend time with your dog <i
+                    class="fa fa-smile-o" aria-hidden="true"></i></p>
         </div>
     </div>
     <div class="container pb-5 pt-2">

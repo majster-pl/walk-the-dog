@@ -210,30 +210,62 @@
     </div>
 
     <script>
-        window.addEventListener('swal:modal', event => {
-            new Swal({
-                title: event.detail.message,
-                text: event.detail.text,
-                icon: event.detail.type,
-                footer: event.detail.footer,
-                confirmButtonColor: event.detail.confirmButtonColor,
-            });
-        });
-
-        window.addEventListener('swal:confirm', event => {
-            new Swal({
+        // sweetalerts popups
+        $(document).ready(function() {
+            window.addEventListener('swal:modal', event => {
+                new Swal({
                     title: event.detail.message,
                     text: event.detail.text,
                     icon: event.detail.type,
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        window.livewire.emit('remove');
-                    }
+                    footer: event.detail.footer,
+                    confirmButtonColor: event.detail.confirmButtonColor,
                 });
+            });
+    
+            window.addEventListener('swal:confirm', event => {
+                new Swal({
+                        title: event.detail.message,
+                        text: event.detail.text,
+                        icon: event.detail.type,
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            window.livewire.emit('remove');
+                        }
+                    });
+            });
+            // show donation popup and save data as cookie.
+            if (!Cookies.get('show_donation_banner') || Cookies.get('show_donation_banner') == 'later' ) {
+                setTimeout(function() {
+                    Swal.fire({
+                        title: 'Hi!, I\'m sorry to bether you!',
+                        html: '<p> Please help me maintain this website by donating any amount <i class="fa fa-money text-success" aria-hidden="true"></i> </p> <p> Click on the button below to find out how you can help!.</p>',
+                        showDenyButton: 'true',
+                        showCancelButton: true,
+                        cancelButtonText: 'Ask me later',
+                        confirmButtonText: `Read more`,
+                        denyButtonText: `No, Don't ask me again!`,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Cookies.set('show_donation_banner', 'false')
+                            window.location.replace('/about')
+
+                        } else if (result.isDenied) {
+                            Cookies.set('show_donation_banner', 'false')
+                            Swal.fire({
+                                html: '<div class="overflow-hidden"><h4>OK, I won\'t bother you again </h4> <i class="fa fa-smile-o fa-lg" aria-hidden="true"></i></div> ',
+                            })
+                        } else {
+                            Cookies.set('show_donation_banner', 'later');
+
+                        }
+                    })
+                }, Cookies.get('show_donation_banner') == 'later' ? 20000 : Math.random() * (2000 - 1000) + 1000);
+            }
         });
+
     </script>
 
 
