@@ -237,7 +237,7 @@
                     });
             });
             // show donation popup and save data as cookie.
-            if (!Cookies.get('show_donation_banner') || Cookies.get('show_donation_banner') == 'later' ) {
+            if (!Cookies.get('show_donation_banner')) {
                 setTimeout(function() {
                     Swal.fire({
                         title: 'Hi!, I\'m sorry to bother you!',
@@ -249,20 +249,19 @@
                         denyButtonText: `No, Don't ask me again!`,
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            Cookies.set('show_donation_banner', 'false')
+                            Cookies.set('show_donation_banner', 'false',{ expires: 365 })
                             window.location.replace('/about')
 
                         } else if (result.isDenied) {
-                            Cookies.set('show_donation_banner', 'false')
+                            Cookies.set('show_donation_banner', 'false',{ expires: 365 })
                             Swal.fire({
                                 html: '<div class="overflow-hidden"><h4>OK, I won\'t bother you again </h4> <i class="fa fa-smile-o fa-lg" aria-hidden="true"></i></div> ',
                             })
                         } else {
-                            Cookies.set('show_donation_banner', 'later');
-
+                            Cookies.set('show_donation_banner', 'false',{ expires: 0.005 })
                         }
                     })
-                }, Cookies.get('show_donation_banner') == 'later' ? 20000 : Math.random() * (2000 - 1000) + 1000);
+                }, Math.random() * (20000 - 1000) + 1000 );
             }
         });
 
