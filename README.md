@@ -116,15 +116,8 @@ Create link to storage/app/public folder
 
     php artisan storage:link
 
-  
 
-Install admin-panel
-
-    php artisan admin:install
-
-  
-
-Migrate database with pre-set users (see /database/seeders/DatabaseSeeder.php for details on pre-set users)
+Migrate database with pre-set users (see /database/seeders/DatabaseSeeder.php for details and adjust before running this command or remove users from admin panel later)
 
     php artisan migrate:fresh --seed --seeder=DatabaseSeeder
 
@@ -140,6 +133,17 @@ npm dun dev
 
 php artisan serve
 
+website:
+http://localhost:8000/
+available logins (all passwords: **password**):
+- email: user@walkthedog.com
+- email: editor@walkthedog.com
+- email: admin@walkthedog.com
+
+admin panel:
+http://localhost:8000/admin
+user: admin
+pass: admin
   
 
 To build project for **production** run:
@@ -149,3 +153,4 @@ To build project for **production** run:
 npm run build
 
 Then upload project to the server.
+
