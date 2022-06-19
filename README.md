@@ -66,6 +66,12 @@ Create link to storage/app/public folder
 
     php artisan storage:link
 
+Install admin-panel
+    php artisan admin:install
+
+Migrate database with preset users (see /database/seeders/DatabaseSeeder.php for details on pre-set users)
+    php artisan migrate:fresh --seed --seeder=DatabaseSeeder
+
 ## Running the project
 To build and run **locally**:
 
