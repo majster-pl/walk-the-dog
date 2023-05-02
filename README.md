@@ -36,7 +36,7 @@ Clone repo
 
   
 
-git clone https://github.com/majster-pl/walk-the-dog && cd open-link-logger
+git clone https://github.com/majster-pl/walk-the-dog && cd walk-the-dog
 
   
 
